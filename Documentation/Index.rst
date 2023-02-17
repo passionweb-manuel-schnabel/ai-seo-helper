@@ -52,7 +52,7 @@ Extension AI SEO-Helper
 
 	Introduction/Index
 	Administrator/Index
-   Editor/Index
+	Editor/Index
 	KnownProblems/Index
 	ChangeLog/Index
 	Links
