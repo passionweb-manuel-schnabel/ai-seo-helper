@@ -1,0 +1,30 @@
+{
+  "name": "passionweb/ai-seo-helper",
+  "license": "GPL-3.0",
+  "description": "Generates SEO metadata based on page content using AI",
+  "type": "typo3-cms-extension",
+  "homepage": "https://www.passionweb.de",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Manuel Schnabel",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^11.5 | ~12.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Passionweb\\AiSeoHelper\\": "Classes/"
+    }
+  },
+  "replace": {
+      "typo3-ter/ai-seo-helper": "self.version"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "ai_seo_helper"
+    }
+  }
+}

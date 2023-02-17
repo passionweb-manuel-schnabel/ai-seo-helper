@@ -1,0 +1,119 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Passionweb\AiSeoHelper\Service;
+
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Routing\PreviewUriBuilder;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Localization\LanguageService;
+
+class ContentService
+{
+    protected array $extConf;
+
+    protected PageRepository $pageRepository;
+
+    protected ExtensionConfiguration $extensionConfiguration;
+
+    public function __construct(
+        PageRepository $pageRepository,
+        ExtensionConfiguration $extensionConfiguration
+    ) {
+        $this->pageRepository = $pageRepository;
+        $this->extensionConfiguration = $extensionConfiguration;
+        $this->extConf = $this->extensionConfiguration->get('ai_seo_helper');
+    }
+
+    public function getContentFromAi(
+        ServerRequestInterface $request,
+        string $extConfPrompt,
+        string $extConfReplaceText
+    ) {
+        $pageContent = $this->getPageContent($request);
+        return $this->requestAi($pageContent, $extConfPrompt, $extConfReplaceText);
+    }
+
+    public function getPageContent(ServerRequestInterface $request): string
+    {
+        $pageId = (int)($request->getParsedBody()['pageId'] ?? 0);
+
+        $page = $this->pageRepository->getPage($pageId);
+        $previewUriBuilder = PreviewUriBuilder::create($pageId);
+        $previewUri = $previewUriBuilder
+            ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $page['sys_language_uid'])
+            ->buildUri();
+
+        $previewUrl = $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
+
+        return file_get_contents($previewUrl);
+    }
+
+    public function requestAi(string $pageContent, $extConfPromptPrefix, $extConfReplaceText): string {
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST', 'https://api.openai.com/v1/completions', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer '.$this->extConf['openAiApiKey']
+            ],
+            'json' => [
+                "model" => $this->extConf['openAiModel'],
+                "prompt" => $this->extConf[$extConfPromptPrefix].":\n\n" . $this->stripPageContent($pageContent),
+                "temperature" => (float)$this->extConf['openAiTemperature'],
+                "max_tokens" => (int)$this->extConf['openAiMaxTokens'],
+                "top_p" => (float)$this->extConf['openAiTopP'],
+                "frequency_penalty" => (float)$this->extConf['openAiFrequencyPenalty'],
+                "presence_penalty" => (float)$this->extConf['openAiPresencePenalty']
+            ],
+        ]);
+
+        $resJsonBody = $response->getBody()->getContents();
+        $resBody = json_decode($resJsonBody, true);
+        $generatedText = $resBody['choices'][0]['text'];
+        return ltrim(str_replace($extConfReplaceText, '', $generatedText));
+    }
+
+
+    /**
+     * With page TS config it is possible to force a specific type id via mod.web_view.type
+     * for a page id or a page tree.
+     * The method checks if a type is set for the given id and returns the additional GET string.
+     *
+     */
+    protected function getTypeParameterIfSet(int $pageId): string
+    {
+        $typeParameter = '';
+        $typeId = (int)(BackendUtility::getPagesTSconfig($pageId)['mod.']['web_view.']['type'] ?? 0);
+        if ($typeId > 0) {
+            $typeParameter = '&type=' . $typeId;
+        }
+        return $typeParameter;
+    }
+
+    protected function stripPageContent(string $pageContent): string {
+        if (preg_match('~<body[^>]*>(.*?)</body>~si', $pageContent, $body))
+        {
+            $pageContent = $body[0];
+        }
+        $pageContent = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $pageContent);
+        $pageContent = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $pageContent);
+        $pageContent = preg_replace('#<footer(.*?)>(.*?)</footer>#is', '', $pageContent);
+        $pageContent = preg_replace('#<nav(.*?)>(.*?)</nav>#is', '', $pageContent);
+        return strip_tags($pageContent);
+    }
+
+    protected function getBackendUser(): BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
+    }
+
+    protected function getLanguageService(): LanguageService
+    {
+        return $GLOBALS['LANG'];
+    }
+}

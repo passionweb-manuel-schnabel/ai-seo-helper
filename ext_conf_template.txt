@@ -1,0 +1,22 @@
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiApiKey
+openAiApiKey =
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPromptPrefixMetaDescription
+openAiPromptPrefixMetaDescription = Extract seo meta description from this text
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.replaceTextMetaDescription
+replaceTextMetaDescription = Meta Description:
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPromptPrefixKeywords
+openAiPromptPrefixKeywords = Extract seo keywords from this text
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.replaceTextKeywords
+replaceTextKeywords = SEO Keywords:
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiModel
+openAiModel = text-davinci-003
+# cat=basic; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiTemperature
+openAiTemperature = 0.5
+# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiMaxTokens
+openAiMaxTokens = 150
+# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiTopP
+openAiTopP = 1
+# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiFrequencyPenalty
+openAiFrequencyPenalty = 0.8
+# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPresencePenalty
+openAiPresencePenalty = 0

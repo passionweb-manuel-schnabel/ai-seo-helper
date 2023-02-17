@@ -1,0 +1,45 @@
+.. include:: ../Includes.txt
+
+
+.. _introduction:
+
+Introduction
+============
+
+
+.. _what-it-does:
+
+What does it do?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generates SEO metadata based on page content using AI. Currently, both the meta description and the keywords can be generated using an additional button next to the corresponding text fields.
+
+Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You need an OpenAI account and API key. If you have not yet created an account or key, you can do so using the following links.
+
+- `Create OpenAI account <https://platform.openai.com/signup>`_
+
+- `Create API key <https://platform.openai.com/account/api-keys>`_
+
+Notices to keep in mind
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Just like this extension, OpenAI is still in development mode and not fully mature. For this reason, we urgently advise you to check all generated texts for correctness before saving them and to make any necessary adjustments!
+
+Troubleshooting and logging
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If something does not work as expected take a look at the log file first.
+Every problem is logged to the TYPO3 log (normally found in `var/log/typo3_*.log`).
+
+If something still doesn't work as desired after checking the logs, feel free to contact me.
+
+Achieving more together or Feedback, Feedback, Feedback
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+I'm grateful for any feedback! Be it suggestions for improvement, extension requests or just a (constructive) feedback on how good or crappy the extension is.
+
+Feel free to send me your feedback to `service@passionweb.de <mailto:service@passionweb.de>`_ or `contact me on Slack <https://typo3.slack.com/team/U02FG49J4TG>`_
+
