@@ -21,7 +21,7 @@ Add via composer.json:
 
 - Install the extension via composer
 - Flush TYPO3 and PHP Cache
-- Add your OpenAI key to the extension configuration before using the extension
+- Add your OpenAI secret key to the extension configuration before using the extension
 
 .. _admin-configuration:
 
