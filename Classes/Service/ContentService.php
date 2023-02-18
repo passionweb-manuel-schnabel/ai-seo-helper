@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Passionweb\AiSeoHelper\Service;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Routing\PreviewUriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
@@ -53,9 +54,13 @@ class ContentService
         return file_get_contents($previewUrl);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function requestAi(string $pageContent, $extConfPromptPrefix, $extConfReplaceText): string {
         $client = new \GuzzleHttp\Client();
 
+        $strippedContent = $this->stripPageContent($pageContent);
         $response = $client->request('POST', 'https://api.openai.com/v1/completions', [
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -63,7 +68,7 @@ class ContentService
             ],
             'json' => [
                 "model" => $this->extConf['openAiModel'],
-                "prompt" => $this->extConf[$extConfPromptPrefix].":\n\n" . $this->stripPageContent($pageContent),
+                "prompt" => $this->extConf[$extConfPromptPrefix].":\n\n" . $strippedContent,
                 "temperature" => (float)$this->extConf['openAiTemperature'],
                 "max_tokens" => (int)$this->extConf['openAiMaxTokens'],
                 "top_p" => (float)$this->extConf['openAiTopP'],
@@ -78,13 +83,6 @@ class ContentService
         return ltrim(str_replace($extConfReplaceText, '', $generatedText));
     }
 
-
-    /**
-     * With page TS config it is possible to force a specific type id via mod.web_view.type
-     * for a page id or a page tree.
-     * The method checks if a type is set for the given id and returns the additional GET string.
-     *
-     */
     protected function getTypeParameterIfSet(int $pageId): string
     {
         $typeParameter = '';

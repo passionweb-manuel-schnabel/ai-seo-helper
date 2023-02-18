@@ -25,12 +25,16 @@ define(["TYPO3/CMS/Core/Ajax/AjaxRequest", "TYPO3/CMS/Backend/Notification"], fu
             )
             .then(async function (response) {
                 const resolved = await response.resolve();
-                const data = JSON.parse(resolved);
-                document.querySelector('textarea[name="data[pages]['+pageId+']['+fieldName+']"]').value = data.output;
-                Notification.success('Start generation', 'Keywords were generated successfully!', 10);
+                const responseBody = JSON.parse(resolved);
+                if(responseBody.error) {
+                    Notification.error('Error', responseBody.error);
+                } else {
+                    document.querySelector('textarea[name="data[pages]['+pageId+']['+fieldName+']"]').value = responseBody.output;
+                    Notification.success('Start generation', 'Keywords were generated successfully!', 10);
+                }
             })
             .catch((error) => {
-                Notification.error('Error', error);
+                Notification.error('Unexpected error', error);
             });
     }
 });
