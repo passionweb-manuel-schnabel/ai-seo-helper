@@ -13,6 +13,8 @@ Added an additional button next to the meta description text field. When you cli
 
 .. figure:: generate-meta-description.png
 
+It can happen that the AI ​​returns texts that exceed the maximum allowed length of the meta description. To additionally check the length of the meta description, the extension `Yoast SEO for TYPO3 <https://extensions.typo3.org/extension/yoast_seo>`_ can be used, for example, or various online tools.
+
 Generate keywords
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
