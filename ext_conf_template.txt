@@ -1,7 +1,7 @@
 # cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiApiKey
 openAiApiKey =
 # cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPromptPrefixMetaDescription
-openAiPromptPrefixMetaDescription = Extract seo meta description from this text
+openAiPromptPrefixMetaDescription = Extract seo meta description in one short sentence and with a maximum of 150 characters or less for following text
 # cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.replaceTextMetaDescription
 replaceTextMetaDescription = Meta Description:
 # cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPromptPrefixKeywords
