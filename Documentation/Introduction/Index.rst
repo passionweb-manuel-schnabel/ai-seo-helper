@@ -28,6 +28,12 @@ Notices to keep in mind
 
 Just like this extension, OpenAI is still in development mode and not fully mature. For this reason, we urgently advise you to check all generated texts for correctness before saving them and to make any necessary adjustments!
 
+The OpenAI API (currently) limits the maximum number of tokens per request depending on the model used (e.g. "text-davinci-003" is limited to 4096 tokens). You can find a detailed overview of models and the maximum number of tokens here:
+
+`https://platform.openai.com/docs/models/gpt-3 <https://platform.openai.com/docs/models/gpt-3>`_ (The 4000 for "text-davinci-003" still seems to be incorrect in the documentation, since the OpenAI playground reports a different limit)
+
+Based on the current status of the extension, it is unfortunately not yet possible to analyze larger texts.
+
 Troubleshooting and logging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
