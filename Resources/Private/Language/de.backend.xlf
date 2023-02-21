@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-lanlguage="de" datatype="plaintext" original="EXT:ai_seo_helper/Resources/Private/Language/backend.xlf" date="2022-10-12T13:12:24Z" product-name="ai_seo_helper">
+		<header/>
+		<body>
+		    <trans-unit id="AiSeoHelper.generation.keywords" resname="AiSeoHelper.generation.keywords">
+                <source>Generate keywords</source>
+                <target>Keywords generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.metaDescription" resname="AiSeoHelper.generation.metaDescription">
+                <source>Generate meta description</source>
+                <target>Meta-Beschreibung generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.pageTitleSuggestions" resname="AiSeoHelper.generation.pageTitleSuggestions">
+                <source>Generate page title suggestions</source>
+                <target>Page-Titel Vorschläge generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start" resname="AiSeoHelper.notification.generation.start">
+                <source>Start</source>
+                <target>Start</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish" resname="AiSeoHelper.notification.generation.finish">
+                <source>Finish</source>
+                <target>Fertig</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.error" resname="AiSeoHelper.notification.generation.error">
+                <source>Unexpected error</source>
+                <target>Unerwarteter Fehler</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.requesterror" resname="AiSeoHelper.notification.generation.requesterror">
+                <source>Request error</source>
+                <target>Request-Fehler</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start.keywords" resname="AiSeoHelper.notification.generation.start.keywords">
+                <source>Keywords generation is in progress. Please wait...</source>
+                <target>Keyword-Generierung läuft. Bitte warten...</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.keywords" resname="AiSeoHelper.notification.generation.finish.keywords">
+                <source>Keywords were generated successfully.</source>
+                <target>Keywords wurden erfolgreich generiert.</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start.metaDescription" resname="AiSeoHelper.notification.generation.start.metaDescription">
+                <source>Meta description generation is in progress. Please wait...</source>
+                <target>Generierung der Meta-Beschreibung läuft. Bitte warten...</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.metaDescription" resname="AiSeoHelper.notification.generation.finish.metaDescription">
+                <source>Meta description was generated successfully.</source>
+                <target>Meta-Beschreibung wurde erfolgreich generiert.</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start.pageTitleSuggestions" resname="AiSeoHelper.notification.generation.start.pageTitleSuggestions">
+                <source>Page title suggestions generation is in progress. Please wait...</source>
+                <target>Page-Titel Vorschläge werden generiert. Bitte warten...</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.pageTitleSuggestions" resname="AiSeoHelper.notification.generation.finish.pageTitleSuggestions">
+                <source>Page title suggestions were generated successfully.</source>
+                <target>Page-Titel Vorschläge wurden erfolgreich generiert.</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection" resname="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection">
+                <source>Missing selection</source>
+                <target>Fehlende Auswahl</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo" resname="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo">
+                <source>Please select a page title.</source>
+                <target>Bitte wählen Sie einen Page-Titel aus.</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.noSuitablePage" resname="AiSeoHelper.noSuitablePage">
+                <source>Did not find a suitable page uid.</source>
+                <target>Keine passende Seiten-UID gefunden.</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.pageTitleSuggestionsHeader" resname="AiSeoHelper.pageTitleSuggestionsHeader">
+                <source>Page title suggestions</source>
+                <target>Vorschläge für Page-Titel</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.pageTitleSuggestionsSubheader" resname="AiSeoHelper.pageTitleSuggestionsSubheader">
+                <source>Please select your favorite page title:</source>
+                <target>Bitte wählen Sie Ihren bevorzugten Page-Titel aus:</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.setPageTitle" resname="AiSeoHelper.setPageTitle">
+                <source>Set selected page title</source>
+                <target>Ausgewählten Page-Titel setzen</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.removeSuggestions" resname="AiSeoHelper.removeSuggestions">
+                <source>Remove suggestions</source>
+                <target>Vorschläge entfernen</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

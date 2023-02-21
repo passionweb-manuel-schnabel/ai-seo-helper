@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:ai_seo_helper/Resources/Private/Language/backend.xlf" date="2022-10-12T13:12:24Z" product-name="ai_seo_helper">
+		<header/>
+		<body>
+		    <trans-unit id="AiSeoHelper.generation.keywords" resname="AiSeoHelper.generation.keywords">
+                <source>Generate keywords</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.metaDescription" resname="AiSeoHelper.generation.metaDescription">
+                <source>Generate meta description</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.pageTitleSuggestions" resname="AiSeoHelper.generation.pageTitleSuggestions">
+                <source>Generate page title suggestions</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start" resname="AiSeoHelper.notification.generation.start">
+                <source>Start</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish" resname="AiSeoHelper.notification.generation.finish">
+                <source>Finish</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.error" resname="AiSeoHelper.notification.generation.error">
+                <source>Unexpected error</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.requestError" resname="AiSeoHelper.notification.generation.requestError">
+                <source>Request error</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start.keywords" resname="AiSeoHelper.notification.generation.start.keywords">
+                <source>Keywords generation is in progress. Please wait...</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.keywords" resname="AiSeoHelper.notification.generation.finish.keywords">
+                <source>Keywords were generated successfully.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start.metaDescription" resname="AiSeoHelper.notification.generation.start.metaDescription">
+                <source>Meta description generation is in progress. Please wait...</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.metaDescription" resname="AiSeoHelper.notification.generation.finish.metaDescription">
+                <source>Meta description was generated successfully.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.start.pageTitleSuggestions" resname="AiSeoHelper.notification.generation.start.pageTitleSuggestions">
+                <source>Page title suggestions generation is in progress. Please wait...</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.pageTitleSuggestions" resname="AiSeoHelper.notification.generation.finish.pageTitleSuggestions">
+                <source>Page title suggestions were generated successfully.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection" resname="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection">
+                <source>Missing selection</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo" resname="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo">
+                <source>Please select a page title.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.noSuitablePage" resname="AiSeoHelper.noSuitablePage">
+                <source>Did not find a suitable page uid.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.pageTitleSuggestionsHeader" resname="AiSeoHelper.pageTitleSuggestionsHeader">
+                <source>Page title suggestions</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.pageTitleSuggestionsSubheader" resname="AiSeoHelper.pageTitleSuggestionsSubheader">
+                <source>Please select your favorite page title:</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.setPageTitle" resname="AiSeoHelper.setPageTitle">
+                <source>Set selected page title</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.removeSuggestions" resname="AiSeoHelper.removeSuggestions">
+                <source>Remove suggestions</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

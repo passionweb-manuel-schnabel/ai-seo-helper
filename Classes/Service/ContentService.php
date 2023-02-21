@@ -33,7 +33,7 @@ class ContentService
     public function getContentFromAi(
         ServerRequestInterface $request,
         string $extConfPrompt,
-        string $extConfReplaceText
+        string $extConfReplaceText = ""
     ) {
         $pageContent = $this->getPageContent($request);
         return $this->requestAi($pageContent, $extConfPrompt, $extConfReplaceText);

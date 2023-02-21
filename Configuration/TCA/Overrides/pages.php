@@ -21,3 +21,14 @@ $GLOBALS['TCA']['pages']['columns']['keywords']['config'] = array_merge_recursiv
         ]
     ]
 );
+
+$GLOBALS['TCA']['pages']['columns']['seo_title']['config'] = array_merge_recursive(
+    $GLOBALS['TCA']['pages']['columns']['seo_title']['config'],
+    [
+        'fieldControl' => [
+            'importControl' => [
+                'renderType' => 'aiSeoPageTitle'
+            ]
+        ]
+    ]
+);

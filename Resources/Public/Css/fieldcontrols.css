@@ -1,3 +1,5 @@
-a#generateKeywords span, a#generateMetaDescription span {
+a#generateKeywords span,
+a#generateMetaDescription span,
+a#generatePageTitle span {
     pointer-events: none;
 }

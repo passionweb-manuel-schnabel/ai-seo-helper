@@ -9,28 +9,29 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-class AiSeoMetaDescription extends AbstractNode
+class AiSeoPageTitle extends AbstractNode
 {
     public function render(): array
     {
         $resultArray = [
             'iconIdentifier' => 'actions-document-synchronize',
-            'title' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.generation.metaDescription'),
+            'title' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.generation.pageTitleSuggestions'),
             'linkAttributes' => [
-                'id' => 'generateMetaDescription',
+                'id' => 'generatePageTitle',
                 'data-page-id' => $this->data['databaseRow']['uid'],
-                'data-field-name' => 'description'
+                'data-field-name' => 'seo_title'
             ]
         ];
 
         $typo3Version = new Typo3Version();
         if ($typo3Version->getMajorVersion() > 11) {
             $resultArray['javaScriptModules'] = [
-                JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-meta-description.js')
+                JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-page-title.js')
             ];
         } else {
+            // keep RequireJs for TYPO3 below v12.0
             $resultArray['requireJsModules'] = [
-                JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GenerateMetaDescription')
+                JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GeneratePageTitle')
             ];
         }
 

@@ -1,22 +1,24 @@
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiApiKey
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiApiKey
 openAiApiKey =
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPromptPrefixMetaDescription
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
 openAiPromptPrefixMetaDescription = Extract seo meta description in one short sentence and with a maximum of 150 characters or less for following text
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.replaceTextMetaDescription
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextMetaDescription
 replaceTextMetaDescription = Meta Description:
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPromptPrefixKeywords
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixKeywords
 openAiPromptPrefixKeywords = Extract seo keywords from this text
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.replaceTextKeywords
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextKeywords
 replaceTextKeywords = SEO Keywords:
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiModel
+#cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
+openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for this text
+# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
 openAiModel = text-davinci-003
-# cat=basic; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiTemperature
+# cat=basic; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
 openAiTemperature = 0.5
-# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiMaxTokens
+# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens
 openAiMaxTokens = 150
-# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiTopP
+# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTopP
 openAiTopP = 1
-# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiFrequencyPenalty
+# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiFrequencyPenalty
 openAiFrequencyPenalty = 0.8
-# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/locallang_db.xlf:extConf.openAiPresencePenalty
+# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPresencePenalty
 openAiPresencePenalty = 0

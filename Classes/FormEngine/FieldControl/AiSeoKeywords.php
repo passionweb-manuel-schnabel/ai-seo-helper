@@ -7,6 +7,7 @@ namespace Passionweb\AiSeoHelper\FormEngine\FieldControl;
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class AiSeoKeywords extends AbstractNode
 {
@@ -14,7 +15,7 @@ class AiSeoKeywords extends AbstractNode
     {
         $resultArray = [
             'iconIdentifier' => 'actions-document-synchronize',
-            'title' => 'Generate keywords',
+            'title' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.generation.keywords'),
             'linkAttributes' => [
                 'id' => 'generateKeywords',
                 'data-page-id' => $this->data['databaseRow']['uid'],

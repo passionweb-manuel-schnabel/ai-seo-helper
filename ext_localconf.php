@@ -13,3 +13,9 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1676410678] = [
     'priority' => 30,
     'class' => \Passionweb\AiSeoHelper\FormEngine\FieldControl\AiSeoKeywords::class
 ];
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1676410679] = [
+    'nodeName' => 'aiSeoPageTitle',
+    'priority' => 30,
+    'class' => \Passionweb\AiSeoHelper\FormEngine\FieldControl\AiSeoPageTitle::class
+];

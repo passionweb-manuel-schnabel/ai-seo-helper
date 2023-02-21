@@ -9,9 +9,11 @@ use Passionweb\AiSeoHelper\Service\ContentService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerTrait;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class AiController
 {
@@ -34,6 +36,43 @@ class AiController
         return $this->generateResponse($request,'openAiPromptPrefixKeywords', 'replaceTextKeywords');
     }
 
+    public function generatePageTitleAction(ServerRequestInterface $request): ResponseInterface
+    {
+        $response = new Response();
+
+        try {
+            $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
+            $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
+            $standaloneView->getRenderingContext()->setControllerName('Ai');
+            $standaloneView->setTemplate('GeneratePageTitle');
+
+            $generatedPageTitleContent = $this->contentService->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
+
+            $suggestions = explode(PHP_EOL, $generatedPageTitleContent);
+            $pageTitleSuggestions = [];
+            foreach ($suggestions as $suggestion) {
+                if(!empty($suggestion) && strpos($suggestion, '-') !== false) {
+                    $pageTitleSuggestions[] = ltrim(str_replace('-', '', $suggestion));
+                }
+            }
+
+            $standaloneView->assign('pageTitleSuggestions', $pageTitleSuggestions);
+            $content = $standaloneView->render();
+
+            $response->getBody()->write(json_encode(['success' => true, 'output' => $content]));
+            return $response;
+        } catch(GuzzleException $e) {
+            $this->logger->error($e->getMessage());
+            $response->withStatus(400);
+            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
+        } catch(Exception $e) {
+            $this->logger->error($e->getMessage());
+            $response->withStatus(500);
+            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
+        }
+        return $response;
+    }
+
     private function generateResponse(ServerRequestInterface $request, string $extConfPrompt, string $extConfReplaceText): ResponseInterface {
         $response = new Response();
         try {
@@ -41,7 +80,7 @@ class AiController
             $pageId = (int)$postParams['pageId'];
 
             if (empty($pageId)) {
-                throw new Exception('Didn\'t find a suitable page uid.');
+                throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.noSuitablePage'));
             }
 
             $generatedContent = $this->contentService->getContentFromAi($request, $extConfPrompt, $extConfReplaceText);
