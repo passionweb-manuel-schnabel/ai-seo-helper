@@ -9,7 +9,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'PassionWeb Manuel Schnabel',
     'state' => 'beta',
     'clearCacheOnLoad' => true,
-    'version' => '0.2.0',
+    'version' => '0.2.1',
     'constraints' => [
         'depends' => ['typo3' => '10.4.0-12.2.0'],
         'conflicts' => [],
