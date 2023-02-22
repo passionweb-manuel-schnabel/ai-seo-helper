@@ -24,14 +24,18 @@ class AiSeoKeywords extends AbstractNode
         ];
 
         $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() > 11) {
+        if ($typo3Version->getMajorVersion() === 12) {
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-keywords.js')
             ];
-        } else {
+        } else if ($typo3Version->getMajorVersion() === 11) {
             // keep RequireJs for TYPO3 below v12.0
             $resultArray['requireJsModules'] = [
                 JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GenerateKeywords')
+            ];
+        } else {
+            $resultArray['requireJsModules'] = [
+                'TYPO3/CMS/AiSeoHelper/GenerateKeywords'
             ];
         }
 

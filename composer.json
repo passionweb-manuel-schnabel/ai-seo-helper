@@ -12,8 +12,8 @@
     }
   ],
   "require": {
-    "typo3/cms-core": "^11.5 | ~12.2.0",
-    "typo3/cms-backend": "^11.5 | ~12.2.0"
+    "typo3/cms-core": "^10.4 | ^11.5 | ~12.2.0",
+    "typo3/cms-backend": "^10.4 | ^11.5 | ~12.2.0"
   },
   "autoload": {
     "psr-4": {

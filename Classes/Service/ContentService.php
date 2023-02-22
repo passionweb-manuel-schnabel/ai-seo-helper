@@ -6,11 +6,11 @@ namespace Passionweb\AiSeoHelper\Service;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Backend\Routing\PreviewUriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -44,14 +44,19 @@ class ContentService
     public function getPageContent(ServerRequestInterface $request): string
     {
         $pageId = (int)($request->getParsedBody()['pageId'] ?? 0);
+        $typo3Version = new Typo3Version();
+        if ($typo3Version->getMajorVersion() > 10) {
+            $page = $this->pageRepository->getPage($pageId);
+            $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
 
-        $page = $this->pageRepository->getPage($pageId);
-        $previewUriBuilder = PreviewUriBuilder::create($pageId);
-        $previewUri = $previewUriBuilder
-            ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $page['sys_language_uid'])
-            ->buildUri();
+            $previewUri = $previewUriBuilder
+                ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $page['sys_language_uid'])
+                ->buildUri();
 
-        $previewUrl = $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
+            $previewUrl = $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
+        } else {
+            $previewUrl = BackendUtility::getPreviewUrl($pageId);
+        }
 
         return file_get_contents($previewUrl);
     }

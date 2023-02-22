@@ -11,6 +11,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class AiController
@@ -19,9 +21,9 @@ class AiController
 
     private LoggerInterface $logger;
 
-    public function __construct(ContentService $contentService, LoggerInterface $logger) {
+    public function __construct(ContentService $contentService) {
         $this->contentService = $contentService;
-        $this->logger = $logger;
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger();
     }
 
     public function generateMetaDescriptionAction(ServerRequestInterface $request): ResponseInterface

@@ -24,13 +24,17 @@ class AiSeoMetaDescription extends AbstractNode
         ];
 
         $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() > 11) {
+        if ($typo3Version->getMajorVersion() === 12) {
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-meta-description.js')
             ];
-        } else {
+        } else if($typo3Version->getMajorVersion() === 11) {
             $resultArray['requireJsModules'] = [
                 JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GenerateMetaDescription')
+            ];
+        } else {
+            $resultArray['requireJsModules'] = [
+                'TYPO3/CMS/AiSeoHelper/GenerateMetaDescription'
             ];
         }
 
