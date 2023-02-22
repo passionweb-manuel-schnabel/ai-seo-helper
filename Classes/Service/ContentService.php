@@ -91,15 +91,7 @@ class ContentService
         $standaloneView->getRenderingContext()->setControllerName('Ai');
         $standaloneView->setTemplate('GeneratePageTitle');
 
-        // $generatedPageTitleContent = $this->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
-
-        $generatedPageTitleContent = 'Suggested Page Titles:
-
-- Projektablauf: Von A bis V
-- Erfolgreiche Projekte brauchen einen klaren Ablaufplan
-- Ein Schritt nach dem Anderen: Die einzelnen Schritte eines Projekts
-- Von der Anfrage bis zur Veröffentlichung - So läuft ein Projekt ab
-- Alles was du über den Ablauf eines Projekts wissen musst';
+        $generatedPageTitleContent = $this->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
 
         if($this->extConf['showRawPageTitleSuggestions'] === '1') {
             $standaloneView->assign('pageTitleSuggestions', $generatedPageTitleContent);
