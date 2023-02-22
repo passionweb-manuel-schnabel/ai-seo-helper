@@ -27,7 +27,7 @@
                 <source>Unexpected error</source>
                 <target>Unerwarteter Fehler</target>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.notification.generation.requesterror" resname="AiSeoHelper.notification.generation.requesterror">
+            <trans-unit id="AiSeoHelper.notification.generation.requestError" resname="AiSeoHelper.notification.generation.requestError">
                 <source>Request error</source>
                 <target>Request-Fehler</target>
             </trans-unit>
@@ -82,6 +82,10 @@
             <trans-unit id="AiSeoHelper.removeSuggestions" resname="AiSeoHelper.removeSuggestions">
                 <source>Remove suggestions</source>
                 <target>Vorschläge entfernen</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.fetchContentFailed" resname="AiSeoHelper.fetchContentFailed">
+                <source>Page content could not be loaded.</source>
+                <target>Inhalt der Seite konnte nicht geladen werden</target>
             </trans-unit>
 		</body>
 	</file>

@@ -63,6 +63,9 @@
             <trans-unit id="AiSeoHelper.removeSuggestions" resname="AiSeoHelper.removeSuggestions">
                 <source>Remove suggestions</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.fetchContentFailed" resname="AiSeoHelper.fetchContentFailed">
+                <source>Page content could not be loaded.</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

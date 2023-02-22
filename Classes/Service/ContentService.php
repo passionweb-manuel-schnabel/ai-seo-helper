@@ -8,11 +8,16 @@ use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Routing\UnableToLinkToPageException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class ContentService
@@ -23,6 +28,10 @@ class ContentService
 
     protected ExtensionConfiguration $extensionConfiguration;
 
+    /**
+     * @throws ExtensionConfigurationPathDoesNotExistException
+     * @throws ExtensionConfigurationExtensionNotConfiguredException
+     */
     public function __construct(
         PageRepository $pageRepository,
         ExtensionConfiguration $extensionConfiguration
@@ -32,6 +41,11 @@ class ContentService
         $this->extConf = $this->extensionConfiguration->get('ai_seo_helper');
     }
 
+    /**
+     * @throws Exception
+     * @throws GuzzleException
+     * @throws UnableToLinkToPageException
+     */
     public function getContentFromAi(
         ServerRequestInterface $request,
         string $extConfPrompt,
@@ -41,6 +55,11 @@ class ContentService
         return $this->requestAi($pageContent, $extConfPrompt, $extConfReplaceText);
     }
 
+    /**
+     * @throws Exception
+     * @throws GuzzleException
+     * @throws UnableToLinkToPageException
+     */
     public function getPageContent(ServerRequestInterface $request): string
     {
         $pageId = (int)($request->getParsedBody()['pageId'] ?? 0);
@@ -57,8 +76,7 @@ class ContentService
         } else {
             $previewUrl = BackendUtility::getPreviewUrl($pageId);
         }
-
-        return file_get_contents($previewUrl);
+        return $this->fetchContentFromUrl($previewUrl);
     }
 
     /**
@@ -139,6 +157,24 @@ class ContentService
             }
         }
         return $pageTitleSuggestions;
+    }
+
+    /**
+     * @throws Exception
+     * @throws GuzzleException
+     */
+    private function fetchContentFromUrl(string $previewUrl): string
+    {
+        $fetchedContent = file_get_contents($previewUrl);
+        if($fetchedContent === false) {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', $previewUrl);
+            $fetchedContent = $response->getBody()->getContents();
+        }
+        if($fetchedContent === false) {
+            throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.fetchContentFailed'));
+        }
+        return $fetchedContent;
     }
 
     protected function getBackendUser(): BackendUserAuthentication
