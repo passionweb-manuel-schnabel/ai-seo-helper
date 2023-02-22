@@ -12,6 +12,8 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class ContentService
 {
@@ -83,6 +85,32 @@ class ContentService
         return ltrim(str_replace($extConfReplaceText, '', $generatedText));
     }
 
+    public function getContentForPageTitleSuggestions(ServerRequestInterface $request): string {
+        $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
+        $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
+        $standaloneView->getRenderingContext()->setControllerName('Ai');
+        $standaloneView->setTemplate('GeneratePageTitle');
+
+        // $generatedPageTitleContent = $this->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
+
+        $generatedPageTitleContent = 'Suggested Page Titles:
+
+- Projektablauf: Von A bis V
+- Erfolgreiche Projekte brauchen einen klaren Ablaufplan
+- Ein Schritt nach dem Anderen: Die einzelnen Schritte eines Projekts
+- Von der Anfrage bis zur Veröffentlichung - So läuft ein Projekt ab
+- Alles was du über den Ablauf eines Projekts wissen musst';
+
+        if($this->extConf['showRawPageTitleSuggestions'] === '1') {
+            $standaloneView->assign('pageTitleSuggestions', $generatedPageTitleContent);
+            $standaloneView->assign('showRawContent', true);
+        } else {
+            $standaloneView->assign('pageTitleSuggestions', $this->buildBulletPointList($generatedPageTitleContent));
+        }
+
+        return $standaloneView->render();
+    }
+
     protected function getTypeParameterIfSet(int $pageId): string
     {
         $typeParameter = '';
@@ -103,6 +131,17 @@ class ContentService
         $pageContent = preg_replace('#<footer(.*?)>(.*?)</footer>#is', '', $pageContent);
         $pageContent = preg_replace('#<nav(.*?)>(.*?)</nav>#is', '', $pageContent);
         return strip_tags($pageContent);
+    }
+
+    protected function buildBulletPointList(string $content): array {
+        $suggestions = explode(PHP_EOL, $content);
+        $pageTitleSuggestions = [];
+        foreach ($suggestions as $suggestion) {
+            if(!empty($suggestion) && strpos($suggestion, '-') !== false) {
+                $pageTitleSuggestions[] = ltrim(str_replace('-', '', $suggestion));
+            }
+        }
+        return $pageTitleSuggestions;
     }
 
     protected function getBackendUser(): BackendUserAuthentication

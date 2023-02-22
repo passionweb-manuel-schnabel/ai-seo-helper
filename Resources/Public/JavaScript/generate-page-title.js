@@ -19,7 +19,6 @@ class GeneratePageTitle {
         });
     }
 
-
     /**
      *
      * @param {int} pageId
@@ -63,21 +62,25 @@ class GeneratePageTitle {
         pageTitleSelection.innerHTML = content;
         pageTitleSelection.classList.add('ai-seo-helper-suggested-page-titles');
         document.getElementById('generatePageTitle').closest('.formengine-field-item').append(pageTitleSelection);
-        document.getElementById('setPageTitleBtn').addEventListener('click', function(ev) {
-            ev.preventDefault();
-            let selectedPageTitle = document.querySelector('input[name="page_title"]:checked');
-            if(selectedPageTitle === null) {
-                Notification.info(TYPO3.lang['AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection'], TYPO3.lang['AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo'], 5);
-            } else {
-                document.querySelector('input[data-formengine-input-name="data[pages]['+pageId+']['+fieldName+']"]').value = selectedPageTitle.value;
-                document.querySelector('input[name="data[pages]['+pageId+']['+fieldName+']"]').value = selectedPageTitle.value;
+        if(document.getElementById('setPageTitleBtn')) {
+            document.getElementById('setPageTitleBtn').addEventListener('click', function(ev) {
+                ev.preventDefault();
+                let selectedPageTitle = document.querySelector('input[name="page_title"]:checked');
+                if(selectedPageTitle === null) {
+                    Notification.info(TYPO3.lang['AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection'], TYPO3.lang['AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo'], 5);
+                } else {
+                    document.querySelector('input[data-formengine-input-name="data[pages]['+pageId+']['+fieldName+']"]').value = selectedPageTitle.value;
+                    document.querySelector('input[name="data[pages]['+pageId+']['+fieldName+']"]').value = selectedPageTitle.value;
+                    pageTitleSelection.remove();
+                }
+            });
+        }
+        if(document.getElementById('dropPageTitleBtn')) {
+            document.getElementById('dropPageTitleBtn').addEventListener('click', function (ev) {
+                ev.preventDefault();
                 pageTitleSelection.remove();
-            }
-        });
-        document.getElementById('dropPageTitleBtn').addEventListener('click', function(ev) {
-            ev.preventDefault();
-            pageTitleSelection.remove();
-        });
+            });
+        }
     }
 }
 

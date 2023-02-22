@@ -21,6 +21,9 @@
             <trans-unit id="openAiPromptPrefixPageTitle" resname="openAiPromptPrefixPageTitle">
                 <source>Prompt-Prefix for page title suggestions generation: Enter your instruction for generating page title suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way)</source>
             </trans-unit>
+            <trans-unit id="showRawPageTitleSuggestions" resname="showRawPageTitleSuggestions">
+                <source>Show raw response content of page title suggestions: By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite page title via copy/paste.</source>
+            </trans-unit>
             <trans-unit id="openAiModel" resname="openAiModel">
                 <source>OpenAI Model: The id of the model which will generate the completion. See https://platform.openai.com/docs/models/overview for an overview of available models.</source>
             </trans-unit>

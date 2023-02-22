@@ -10,6 +10,8 @@ openAiPromptPrefixKeywords = Extract seo keywords from this text
 replaceTextKeywords = SEO Keywords:
 #cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
 openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for this text
+#cat=basic; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawPageTitleSuggestions
+showRawPageTitleSuggestions = 0
 # cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
 openAiModel = text-davinci-003
 # cat=basic; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature

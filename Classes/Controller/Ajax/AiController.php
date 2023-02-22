@@ -41,24 +41,7 @@ class AiController
         $response = new Response();
 
         try {
-            $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
-            $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
-            $standaloneView->getRenderingContext()->setControllerName('Ai');
-            $standaloneView->setTemplate('GeneratePageTitle');
-
-            $generatedPageTitleContent = $this->contentService->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
-
-            $suggestions = explode(PHP_EOL, $generatedPageTitleContent);
-            $pageTitleSuggestions = [];
-            foreach ($suggestions as $suggestion) {
-                if(!empty($suggestion) && strpos($suggestion, '-') !== false) {
-                    $pageTitleSuggestions[] = ltrim(str_replace('-', '', $suggestion));
-                }
-            }
-
-            $standaloneView->assign('pageTitleSuggestions', $pageTitleSuggestions);
-            $content = $standaloneView->render();
-
+            $content = $this->contentService->getContentForPageTitleSuggestions($request);
             $response->getBody()->write(json_encode(['success' => true, 'output' => $content]));
             return $response;
         } catch(GuzzleException $e) {

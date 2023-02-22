@@ -21,22 +21,27 @@ Source: [Create API key](https://platform.openai.com/account/api-keys "Create AP
 
 ## Generate meta description
 
-Added an additional button <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="M6.768 15H1.5a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v5.47a5.779 5.779 0 0 0-1-.831V2H2v12h3.975c.227.362.493.698.793 1Zm-1.572-3H3v1h2.476a5.707 5.707 0 0 1-.28-1Zm-.018-2H3v1h2.1a5.87 5.87 0 0 1 .078-1Zm.735-2H3v1h2.44c.125-.35.285-.685.473-1Zm2.01-2H3v1h3.671a5.775 5.775 0 0 1 1.251-1ZM3 3h10v2H3V3Zm8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM9.285 8.55l-.517-.86a4 4 0 0 1 6.248 3.307h.825c.14 0 .226.161.151.285l-1.307 2.433a.175.175 0 0 1-.304 0l-1.357-2.433c-.075-.124.011-.284.151-.284h.84a3 3 0 0 0-4.73-2.449ZM11.024 14c.645 0 1.218-.203 1.707-.55l.517.86A4 4 0 0 1 7 11.002h-.817c-.14 0-.226-.161-.152-.285l1.3-2.433a.175.175 0 0 1 .304 0l1.316 2.433c.074.124-.012.284-.152.284H8C8.001 12.658 9.368 14 11.024 14Z"/></g></svg> next to the meta description text field. When you click this button, the (text) content of the selected page is generated and a meta description that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
+Added an additional button next to the meta description text field. When you click this button, the (text) content of the selected page is generated and a meta description that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
 
 ![Generate meta description](./Documentation/Editor/generate-meta-description.png)
 
-It can happen that the AI ​​returns texts that exceed the maximum allowed length of the meta description. To additionally check the length of the meta description, the extension ["Yoast SEO for TYPO3"](https://extensions.typo3.org/extension/yoast_seo "Yoast SEO for TYPO3") can be used, for example, or various online tools.
+It can happen that the AI returns texts that exceed the maximum allowed length of the meta description. To additionally check the length of the meta description, the extension ["Yoast SEO for TYPO3"](https://extensions.typo3.org/extension/yoast_seo "Yoast SEO for TYPO3") can be used, for example, or various online tools.
 
 ## Generate keywords
 
-Added an additional button <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="M6.768 15H1.5a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v5.47a5.779 5.779 0 0 0-1-.831V2H2v12h3.975c.227.362.493.698.793 1Zm-1.572-3H3v1h2.476a5.707 5.707 0 0 1-.28-1Zm-.018-2H3v1h2.1a5.87 5.87 0 0 1 .078-1Zm.735-2H3v1h2.44c.125-.35.285-.685.473-1Zm2.01-2H3v1h3.671a5.775 5.775 0 0 1 1.251-1ZM3 3h10v2H3V3Zm8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM9.285 8.55l-.517-.86a4 4 0 0 1 6.248 3.307h.825c.14 0 .226.161.151.285l-1.307 2.433a.175.175 0 0 1-.304 0l-1.357-2.433c-.075-.124.011-.284.151-.284h.84a3 3 0 0 0-4.73-2.449ZM11.024 14c.645 0 1.218-.203 1.707-.55l.517.86A4 4 0 0 1 7 11.002h-.817c-.14 0-.226-.161-.152-.285l1.3-2.433a.175.175 0 0 1 .304 0l1.316 2.433c.074.124-.012.284-.152.284H8C8.001 12.658 9.368 14 11.024 14Z"/></g></svg>
-next to the keywords text field. When you click this button, the (text) content of the selected page is generated and keywords that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
+Added an additional button next to the keywords text field. When you click this button, the (text) content of the selected page is generated and keywords that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
 
 ![Generate keywords](./Documentation/Editor/generate-keywords.png)
 
+## Generate page title (suggestions)
+
+Added an additional button next to the seo title text field. When you click this button, the (text) content of the selected page is generated and you get page title suggestions with the help of the AI. By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawPageTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite page title via copy/paste.
+
+![Generate page title suggestions](./Documentation/Editor/generate-page-title-suggestions.png)
+
 ## Extension settings
 
-You can adapt the following parameters to your personal needs. After the first tests, the best results were achieved with the predefined values. However, this is no guarantee that these values ​​will also achieve the best results for you.
+You can adapt the following parameters to your personal needs. After the first tests, the best results were achieved with the predefined values. However, this is no guarantee that these values will also achieve the best results for you.
 
 ### `openAiApiKey`
 
@@ -72,6 +77,20 @@ Enter your instruction for generating keywords.
     replaceTextKeywords = SEO keywords:
 
 The content generated by OpenAI is usually supplemented with a short introduction. Here you can define the part of the generated content that should be removed.
+
+### `openAiPromptPrefixPageTitle`
+
+    #cat=basic; type=string; label=Prompt-Prefix for page title suggestions generation
+    openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for this text
+
+Enter your instruction for generating page title suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way).
+
+### `showRawPageTitleSuggestions`
+
+    #cat=basic; type=boolean; label=Show raw response content of page title suggestions
+    showRawPageTitleSuggestions = 0
+
+By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite page title via copy/paste.
 
 ### `openAiModel`
 
