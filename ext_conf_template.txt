@@ -1,26 +1,26 @@
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiApiKey
+# cat=API Key; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiApiKey
 openAiApiKey =
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
-openAiPromptPrefixMetaDescription = Extract seo meta description in one short sentence and with a maximum of 150 characters or less for following text
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextMetaDescription
-replaceTextMetaDescription = Meta Description:
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixKeywords
+# cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixKeywords
 openAiPromptPrefixKeywords = Extract seo keywords from this text
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextKeywords
+# cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextKeywords
 replaceTextKeywords = SEO Keywords:
-#cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
+# cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
+openAiPromptPrefixMetaDescription = Extract seo meta description in one short sentence and with a maximum of 150 characters or less for following text
+# cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextMetaDescription
+replaceTextMetaDescription = Meta Description:
+#cat=page title; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
 openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for this text
-#cat=basic; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawPageTitleSuggestions
+#cat=page title; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawPageTitleSuggestions
 showRawPageTitleSuggestions = 0
-# cat=basic; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
+# cat=basic request settings; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
 openAiModel = text-davinci-003
-# cat=basic; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
+# cat=basic request settings; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
 openAiTemperature = 0.5
-# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens
+# cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens
 openAiMaxTokens = 150
-# cat=basic; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTopP
+# cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTopP
 openAiTopP = 1
-# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiFrequencyPenalty
+# cat=basic request settings; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiFrequencyPenalty
 openAiFrequencyPenalty = 0.8
-# cat=basic; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPresencePenalty
+# cat=basic request settings; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPresencePenalty
 openAiPresencePenalty = 0
