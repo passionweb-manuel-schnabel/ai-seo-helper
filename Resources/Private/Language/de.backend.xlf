@@ -87,6 +87,14 @@
                 <source>Page content could not be loaded.</source>
                 <target>Inhalt der Seite konnte nicht geladen werden</target>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.apiNotReachable" resname="AiSeoHelper.apiNotReachable">
+                <source>Unfortunately, the OpenAI API is currently not available. Please try again later.</source>
+                <target>OpenAI-Schnittstelle ist aktuell leider nicht erreichbar. Bitte versuche es später erneut.</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.missingApiKey" resname="AiSeoHelper.missingApiKey">
+                <source>OpenAI verification failed. Maybe you haven't saved your API key in the extension configuration yet?</source>
+                <target>OpenAI-Verifizierung schlug fehl. Eventuell hast du deinen API-Schlüssel noch nicht in der Extension-Konfiguration hinterlegt?</target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

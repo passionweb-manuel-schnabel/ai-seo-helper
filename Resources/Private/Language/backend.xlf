@@ -66,6 +66,12 @@
             <trans-unit id="AiSeoHelper.fetchContentFailed" resname="AiSeoHelper.fetchContentFailed">
                 <source>Page content could not be loaded.</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.apiNotReachable" resname="AiSeoHelper.apiNotReachable">
+                <source>Unfortunately, the OpenAI API is currently not available. Please try again later.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.missingApiKey" resname="AiSeoHelper.missingApiKey">
+                <source>OpenAI verification failed. Maybe you haven't saved your API key in the extension configuration yet?</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
