@@ -72,6 +72,9 @@
             <trans-unit id="AiSeoHelper.missingApiKey" resname="AiSeoHelper.missingApiKey">
                 <source>OpenAI verification failed. Maybe you haven't saved your API key in the extension configuration yet?</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.pageNotAccessible" resname="AiSeoHelper.pageNotAccessible">
+                <source>Page not found. If the page is hidden, please activate it (and possibly deactivate the option "Page in menus activated" within the page properties) so that the page is accessible.</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

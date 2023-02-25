@@ -15,18 +15,48 @@ use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Routing\SiteMatcher;
 use TYPO3\CMS\Core\Routing\UnableToLinkToPageException;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class ContentService
 {
+    protected array $languages = [
+        'en' => 'English',
+        'us' => 'English',
+        'gb' => 'English',
+        'de' => 'German',
+        'at' => 'German',
+        'ch' => 'German',
+        'fr' => 'French',
+        'nl' => 'Dutch',
+        'be' => 'Belgian',
+        'es' => 'Spanish',
+        'pl' => 'Polish',
+        'cz' => 'Czech',
+        'sk' => 'Slovak',
+        'si' => 'Slovenian',
+        'ro' => 'Romanian',
+        'ua' => 'Ukrainian',
+        'it' => 'Italian',
+        'se' => 'Swedish',
+        'no' => 'Norwegian',
+        'fi' => 'Finnish',
+        'dk' => 'Danish',
+        'jp' => 'Japanese',
+        'cn' => 'Chinese',
+        // TODO: add possibility to add own entries
+    ];
+
     protected array $extConf;
 
     protected PageRepository $pageRepository;
 
     protected ExtensionConfiguration $extensionConfiguration;
+
 
     /**
      * @throws ExtensionConfigurationPathDoesNotExistException
@@ -34,9 +64,11 @@ class ContentService
      */
     public function __construct(
         PageRepository $pageRepository,
+        SiteMatcher $siteMatcher,
         ExtensionConfiguration $extensionConfiguration
     ) {
         $this->pageRepository = $pageRepository;
+        $this->siteMatcher = $siteMatcher;
         $this->extensionConfiguration = $extensionConfiguration;
         $this->extConf = $this->extensionConfiguration->get('ai_seo_helper');
     }
@@ -50,42 +82,38 @@ class ContentService
         ServerRequestInterface $request,
         string $extConfPrompt,
         string $extConfReplaceText = ""
-    ) {
-        $pageContent = $this->getPageContent($request);
-        return $this->requestAi($pageContent, $extConfPrompt, $extConfReplaceText);
-    }
-
-    /**
-     * @throws Exception
-     * @throws GuzzleException
-     * @throws UnableToLinkToPageException
-     */
-    public function getPageContent(ServerRequestInterface $request): string
+    ): string
     {
         $pageId = (int)($request->getParsedBody()['pageId'] ?? 0);
-        $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() > 10) {
-            $page = $this->pageRepository->getPage($pageId);
-            $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
 
-            $previewUri = $previewUriBuilder
-                ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $page['sys_language_uid'])
-                ->buildUri();
+        $siteLanguage = $this->getSiteLanguageFromPageId($pageId);
+        $previewUrl = $this->getPreviewUrl($pageId, $siteLanguage->getLanguageId());
 
-            $previewUrl = $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
-        } else {
-            $previewUrl = BackendUtility::getPreviewUrl($pageId);
+        $strippedPageContent = $this->stripPageContent($this->fetchContentFromUrl($previewUrl));
+
+        $contentLength = strlen($strippedPageContent);
+        if(extension_loaded('mbstring')) {
+            $contentLength = mb_strlen($strippedPageContent);
         }
-        return $this->fetchContentFromUrl($previewUrl);
+        // TODO: currently true by default in extension configuration
+        if($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
+            return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
+        } else {
+            return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText);
+        }
     }
 
     /**
      * @throws GuzzleException
      */
-    public function requestAi(string $pageContent, $extConfPromptPrefix, $extConfReplaceText): string {
+    public function requestAi(string $content, $extConfPromptPrefix, $extConfReplaceText, $languageIsoCode = ""): string {
+
+        if(!empty($languageIsoCode)) {
+            $prompt = $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode];
+        }
+
         $client = new \GuzzleHttp\Client();
 
-        $strippedContent = $this->stripPageContent($pageContent);
         $response = $client->request('POST', 'https://api.openai.com/v1/completions', [
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -93,7 +121,7 @@ class ContentService
             ],
             'json' => [
                 "model" => $this->extConf['openAiModel'],
-                "prompt" => $this->extConf[$extConfPromptPrefix].":\n\n" . $strippedContent,
+                "prompt" => $prompt ?? $this->extConf[$extConfPromptPrefix].":\n\n" . $content,
                 "temperature" => (float)$this->extConf['openAiTemperature'],
                 "max_tokens" => (int)$this->extConf['openAiMaxTokens'],
                 "top_p" => (float)$this->extConf['openAiTopP'],
@@ -152,18 +180,44 @@ class ContentService
         $suggestions = explode(PHP_EOL, $content);
         $pageTitleSuggestions = [];
         foreach ($suggestions as $suggestion) {
-            if(!empty($suggestion) && strpos($suggestion, '-') !== false) {
-                $pageTitleSuggestions[] = ltrim(str_replace('-', '', $suggestion));
+            if(!empty($suggestion) && (strpos($suggestion, '-') !== false || strpos($suggestion, '•') !== false)) {
+                $pageTitleSuggestions[] = ltrim(str_replace(['-', '•'], '', $suggestion));
             }
         }
         return $pageTitleSuggestions;
+    }
+
+    protected function getPreviewUrl(int $pageId, int $pageLanguage): string
+    {
+        $typo3Version = new Typo3Version();
+        if ($typo3Version->getMajorVersion() > 10) {
+            $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
+
+            $previewUri = $previewUriBuilder
+                ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $pageLanguage)
+                ->buildUri();
+
+            return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
+        } else {
+            return BackendUtility::getPreviewUrl($pageId);
+        }
+    }
+
+    protected function getSiteLanguageFromPageId(int $pageId): SiteLanguage
+    {
+        $rootLine = BackendUtility::BEgetRootLine($pageId);
+        $siteMatcher = GeneralUtility::makeInstance(SiteMatcher::class);
+        $site = $siteMatcher->matchByPageId($pageId, $rootLine);
+        $page = $this->pageRepository->getPage($pageId);
+
+        return  $site->getLanguageById($page['sys_language_uid']);
     }
 
     /**
      * @throws Exception
      * @throws GuzzleException
      */
-    private function fetchContentFromUrl(string $previewUrl): string
+    protected function fetchContentFromUrl(string $previewUrl): string
     {
         $fetchedContent = file_get_contents($previewUrl);
         if($fetchedContent === false) {
