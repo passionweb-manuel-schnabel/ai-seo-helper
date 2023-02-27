@@ -99,6 +99,18 @@
                 <source>Page not found. If the page is hidden, please activate it (and possibly deactivate the option "Page in menus activated" within the page properties) so that the page is accessible.</source>
                 <target>Seite konnte nicht gefunden werden. Falls die Seite versteckt ist, bitte aktiviere diese (und deaktiviere ggf. die Option "Seite in Menüs aktiviert" innerhalb der Seiteneigenschaften), sodass die Seite erreichbar ist.</target>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage" resname="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage">
+                <source>Custom language</source>
+                <target>Benutzerdefinierte Sprache</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.iso_code" resname="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.iso_code">
+                <source>ISO code</source>
+                <target>ISO-Code</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.speech" resname="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.speech">
+                <source>Speech</source>
+                <target>Sprache</target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
