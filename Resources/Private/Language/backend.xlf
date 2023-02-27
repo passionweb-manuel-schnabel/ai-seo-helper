@@ -75,6 +75,15 @@
             <trans-unit id="AiSeoHelper.pageNotAccessible" resname="AiSeoHelper.pageNotAccessible">
                 <source>Page not found. If the page is hidden, please activate it (and possibly deactivate the option "Page in menus activated" within the page properties) so that the page is accessible.</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage" resname="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage">
+                <source>Custom language</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.iso_code" resname="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.iso_code">
+                <source>ISO code</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.speech" resname="AiSeoHelper.tx_aiseohelper_domain_model_customlanguage.speech">
+                <source>Speech</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

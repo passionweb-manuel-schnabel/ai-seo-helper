@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Passionweb\AiSeoHelper\Service;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Passionweb\AiSeoHelper\Domain\Repository\CustomLanguageRepository;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -48,15 +49,14 @@ class ContentService
         'dk' => 'Danish',
         'jp' => 'Japanese',
         'cn' => 'Chinese',
-        // TODO: add possibility to add own entries
     ];
 
     protected array $extConf;
 
     protected PageRepository $pageRepository;
-
+    protected SiteMatcher $siteMatcher;
     protected ExtensionConfiguration $extensionConfiguration;
-
+    protected CustomLanguageRepository $customLanguageRepository;
 
     /**
      * @throws ExtensionConfigurationPathDoesNotExistException
@@ -65,12 +65,16 @@ class ContentService
     public function __construct(
         PageRepository $pageRepository,
         SiteMatcher $siteMatcher,
+        CustomLanguageRepository $customLanguageRepository,
         ExtensionConfiguration $extensionConfiguration
     ) {
         $this->pageRepository = $pageRepository;
         $this->siteMatcher = $siteMatcher;
+        $this->customLanguageRepository = $customLanguageRepository;
         $this->extensionConfiguration = $extensionConfiguration;
+
         $this->extConf = $this->extensionConfiguration->get('ai_seo_helper');
+        $this->getCustomLanguages();
     }
 
     /**
@@ -229,6 +233,14 @@ class ContentService
             throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.fetchContentFailed'));
         }
         return $fetchedContent;
+    }
+    protected function getCustomLanguages() {
+        $customLanguageEntries = $this->customLanguageRepository->findAll();
+        $customLanguages = [];
+        foreach($customLanguageEntries as $entry) {
+            $customLanguages[$entry->getIsoCode()] = $entry->getSpeech();
+        }
+        $this->languages = array_merge($this->languages, $customLanguages);
     }
 
     protected function getBackendUser(): BackendUserAuthentication
