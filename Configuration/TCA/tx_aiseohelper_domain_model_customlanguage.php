@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:ai_seo_helper/Resources/Public/Icons/tx_aiseohelper_domain_model_customlanguage.svg'
     ],
     'types' => [
-        '1' => ['showitem' => 'iso_code,speech, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden,'],
+        '1' => ['showitem' => 'sys_language_uid,iso_code,speech, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden,'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -37,7 +37,7 @@ return [
                         'flags-multiple'
                     ]
                 ],
-                'default' => 0,
+                'default' => -1,
             ],
         ],
         'l10n_parent' => [
