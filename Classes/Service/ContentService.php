@@ -99,7 +99,7 @@ class ContentService
         if(extension_loaded('mbstring')) {
             $contentLength = mb_strlen($strippedPageContent);
         }
-        // TODO: currently true by default in extension configuration
+
         if($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
             return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         } else {
