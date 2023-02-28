@@ -13,8 +13,6 @@ class CustomLanguageRepository extends Repository
 {
     public function __construct()
     {
-        parent::__construct();
-
         /** @var Typo3QuerySettings $querySettings */
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false);
