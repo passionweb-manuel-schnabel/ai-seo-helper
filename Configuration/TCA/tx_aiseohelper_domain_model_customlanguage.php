@@ -1,4 +1,5 @@
 <?php
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.tx_aiseohelper_domain_model_customlanguage',

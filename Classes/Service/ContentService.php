@@ -86,8 +86,7 @@ class ContentService
         ServerRequestInterface $request,
         string $extConfPrompt,
         string $extConfReplaceText = ""
-    ): string
-    {
+    ): string {
         $pageId = (int)($request->getParsedBody()['pageId'] ?? 0);
 
         $siteLanguage = $this->getSiteLanguageFromPageId($pageId);
@@ -96,11 +95,11 @@ class ContentService
         $strippedPageContent = $this->stripPageContent($this->fetchContentFromUrl($previewUrl));
 
         $contentLength = strlen($strippedPageContent);
-        if(extension_loaded('mbstring')) {
+        if (extension_loaded('mbstring')) {
             $contentLength = mb_strlen($strippedPageContent);
         }
 
-        if($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
+        if ($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
             return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         } else {
             return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText);
@@ -110,9 +109,9 @@ class ContentService
     /**
      * @throws GuzzleException
      */
-    public function requestAi(string $content, $extConfPromptPrefix, $extConfReplaceText, $languageIsoCode = ""): string {
-
-        if(!empty($languageIsoCode)) {
+    public function requestAi(string $content, $extConfPromptPrefix, $extConfReplaceText, $languageIsoCode = ""): string
+    {
+        if (!empty($languageIsoCode)) {
             $prompt = $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode];
         }
 
@@ -140,7 +139,8 @@ class ContentService
         return ltrim(str_replace($extConfReplaceText, '', $generatedText));
     }
 
-    public function getContentForPageTitleSuggestions(ServerRequestInterface $request): string {
+    public function getContentForPageTitleSuggestions(ServerRequestInterface $request): string
+    {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
         $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
         $standaloneView->getRenderingContext()->setControllerName('Ai');
@@ -148,7 +148,7 @@ class ContentService
 
         $generatedPageTitleContent = $this->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
 
-        if($this->extConf['showRawPageTitleSuggestions'] === '1') {
+        if ($this->extConf['showRawPageTitleSuggestions'] === '1') {
             $standaloneView->assign('pageTitleSuggestions', $generatedPageTitleContent);
             $standaloneView->assign('showRawContent', true);
         } else {
@@ -168,9 +168,9 @@ class ContentService
         return $typeParameter;
     }
 
-    protected function stripPageContent(string $pageContent): string {
-        if (preg_match('~<body[^>]*>(.*?)</body>~si', $pageContent, $body))
-        {
+    protected function stripPageContent(string $pageContent): string
+    {
+        if (preg_match('~<body[^>]*>(.*?)</body>~si', $pageContent, $body)) {
             $pageContent = $body[0];
         }
         $pageContent = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $pageContent);
@@ -180,11 +180,12 @@ class ContentService
         return strip_tags($pageContent);
     }
 
-    protected function buildBulletPointList(string $content): array {
+    protected function buildBulletPointList(string $content): array
+    {
         $suggestions = explode(PHP_EOL, $content);
         $pageTitleSuggestions = [];
         foreach ($suggestions as $suggestion) {
-            if(!empty($suggestion) && (strpos($suggestion, '-') !== false || strpos($suggestion, '•') !== false)) {
+            if (!empty($suggestion) && (strpos($suggestion, '-') !== false || strpos($suggestion, '•') !== false)) {
                 $pageTitleSuggestions[] = ltrim(str_replace(['-', '•'], '', $suggestion));
             }
         }
@@ -224,20 +225,21 @@ class ContentService
     protected function fetchContentFromUrl(string $previewUrl): string
     {
         $fetchedContent = file_get_contents($previewUrl);
-        if($fetchedContent === false) {
+        if ($fetchedContent === false) {
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $previewUrl);
             $fetchedContent = $response->getBody()->getContents();
         }
-        if($fetchedContent === false) {
+        if ($fetchedContent === false) {
             throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.fetchContentFailed'));
         }
         return $fetchedContent;
     }
-    protected function getCustomLanguages() {
+    protected function getCustomLanguages()
+    {
         $customLanguageEntries = $this->customLanguageRepository->findAll();
         $customLanguages = [];
-        foreach($customLanguageEntries as $entry) {
+        foreach ($customLanguageEntries as $entry) {
             $customLanguages[$entry->getIsoCode()] = $entry->getSpeech();
         }
         $this->languages = array_merge($this->languages, $customLanguages);

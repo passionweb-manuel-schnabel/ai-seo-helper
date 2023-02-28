@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Passionweb\AiSeoHelper\Domain\Model;
 
-
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class CustomLanguage extends AbstractEntity

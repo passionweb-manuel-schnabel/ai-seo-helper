@@ -28,7 +28,7 @@ class AiSeoMetaDescription extends AbstractNode
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-meta-description.js')
             ];
-        } else if($typo3Version->getMajorVersion() === 11) {
+        } elseif ($typo3Version->getMajorVersion() === 11) {
             $resultArray['requireJsModules'] = [
                 JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GenerateMetaDescription')
             ];
