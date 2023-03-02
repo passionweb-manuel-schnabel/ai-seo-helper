@@ -102,14 +102,14 @@ class ContentService
         if ($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
             return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         } else {
-            return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText);
+            return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         }
     }
 
     /**
      * @throws GuzzleException
      */
-    public function requestAi(string $content, $extConfPromptPrefix, $extConfReplaceText, $languageIsoCode = ""): string
+    public function requestAi(string $content, $extConfPromptPrefix, $extConfReplaceText, $languageIsoCode): string
     {
         $jsonContent = [
             "model" => $this->extConf['openAiModel'],
@@ -259,17 +259,14 @@ class ContentService
 
     protected function addModelSpecificPrompt(array &$jsonContent, string $content, string $extConfPromptPrefix, string $languageIsoCode)
     {
-        if (!empty($languageIsoCode)) {
-            $prompt = $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode];
-        }
         // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
         if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301') {
             $jsonContent["messages"][] = [
                 'role' => 'user',
-                'content' => $prompt ?? $this->extConf[$extConfPromptPrefix].":\n\n" . $content
+                'content' => $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode]
                 ];
         } else {
-            $jsonContent["prompt"] = $prompt ?? $this->extConf[$extConfPromptPrefix].":\n\n" . $content;
+            $jsonContent["prompt"] = $this->extConf[$extConfPromptPrefix]. ' in ' . $this->languages[$languageIsoCode] .":\n\n" . $content;
         }
     }
 }
