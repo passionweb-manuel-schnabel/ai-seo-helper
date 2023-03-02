@@ -4,12 +4,23 @@ Generates SEO metadata based on page content using AI. Currently, both the meta 
 
 ## Installation
 
-Add via composer:
+### Add via composer:
 
     composer require "passionweb/ai-seo-helper"
 
 * Install the extension via composer
 * Flush TYPO3 and PHP Cache
+
+### Add via TER:
+
+If you want to install the extension via TER you can find detailed instructions [here](https://docs.typo3.org/m/typo3/guide-installation/10.4/en-us/ExtensionInstallation/Index.html).
+
+* Install the extension via TER
+* Flush TYPO3 and PHP Cache
+
+### Further information
+
+The different ways to install an extension and additional detailed information can be found [here](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/HowTo/ExtensionManagement.html).
 
 ## Requirements
 
