@@ -87,7 +87,7 @@ By default, the extension prepares the page title suggestions in such a way that
     # cat=basic; type=string; label=OpenAI Model
     openAiModel = text-davinci-003
 
-The id of the model which will generate the completion. See `models overview <https://platform.openai.com/docs/models/overview>`_ for an overview of available models.
+The id of the model which will generate the completion. See `models overview <https://platform.openai.com/docs/models/overview/gpt-3-5>`_ for an overview of available models.
 
 .. code-block:: none
 

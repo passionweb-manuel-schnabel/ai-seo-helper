@@ -25,7 +25,7 @@
                 <source>Show raw response content of page title suggestions: By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite page title via copy/paste.</source>
             </trans-unit>
             <trans-unit id="openAiModel" resname="openAiModel">
-                <source>OpenAI Model: The id of the model which will generate the completion. See https://platform.openai.com/docs/models/overview for an overview of available models.</source>
+                <source>OpenAI Model: The id of the model which will generate the completion. See https://platform.openai.com/docs/models/gpt-3-5 for an overview of available models.</source>
             </trans-unit>
             <trans-unit id="openAiTemperature" resname="openAiTemperature">
                 <source>OpenAI Temperature: What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.</source>
