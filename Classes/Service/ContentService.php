@@ -111,34 +111,46 @@ class ContentService
      */
     public function requestAi(string $content, $extConfPromptPrefix, $extConfReplaceText, $languageIsoCode = ""): string
     {
-        if (!empty($languageIsoCode)) {
-            $prompt = $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode];
-        }
+        $jsonContent = [
+            "model" => $this->extConf['openAiModel'],
+            "temperature" => (float)$this->extConf['openAiTemperature'],
+            "max_tokens" => (int)$this->extConf['openAiMaxTokens'],
+            "top_p" => (float)$this->extConf['openAiTopP'],
+            "frequency_penalty" => (float)$this->extConf['openAiFrequencyPenalty'],
+            "presence_penalty" => (float)$this->extConf['openAiPresencePenalty']
+        ];
+
+        $this->addModelSpecificPrompt($jsonContent, $content, $extConfPromptPrefix, $languageIsoCode);
 
         $client = new \GuzzleHttp\Client();
 
-        $response = $client->request('POST', 'https://api.openai.com/v1/completions', [
+        $response = $client->request(
+            'POST',
+            // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
+            $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301' ?
+                'https://api.openai.com/v1/chat/completions' : 'https://api.openai.com/v1/completions',
+            [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer '.$this->extConf['openAiApiKey']
             ],
-            'json' => [
-                "model" => $this->extConf['openAiModel'],
-                "prompt" => $prompt ?? $this->extConf[$extConfPromptPrefix].":\n\n" . $content,
-                "temperature" => (float)$this->extConf['openAiTemperature'],
-                "max_tokens" => (int)$this->extConf['openAiMaxTokens'],
-                "top_p" => (float)$this->extConf['openAiTopP'],
-                "frequency_penalty" => (float)$this->extConf['openAiFrequencyPenalty'],
-                "presence_penalty" => (float)$this->extConf['openAiPresencePenalty']
-            ],
-        ]);
+            'json' => $jsonContent
+        ]
+        );
 
         $resJsonBody = $response->getBody()->getContents();
         $resBody = json_decode($resJsonBody, true);
-        $generatedText = $resBody['choices'][0]['text'];
+        // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
+        $generatedText = $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301' ?
+            $resBody['choices'][0]['message']['content'] : $resBody['choices'][0]['text'];
         return ltrim(str_replace($extConfReplaceText, '', $generatedText));
     }
 
+    /**
+     * @throws Exception
+     * @throws GuzzleException
+     * @throws UnableToLinkToPageException
+     */
     public function getContentForPageTitleSuggestions(ServerRequestInterface $request): string
     {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
@@ -245,13 +257,19 @@ class ContentService
         $this->languages = array_merge($this->languages, $customLanguages);
     }
 
-    protected function getBackendUser(): BackendUserAuthentication
+    protected function addModelSpecificPrompt(array &$jsonContent, string $content, string $extConfPromptPrefix, string $languageIsoCode)
     {
-        return $GLOBALS['BE_USER'];
-    }
-
-    protected function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
+        if (!empty($languageIsoCode)) {
+            $prompt = $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode];
+        }
+        // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
+        if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301') {
+            $jsonContent["messages"][] = [
+                'role' => 'user',
+                'content' => $prompt ?? $this->extConf[$extConfPromptPrefix].":\n\n" . $content
+                ];
+        } else {
+            $jsonContent["prompt"] = $prompt ?? $this->extConf[$extConfPromptPrefix].":\n\n" . $content;
+        }
     }
 }
