@@ -7,15 +7,17 @@ Introduction
 ============
 
 
-.. _what-it-does:
+.. _what_it_does:
 
 What does it do?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 Generates SEO metadata based on page content using AI. Currently, both the meta description and the keywords can be generated using an additional button next to the corresponding text fields.
 
+.. _requirements:
+
 Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 You need an OpenAI account and API key. If you have not yet created an account or key, you can do so using the following links.
 
@@ -23,8 +25,10 @@ You need an OpenAI account and API key. If you have not yet created an account o
 
 - `Create API key <https://platform.openai.com/account/api-keys>`_
 
+.. _notices_to_keep_in_mind:
+
 Notices to keep in mind
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Just like this extension, OpenAI is still in development mode and not fully mature. For this reason, we urgently advise you to check all generated texts for correctness before saving them and to make any necessary adjustments!
 
@@ -34,16 +38,20 @@ The OpenAI API (currently) limits the maximum number of tokens per request depen
 
 Based on the current status of the extension, it is unfortunately not yet possible to analyze larger texts.
 
+.. _troubleshooting_logging:
+
 Troubleshooting and logging
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If something does not work as expected take a look at the log file first.
 Every problem is logged to the TYPO3 log (normally found in `var/log/typo3_*.log`).
 
 If something still doesn't work as desired after checking the logs, feel free to contact me.
 
+.. _feedback:
+
 Achieving more together or Feedback, Feedback, Feedback
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 I'm grateful for any feedback! Be it suggestions for improvement, extension requests or just a (constructive) feedback on how good or crappy the extension is.
 

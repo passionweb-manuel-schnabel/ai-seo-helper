@@ -10,6 +10,7 @@ Generates SEO metadata based on page content using AI. Currently, both the meta 
 
 * Install the extension via composer
 * Flush TYPO3 and PHP Cache
+* Add your OpenAI secret key to the extension configuration before using the extension
 
 ### Add via TER:
 
@@ -17,6 +18,7 @@ If you want to install the extension via TER you can find detailed instructions 
 
 * Install the extension via TER
 * Flush TYPO3 and PHP Cache
+* Add your OpenAI secret key to the extension configuration before using the extension
 
 ### Further information
 
@@ -60,7 +62,7 @@ Since version 0.3.0 you have two different options to generate the desired data.
 
 ### Analyzing the page content based on the text
 
-If the content length does not exceed the maximum number of allowed characters (can be set in the extension settings with the option `maxAllowedCharacters`) and the maximum number of allowed OpenAi tokens (currently 4096 toknes per request), you can generate the desired data based on the page content in text form. If the page content exceeds the maximum allowed character length, the variant via URL is automatically used.
+If the content length does not exceed the maximum number of allowed characters (can be set in the extension settings with the option `maxAllowedCharacters`) and the maximum number of allowed OpenAi tokens (currently 4096 tokens per request), you can generate the desired data based on the page content in text form. If the page content exceeds the maximum allowed character length, the variant via URL is automatically used.
 
 As already mentioned, this option is primarily limited by the length of the allowed characters per OpenAI request. Furthermore, using this method requires the use of a comparatively large number of tokens.
 
@@ -120,7 +122,7 @@ Enter your generated OpenAI API key.
     # cat=meta description; type=string; label=Prompt-Prefix for meta description generation
     openAiPromptPrefixMetaDescription = Extract seo meta description in one short sentence and with a maximum of 150 characters or less for following text
 
-Enter your instruction for generating meta description. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found [here](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords. "")) by default, we have to explicitly tell the AI ​​the desired total length and the type of expected creation
+Enter your instruction for generating meta description. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found [here](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords. "")) by default, we have to explicitly tell the AI the desired total length and the type of expected creation
 
 ### `replaceTextMetaDescription`
 

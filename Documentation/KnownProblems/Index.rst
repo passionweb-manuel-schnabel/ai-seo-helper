@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
 
 
-.. _known-problems:
+.. _known_problems:
 
 Known Problems
 ==============
