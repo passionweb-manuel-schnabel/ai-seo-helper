@@ -5,17 +5,11 @@ declare(strict_types=1);
 namespace Passionweb\AiSeoHelper\Service;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Passionweb\AiSeoHelper\Domain\Repository\CustomLanguageRepository;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
-use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Routing\SiteMatcher;
 use TYPO3\CMS\Core\Routing\UnableToLinkToPageException;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
@@ -30,7 +24,6 @@ class ContentService
 
     protected PageRepository $pageRepository;
     protected SiteMatcher $siteMatcher;
-    protected ExtensionConfiguration $extensionConfiguration;
 
     public function __construct(
         PageRepository $pageRepository,
@@ -203,13 +196,11 @@ class ContentService
      */
     protected function fetchContentFromUrl(string $previewUrl): string
     {
-        $fetchedContent = file_get_contents($previewUrl);
-        if ($fetchedContent === false) {
-            $client = new \GuzzleHttp\Client();
-            $response = $client->request('GET', $previewUrl);
-            $fetchedContent = $response->getBody()->getContents();
-        }
-        if ($fetchedContent === false) {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', $previewUrl);
+        $fetchedContent = $response->getBody()->getContents();
+
+        if (empty($fetchedContent)) {
             throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.fetchContentFailed'));
         }
         return $fetchedContent;

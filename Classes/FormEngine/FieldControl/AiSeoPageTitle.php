@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Passionweb\AiSeoHelper\FormEngine\FieldControl;
 
+use Passionweb\AiSeoHelper\Service\JavaScriptModuleService;
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class AiSeoPageTitle extends AbstractNode
@@ -23,22 +23,11 @@ class AiSeoPageTitle extends AbstractNode
             ]
         ];
 
-        $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() === 12) {
-            $resultArray['javaScriptModules'] = [
-                JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-page-title.js')
-            ];
-        } elseif ($typo3Version->getMajorVersion() === 11) {
-            // keep RequireJs for TYPO3 below v12.0
-            $resultArray['requireJsModules'] = [
-                JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GeneratePageTitle')
-            ];
-        } else {
-            $resultArray['requireJsModules'] = [
-                'TYPO3/CMS/AiSeoHelper/GeneratePageTitle'
-            ];
-        }
+        $javaScriptModuleService = GeneralUtility::makeInstance(JavaScriptModuleService::class);
 
-        return $resultArray;
+        return array_merge($resultArray, $javaScriptModuleService->addModules(
+            '@passionweb/ai-seo-helper/generate-page-title.js',
+            'TYPO3/CMS/AiSeoHelper/GeneratePageTitle')
+        );
     }
 }
