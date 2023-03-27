@@ -17,9 +17,9 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class AiController
 {
-    private ContentService $contentService;
+    protected ContentService $contentService;
 
-    private LoggerInterface $logger;
+    protected LoggerInterface $logger;
 
     public function __construct(ContentService $contentService, LoggerInterface $logger)
     {

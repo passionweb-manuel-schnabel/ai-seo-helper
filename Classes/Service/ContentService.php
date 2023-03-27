@@ -25,55 +25,23 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class ContentService
 {
-    protected array $languages = [
-        'en' => 'English',
-        'us' => 'English',
-        'gb' => 'English',
-        'de' => 'German',
-        'at' => 'German',
-        'ch' => 'German',
-        'fr' => 'French',
-        'nl' => 'Dutch',
-        'be' => 'Belgian',
-        'es' => 'Spanish',
-        'pl' => 'Polish',
-        'cz' => 'Czech',
-        'sk' => 'Slovak',
-        'si' => 'Slovenian',
-        'ro' => 'Romanian',
-        'ua' => 'Ukrainian',
-        'it' => 'Italian',
-        'se' => 'Swedish',
-        'no' => 'Norwegian',
-        'fi' => 'Finnish',
-        'dk' => 'Danish',
-        'jp' => 'Japanese',
-        'cn' => 'Chinese',
-    ];
-
+    protected array $languages;
     protected array $extConf;
 
     protected PageRepository $pageRepository;
     protected SiteMatcher $siteMatcher;
     protected ExtensionConfiguration $extensionConfiguration;
-    protected CustomLanguageRepository $customLanguageRepository;
 
-    /**
-     * @throws ExtensionConfigurationPathDoesNotExistException
-     * @throws ExtensionConfigurationExtensionNotConfiguredException
-     */
     public function __construct(
         PageRepository $pageRepository,
         SiteMatcher $siteMatcher,
-        CustomLanguageRepository $customLanguageRepository,
+        array $languages,
         array $extConf
     ) {
         $this->pageRepository = $pageRepository;
         $this->siteMatcher = $siteMatcher;
-        $this->customLanguageRepository = $customLanguageRepository;
-
+        $this->languages = $languages;
         $this->extConf = $extConf;
-        $this->getCustomLanguages();
     }
 
     /**
@@ -246,15 +214,7 @@ class ContentService
         }
         return $fetchedContent;
     }
-    protected function getCustomLanguages()
-    {
-        $customLanguageEntries = $this->customLanguageRepository->findAll();
-        $customLanguages = [];
-        foreach ($customLanguageEntries as $entry) {
-            $customLanguages[$entry->getIsoCode()] = $entry->getSpeech();
-        }
-        $this->languages = array_merge($this->languages, $customLanguages);
-    }
+
 
     protected function addModelSpecificPrompt(array &$jsonContent, string $content, string $extConfPromptPrefix, string $languageIsoCode)
     {
