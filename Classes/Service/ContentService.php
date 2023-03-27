@@ -66,14 +66,13 @@ class ContentService
         PageRepository $pageRepository,
         SiteMatcher $siteMatcher,
         CustomLanguageRepository $customLanguageRepository,
-        ExtensionConfiguration $extensionConfiguration
+        array $extConf
     ) {
         $this->pageRepository = $pageRepository;
         $this->siteMatcher = $siteMatcher;
         $this->customLanguageRepository = $customLanguageRepository;
-        $this->extensionConfiguration = $extensionConfiguration;
 
-        $this->extConf = $this->extensionConfiguration->get('ai_seo_helper');
+        $this->extConf = $extConf;
         $this->getCustomLanguages();
     }
 

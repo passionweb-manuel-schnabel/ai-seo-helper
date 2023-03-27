@@ -21,10 +21,10 @@ class AiController
 
     private LoggerInterface $logger;
 
-    public function __construct(ContentService $contentService)
+    public function __construct(ContentService $contentService, LoggerInterface $logger)
     {
         $this->contentService = $contentService;
-        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger();
+        $this->logger = $logger;
     }
 
     public function generateMetaDescriptionAction(ServerRequestInterface $request): ResponseInterface
