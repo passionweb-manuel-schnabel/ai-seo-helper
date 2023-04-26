@@ -69,10 +69,6 @@ class AiController
         return $response;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @return Response
-     */
     private function generateSuggestions(ServerRequestInterface $request, string $type): Response
     {
         $response = new Response();
@@ -88,11 +84,6 @@ class AiController
         return $response;
     }
 
-    /**
-     * @param GuzzleException $e
-     * @param Response $response
-     * @return Response
-     */
     private function logGuzzleError(GuzzleException $e, Response $response): Response
     {
         $this->logger->error($e->getMessage());
@@ -107,11 +98,6 @@ class AiController
         return $response;
     }
 
-    /**
-     * @param Exception $e
-     * @param Response $response
-     * @return Response
-     */
     private function logError(Exception $e, Response $response): Response
     {
         $this->logger->error($e->getMessage());

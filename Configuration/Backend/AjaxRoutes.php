@@ -5,7 +5,7 @@ return [
         'path' => '/generate/meta-description',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateMetaDescriptionAction'
     ],
-    'generate-keywords' => [
+    'keywords_generation' => [
         'path' => '/generate/keywords',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateKeywordsAction'
     ],
