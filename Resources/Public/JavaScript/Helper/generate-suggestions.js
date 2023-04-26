@@ -70,7 +70,7 @@ class GenerateSuggestions {
                 ev.preventDefault();
                 let selectedSuggestion = document.querySelector('input[name="generatedSuggestions"]:checked');
                 if(selectedSuggestion === null) {
-                    Notification.info(TYPO3.lang['AiSeoHelper.notification.generation.Suggestions.missingSelection'], TYPO3.lang['AiSeoHelper.notification.generation.Suggestions.missingSelectionInfo'], 8);
+                    Notification.info(TYPO3.lang['AiSeoHelper.notification.generation.suggestions.missingSelection'], TYPO3.lang['AiSeoHelper.notification.generation.suggestions.missingSelectionInfo'], 8);
                 } else {
                     if(document.querySelector('input[data-formengine-input-name="data[pages]['+pageId+']['+fieldName+']"]')) {
                         document.querySelector('input[data-formengine-input-name="data[pages]['+pageId+']['+fieldName+']"]').value = selectedSuggestion.value;
