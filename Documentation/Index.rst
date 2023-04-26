@@ -22,7 +22,7 @@ Extension AI SEO-Helper
 		Manual covering the TYPO3 extension *"ai_seo_helper"*.
 
 	:Keywords:
-		ai,openai,seo,metadata,keyword,description,generation
+		ai,openai,seo,metadata,keyword,description,generation,pagetitle,title,
 
 	:Copyright:
 		2023
