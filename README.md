@@ -36,11 +36,11 @@ Source: [Create API key](https://platform.openai.com/account/api-keys "Create AP
 
 The extension currently supports the [GPT-3.5 models](https://platform.openai.com/docs/models/gpt-3-5). Based on your individual requirements, different models can lead to different results (also in terms of quality). In addition, other parameters can be modified to further specify the OpenAI requests. You have the possibility to adjust the different models as well as the most of the supported request parameters ([detailed explanation can be found here](https://platform.openai.com/docs/api-reference/completions/create)) in the extension settings.
 
-## Generate meta description
+## Generate meta description (suggestions)
 
-Added an additional button next to the meta description text field. When you click this button, the (text) content of the selected page is generated and a meta description that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
+Added an additional button next to the meta description text field. When you click this button, the (text) content of the selected page is generated, and you get meta description suggestions with the help of the AI. By default, the extension prepares the meta description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawMetaDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite meta description via copy/paste.
 
-![Generate meta description](./Documentation/Editor/generate-meta-description.png)
+![Generate meta description suggestions](./Documentation/Editor/generate-meta-description.png)
 
 It can happen that the AI returns texts that exceed the maximum allowed length of the meta description. To additionally check the length of the meta description, the extension ["Yoast SEO for TYPO3"](https://extensions.typo3.org/extension/yoast_seo "Yoast SEO for TYPO3") can be used, for example, or various online tools.
 
