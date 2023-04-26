@@ -149,7 +149,7 @@ Number between -2.0 and 2.0. Positive values penalize new tokens based on whethe
 .. code-block:: none
 
     # cat=basic request settings; type=boolean; label=Use always URL for requests
-    useUrlForRequest = 0
+    useUrlForRequest = 1
 
 With this option you can use the corresponding URL of the page for all analyses. As a result, you have to use fewer tokens to carry out your corresponding analyses. IMPORTANT: The page must be publicly accessible (hidden pages fail and pages in a local environment lead to poor results)
 

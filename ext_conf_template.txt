@@ -25,6 +25,6 @@ openAiFrequencyPenalty = 0.8
 # cat=basic request settings; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPresencePenalty
 openAiPresencePenalty = 0
 # cat=basic request settings; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:useUrlForRequest
-useUrlForRequest = 0
+useUrlForRequest = 1
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:maxAllowedCharacters
 maxAllowedCharacters = 16000
