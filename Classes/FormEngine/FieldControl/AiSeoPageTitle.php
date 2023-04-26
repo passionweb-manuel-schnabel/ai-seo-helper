@@ -17,7 +17,8 @@ class AiSeoPageTitle extends AbstractNode
             'iconIdentifier' => 'actions-document-synchronize',
             'title' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.generation.pageTitleSuggestions'),
             'linkAttributes' => [
-                'id' => 'generatePageTitle',
+                'id' => 'seo_title_generation',
+                'class' => 'ai-seo-helper-suggestions-generation-btn',
                 'data-page-id' => $this->data['databaseRow']['uid'],
                 'data-field-name' => 'seo_title'
             ]
@@ -25,9 +26,6 @@ class AiSeoPageTitle extends AbstractNode
 
         $javaScriptModuleService = GeneralUtility::makeInstance(JavaScriptModuleService::class);
 
-        return array_merge($resultArray, $javaScriptModuleService->addModules(
-            '@passionweb/ai-seo-helper/generate-page-title.js',
-            'TYPO3/CMS/AiSeoHelper/GeneratePageTitle')
-        );
+        return array_merge($resultArray, $javaScriptModuleService->addModules());
     }
 }

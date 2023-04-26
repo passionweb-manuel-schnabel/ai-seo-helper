@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'generate-meta-description' => [
+    'description_generation' => [
         'path' => '/generate/meta-description',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateMetaDescriptionAction'
     ],
@@ -9,7 +9,7 @@ return [
         'path' => '/generate/keywords',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateKeywordsAction'
     ],
-    'generate-page-title' => [
+    'seo_title_generation' => [
         'path' => '/generate/page-title',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generatePageTitleAction'
     ],

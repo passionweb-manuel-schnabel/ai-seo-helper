@@ -1,0 +1,33 @@
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+
+<div id="selection">
+    <h2>
+        <f:translate key="LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.suggestionsHeader" />
+    </h2>
+    <p>
+        <f:translate key="LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.suggestionsSubheader" />
+    </p>
+    <f:if condition="{showRawContent}">
+        <f:then>
+            <f:format.nl2br>{suggestions}</f:format.nl2br>
+        </f:then>
+        <f:else>
+            <f:for each="{suggestions}" as="suggestion" iteration="it">
+                <div class="mt-1 mb-2 d-flex justify-content-start align-items-center">
+                    <input type="radio" id="suggestion{it.index}" name="generatedSuggestions" value="{suggestion}" class="mx-1">
+                    <label for="suggestion{it.index}" class="mb-0">
+                        {suggestion}
+                    </label><br>
+                </div>
+            </f:for>
+            <button class="mb-3 mt-1 btn btn-primary" id="suggestionBtnSet">
+                <f:translate key="LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.setSuggestion" />
+            </button>
+            <button class="mb-3 mt-1 btn btn-primary" id="suggestionBtnRemove">
+                <f:translate key="LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.removeSuggestions" />
+            </button>
+        </f:else>
+    </f:if>
+</div>
+
+</html>

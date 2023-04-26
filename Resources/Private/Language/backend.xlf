@@ -36,29 +36,29 @@
             <trans-unit id="AiSeoHelper.notification.generation.finish.metaDescription" resname="AiSeoHelper.notification.generation.finish.metaDescription">
                 <source>Meta description was generated successfully.</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.notification.generation.start.pageTitleSuggestions" resname="AiSeoHelper.notification.generation.start.pageTitleSuggestions">
-                <source>Page title suggestions generation is in progress. Please wait...</source>
+            <trans-unit id="AiSeoHelper.notification.generation.start.suggestions" resname="AiSeoHelper.notification.generation.start.suggestions">
+                <source>Suggestions generation is in progress. Please wait...</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.notification.generation.finish.pageTitleSuggestions" resname="AiSeoHelper.notification.generation.finish.pageTitleSuggestions">
-                <source>Page title suggestions were generated successfully.</source>
+            <trans-unit id="AiSeoHelper.notification.generation.finish.suggestions" resname="AiSeoHelper.notification.generation.finish.suggestions">
+                <source>Suggestions were generated successfully.</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection" resname="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelection">
+            <trans-unit id="AiSeoHelper.notification.generation.suggestions.missingSelection" resname="AiSeoHelper.notification.generation.suggestions.missingSelection">
                 <source>Missing selection</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo" resname="AiSeoHelper.notification.generation.pageTitleSuggestions.missingSelectionInfo">
-                <source>Please select a page title.</source>
+            <trans-unit id="AiSeoHelper.notification.generation.suggestions.missingSelectionInfo" resname="AiSeoHelper.notification.generation.suggestions.missingSelectionInfo">
+                <source>Please select a suggestion.</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.noSuitablePage" resname="AiSeoHelper.noSuitablePage">
                 <source>Did not find a suitable page uid.</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.pageTitleSuggestionsHeader" resname="AiSeoHelper.pageTitleSuggestionsHeader">
-                <source>Page title suggestions</source>
+            <trans-unit id="AiSeoHelper.suggestionsHeader" resname="AiSeoHelper.suggestionsHeader">
+                <source>Generated suggestions</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.pageTitleSuggestionsSubheader" resname="AiSeoHelper.pageTitleSuggestionsSubheader">
-                <source>Please select your favorite page title:</source>
+            <trans-unit id="AiSeoHelper.suggestionsSubheader" resname="AiSeoHelper.suggestionsSubheader">
+                <source>Please select your favorite suggestions:</source>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.setPageTitle" resname="AiSeoHelper.setPageTitle">
-                <source>Set selected page title</source>
+            <trans-unit id="AiSeoHelper.setSuggestion" resname="AiSeoHelper.setSuggestion">
+                <source>Set selected suggestion</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.removeSuggestions" resname="AiSeoHelper.removeSuggestions">
                 <source>Remove suggestions</source>

@@ -27,7 +27,7 @@ class AiController
 
     public function generateMetaDescriptionAction(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->generateResponse($request, 'openAiPromptPrefixMetaDescription', 'replaceTextMetaDescription');
+        return $this->generateSuggestions($request, 'MetaDescription');
     }
 
     public function generateKeywordsAction(ServerRequestInterface $request): ResponseInterface
@@ -37,32 +37,7 @@ class AiController
 
     public function generatePageTitleAction(ServerRequestInterface $request): ResponseInterface
     {
-        $response = new Response();
-
-        try {
-            $content = $this->contentService->getContentForPageTitleSuggestions($request);
-            $response->getBody()->write(json_encode(['success' => true, 'output' => $content]));
-            return $response;
-        } catch(GuzzleException $e) {
-            $this->logger->error($e->getMessage());
-            $response->withStatus($e->getCode());
-            if ($e->getCode() === 500 && strpos($e->getMessage(), 'auth_subrequest_error') !== false) {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.apiNotReachable')]));
-            } elseif ($e->getCode() === 401 && strpos($e->getMessage(), 'You need to provide your API key') !== false) {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.missingApiKey')]));
-            } else {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
-            }
-        } catch(Exception $e) {
-            $this->logger->error($e->getMessage());
-            $response->withStatus(400);
-            if ($e->getCode() === 1476107295) {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.pageNotAccessible')]));
-            } else {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
-            }
-        }
-        return $response;
+        return $this->generateSuggestions($request, 'PageTitle');
     }
 
     private function generateResponse(ServerRequestInterface $request, string $extConfPrompt, string $extConfReplaceText): ResponseInterface
@@ -81,15 +56,7 @@ class AiController
             $response->getBody()->write(json_encode(['success' => true, 'output' => $generatedContent]));
             return $response;
         } catch(GuzzleException $e) {
-            $this->logger->error($e->getMessage());
-            $response->withStatus($e->getCode());
-            if ($e->getCode() === 500 && strpos($e->getMessage(), 'auth_subrequest_error') !== false) {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.apiNotReachable')]));
-            } elseif ($e->getCode() === 401 && strpos($e->getMessage(), 'You need to provide your API key') !== false) {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.missingApiKey')]));
-            } else {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
-            }
+            $response = $this->logGenerationGuzzleError($e, $response);
         } catch(Exception $e) {
             $this->logger->error($e->getMessage());
             $response->withStatus(400);
@@ -98,6 +65,61 @@ class AiController
             } else {
                 $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
             }
+        }
+        return $response;
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @return Response
+     */
+    private function generateSuggestions(ServerRequestInterface $request, string $type): Response
+    {
+        $response = new Response();
+        try {
+            $content = $this->contentService->getContentForSuggestions($request, $type);
+            $response->getBody()->write(json_encode(['success' => true, 'output' => $content]));
+            return $response;
+        } catch (GuzzleException $e) {
+            $response = $this->logGuzzleError($e, $response);
+        } catch (Exception $e) {
+            $response = $this->logError($e, $response);
+        }
+        return $response;
+    }
+
+    /**
+     * @param GuzzleException $e
+     * @param Response $response
+     * @return Response
+     */
+    private function logGuzzleError(GuzzleException $e, Response $response): Response
+    {
+        $this->logger->error($e->getMessage());
+        $response->withStatus($e->getCode());
+        if ($e->getCode() === 500 && strpos($e->getMessage(), 'auth_subrequest_error') !== false) {
+            $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.apiNotReachable')]));
+        } elseif ($e->getCode() === 401 && strpos($e->getMessage(), 'You need to provide your API key') !== false) {
+            $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.missingApiKey')]));
+        } else {
+            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
+        }
+        return $response;
+    }
+
+    /**
+     * @param Exception $e
+     * @param Response $response
+     * @return Response
+     */
+    private function logError(Exception $e, Response $response): Response
+    {
+        $this->logger->error($e->getMessage());
+        $response->withStatus(400);
+        if ($e->getCode() === 1476107295) {
+            $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.pageNotAccessible')]));
+        } else {
+            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
         }
         return $response;
     }

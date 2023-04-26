@@ -5,15 +5,15 @@ openAiPromptPrefixKeywords = Extract seo keywords from this text
 # cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextKeywords
 replaceTextKeywords = SEO Keywords:
 # cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
-openAiPromptPrefixMetaDescription = Extract seo meta description in one short sentence and with a maximum of 150 characters or less for following text
-# cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextMetaDescription
-replaceTextMetaDescription = Meta Description:
+openAiPromptPrefixMetaDescription = Suggest five seo meta description ideas in a bullet point list, each idea in one short sentence and with a maximum of 150 characters or less, for
+#cat=meta description; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawMetaDescriptionSuggestions
+showRawMetaDescriptionSuggestions = 0
 #cat=page title; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
-openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for this text
+openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for
 #cat=page title; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawPageTitleSuggestions
 showRawPageTitleSuggestions = 0
 # cat=basic request settings; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
-openAiModel = text-davinci-003
+openAiModel = gpt-3.5-turbo
 # cat=basic request settings; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
 openAiTemperature = 0.5
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens

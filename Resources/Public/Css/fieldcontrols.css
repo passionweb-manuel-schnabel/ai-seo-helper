@@ -1,5 +1,5 @@
 a#generateKeywords span,
-a#generateMetaDescription span,
-a#generatePageTitle span {
+a#description_generation span,
+a#seo_title_generation span {
     pointer-events: none;
 }

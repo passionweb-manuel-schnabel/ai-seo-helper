@@ -6,6 +6,8 @@ namespace Passionweb\AiSeoHelper\FormEngine\FieldControl;
 
 use Passionweb\AiSeoHelper\Service\JavaScriptModuleService;
 use TYPO3\CMS\Backend\Form\AbstractNode;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -23,11 +25,21 @@ class AiSeoKeywords extends AbstractNode
             ]
         ];
 
-        $javaScriptModuleService = GeneralUtility::makeInstance(JavaScriptModuleService::class);
+        $typo3Version = new Typo3Version();
+        if ($typo3Version->getMajorVersion() === 12) {
+            $resultArray['javaScriptModules'] = [
+                JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-keywords.js')
+            ];
+        } elseif ($typo3Version->getMajorVersion() === 11) {
+            $resultArray['requireJsModules'] = [
+                JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/GenerateKeywords')
+            ];
+        } else {
+            $resultArray['requireJsModules'] = [
+                'TYPO3/CMS/AiSeoHelper/GenerateKeywords'
+            ];
+        }
 
-        return array_merge($resultArray, $javaScriptModuleService->addModules(
-            '@passionweb/ai-seo-helper/generate-keywords.js',
-            'TYPO3/CMS/AiSeoHelper/GenerateKeywords')
-        );
+        return $resultArray;
     }
 }

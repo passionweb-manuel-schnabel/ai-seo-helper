@@ -111,20 +111,20 @@ class ContentService
      * @throws GuzzleException
      * @throws UnableToLinkToPageException
      */
-    public function getContentForPageTitleSuggestions(ServerRequestInterface $request): string
+    public function getContentForSuggestions(ServerRequestInterface $request, string $type): string
     {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
         $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
         $standaloneView->getRenderingContext()->setControllerName('Ai');
-        $standaloneView->setTemplate('GeneratePageTitle');
+        $standaloneView->setTemplate('GenerateSuggestions');
 
-        $generatedPageTitleContent = $this->getContentFromAi($request, 'openAiPromptPrefixPageTitle');
+        $generatedContent = $this->getContentFromAi($request, 'openAiPromptPrefix' . $type);
 
-        if ($this->extConf['showRawPageTitleSuggestions'] === '1') {
-            $standaloneView->assign('pageTitleSuggestions', $generatedPageTitleContent);
+        if ($this->extConf['showRaw' . $type . 'Suggestions'] === '1') {
+            $standaloneView->assign('suggestions', $generatedContent);
             $standaloneView->assign('showRawContent', true);
         } else {
-            $standaloneView->assign('pageTitleSuggestions', $this->buildBulletPointList($generatedPageTitleContent));
+            $standaloneView->assign('suggestions', $this->buildBulletPointList($generatedContent));
         }
 
         return $standaloneView->render();
@@ -155,13 +155,13 @@ class ContentService
     protected function buildBulletPointList(string $content): array
     {
         $suggestions = explode(PHP_EOL, $content);
-        $pageTitleSuggestions = [];
+        $strippedSuggestions = [];
         foreach ($suggestions as $suggestion) {
             if (!empty($suggestion) && (strpos($suggestion, '-') !== false || strpos($suggestion, '•') !== false)) {
-                $pageTitleSuggestions[] = ltrim(str_replace(['-', '•'], '', $suggestion));
+                $strippedSuggestions[] = ltrim(str_replace(['-', '•'], '', $suggestion));
             }
         }
-        return $pageTitleSuggestions;
+        return $strippedSuggestions;
     }
 
     protected function getPreviewUrl(int $pageId, int $pageLanguage): string
@@ -213,10 +213,10 @@ class ContentService
         if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301') {
             $jsonContent["messages"][] = [
                 'role' => 'user',
-                'content' => $this->extConf[$extConfPromptPrefix] . ' ' . $content . ' in ' . $this->languages[$languageIsoCode]
+                'content' => $this->extConf[$extConfPromptPrefix] . ' \"' . trim($content) . '\" in ' . $this->languages[$languageIsoCode]
                 ];
         } else {
-            $jsonContent["prompt"] = $this->extConf[$extConfPromptPrefix]. ' in ' . $this->languages[$languageIsoCode] .":\n\n" . $content;
+            $jsonContent["prompt"] = $this->extConf[$extConfPromptPrefix]. ' in ' . $this->languages[$languageIsoCode] .":\n\n" . trim($content);
         }
     }
 }

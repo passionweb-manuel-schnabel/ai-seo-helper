@@ -7,21 +7,20 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 
 class JavaScriptModuleService
 {
-    public function addModules(string $javaScriptModule, string $requireJsModules): array
+    public function addModules(): array
     {
         $typo3Version = new Typo3Version();
         if ($typo3Version->getMajorVersion() === 12) {
             $resultArray['javaScriptModules'] = [
-                JavaScriptModuleInstruction::create($javaScriptModule)
+                JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/Helper/generate-suggestions.js'),
             ];
         } elseif ($typo3Version->getMajorVersion() === 11) {
-            // keep RequireJs for TYPO3 below v12.0
             $resultArray['requireJsModules'] = [
-                JavaScriptModuleInstruction::forRequireJS($requireJsModules)
+                JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions')
             ];
         } else {
             $resultArray['requireJsModules'] = [
-                $requireJsModules
+                'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions'
             ];
         }
         return $resultArray;
