@@ -2,13 +2,14 @@
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Log\LogManager;
 use Psr\Log\LoggerInterface;
 use Passionweb\AiSeoHelper\Service\ContentService;
 use Passionweb\AiSeoHelper\Factory\CustomLanguageFactory;
 use Passionweb\AiSeoHelper\Controller\Ajax\AiController;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $services = $containerConfigurator->services();

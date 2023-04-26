@@ -34,7 +34,8 @@ class CustomLanguageFactory
 
     protected CustomLanguageRepository $customLanguageRepository;
 
-    public function __construct(CustomLanguageRepository $customLanguageRepository) {
+    public function __construct(CustomLanguageRepository $customLanguageRepository)
+    {
         $this->customLanguageRepository = $customLanguageRepository;
     }
 
