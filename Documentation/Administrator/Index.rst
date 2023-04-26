@@ -65,7 +65,7 @@ Enter your generated API key.
 .. code-block:: none
 
     # cat=meta description; type=string; label=Prompt-Prefix for meta description generation
-    openAiPromptPrefixMetaDescription = Suggest five seo meta description ideas in a bullet point list, each idea in one short sentence and with a maximum of 150 characters or less, for
+    openAiPromptPrefixMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
 
 Enter your instruction for generating meta description. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found `here <https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords.>`_) by default, we have to explicitly tell the AI ​​the desired total length and the type of expected creation
 
@@ -121,7 +121,7 @@ What sampling temperature to use, between 0 and 2. Higher values like 0.8 will m
 .. code-block:: none
 
     # cat=basic request settings; type=int+; label=OpenAI Max-Tokens
-    openAiMaxTokens = 175
+    openAiMaxTokens = 275
 
 The token (`what are tokens and how to count them <https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords.>`_) count of your prompt plus max_tokens cannot exceed the model's context length. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
 
