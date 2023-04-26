@@ -60,7 +60,7 @@
                 <target>Fehlende Auswahl</target>
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.suggestions.missingSelectionInfo" resname="AiSeoHelper.notification.generation.suggestions.missingSelectionInfo">
-                <source>Please select a page title.</source>
+                <source>Please select a suggestion.</source>
                 <target>Bitte wählen Sie einen Vorschlag aus.</target>
             </trans-unit>
             <trans-unit id="AiSeoHelper.noSuitablePage" resname="AiSeoHelper.noSuitablePage">
