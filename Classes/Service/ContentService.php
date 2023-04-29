@@ -130,6 +130,11 @@ class ContentService
         return $standaloneView->render();
     }
 
+    public function checkUseForAdditionalFields(string $type): bool
+    {
+        return (bool)$this->extConf[lcfirst($type) . 'ForOgAndTwitter'];
+    }
+
     protected function getTypeParameterIfSet(int $pageId): string
     {
         $typeParameter = '';

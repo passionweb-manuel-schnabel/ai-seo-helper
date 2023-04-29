@@ -28,3 +28,7 @@ openAiPresencePenalty = 0
 useUrlForRequest = 1
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:maxAllowedCharacters
 maxAllowedCharacters = 16000
+# cat=open graph & twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:pageTitleForOgAndTwitter
+pageTitleForOgAndTwitter = 0
+# cat=open graph & twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:descriptionForOgAndTwitter
+metaDescriptionForOgAndTwitter = 0

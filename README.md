@@ -1,6 +1,6 @@
 # TYPO3 Extension `AI SEO Helper`
 
-Generates SEO metadata based on page content using AI. Currently, meta description, keywords and page title can be generated using an additional button next to the corresponding text fields.
+Generates SEO metadata based on page content using AI. Currently, meta description, keywords and page title can be generated using an additional button next to the corresponding text fields. Based on page title and meta description you can fill Open Graph title, Twitter title, Open Graph description and Twitter description too.
 
 ## Installation
 
@@ -55,6 +55,14 @@ Added an additional button next to the keywords text field. When you click this 
 Added an additional button next to the seo title text field. When you click this button, the (text) content of the selected page is generated, and you get page title suggestions with the help of the AI. By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawPageTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite page title via copy/paste.
 
 ![Generate page title suggestions](./Documentation/Editor/generate-page-title-suggestions.png)
+
+## Use page title suggestion for Open Graph and Twitter titles
+
+Since Version 0.5.0 you have the option to copy the selected page title suggestion to the fields for Open Graph and Twitter titles (can be found within the tab "Social media"). Therefore you must enable the option `pageTitleForOgAndTwitter` in the extension settings. If you select a page title the content will be copied to the fields `og_title`and `twitter_title` too.
+
+## Use meta description suggestion for Open Graph and Twitter descriptions
+
+Since Version 0.5.0 you have the option to copy the selected meta description suggestion to the fields for Open Graph and Twitter descriptions (can be found within the tab "Social media"). Therefore you must enable the option `metaDescriptionForOgAndTwitter` in the extension settings. If you select a meta description the content will be copied to the fields `og_description`and `twitter_description` too.
 
 ## Getting results in two different ways
 
@@ -158,6 +166,20 @@ Enter your instruction for generating page title suggestions (IMPORTANT: respons
     showRawPageTitleSuggestions = 0
 
 By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite page title via copy/paste.
+
+### `pageTitleForOgAndTwitter`
+
+    #cat=open graph & twitter; type=boolean; label=Fill Open Graph and Twitter titles
+    pageTitleForOgAndTwitter = 0
+
+Use selected page title suggestion for Open Graph and Twitter titles
+
+### `metaDescriptionForOgAndTwitter`
+
+    #cat=open graph & twitter; type=boolean; label=Fill Open Graph and Twitter descriptions
+    metaDescriptionForOgAndTwitter = 0
+
+Use selected meta description suggestion for Open Graph and Twitter descriptions
 
 ### `openAiModel`
 

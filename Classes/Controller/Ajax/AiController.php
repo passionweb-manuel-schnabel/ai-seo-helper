@@ -73,8 +73,15 @@ class AiController
     {
         $response = new Response();
         try {
-            $content = $this->contentService->getContentForSuggestions($request, $type);
-            $response->getBody()->write(json_encode(['success' => true, 'output' => $content]));
+            $response->getBody()->write(
+                json_encode(
+                    [
+                        'success' => true,
+                        'output' => $this->contentService->getContentForSuggestions($request, $type),
+                        'useForAdditionalFields' => $this->contentService->checkUseForAdditionalFields($type)
+                    ]
+                )
+            );
             return $response;
         } catch (GuzzleException $e) {
             $response = $this->logGuzzleError($e, $response);

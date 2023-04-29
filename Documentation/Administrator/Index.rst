@@ -106,6 +106,20 @@ By default, the extension prepares the page title suggestions in such a way that
 
 .. code-block:: none
 
+    #cat=open graph & twitter; type=boolean; label=Fill Open Graph and Twitter titles
+    pageTitleForOgAndTwitter = 0
+
+Use selected page title suggestion for Open Graph and Twitter titles
+
+.. code-block:: none
+
+    #cat=open graph & twitter; type=boolean; label=Fill Open Graph and Twitter descriptions
+    metaDescriptionForOgAndTwitter = 0
+
+Use selected meta description suggestion for Open Graph and Twitter descriptions
+
+.. code-block:: none
+
     # cat=basic request settings; type=string; label=OpenAI Model
     openAiModel = gpt-3.5-turbo
 

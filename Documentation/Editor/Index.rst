@@ -43,6 +43,20 @@ Added an additional button next to the seo title text field. When you click this
 
 .. figure:: generate-page-title-suggestions.png
 
+.. _use_page_title_suggestions_for_open_graph_and_twitter_titles:
+
+Use page title suggestion for Open Graph and Twitter titles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Since Version 0.5.0 you have the option to copy the selected page title suggestion to the fields for Open Graph and Twitter titles (can be found within the tab "Social media"). Therefore you must enable the option `pageTitleForOgAndTwitter` in the extension settings. If you select a page title the content will be copied to the fields `og_title`and `twitter_title` too.
+
+.. _use_page_title_suggestions_for_open_graph_and_twitter_descriptions:
+
+Use meta description suggestion for Open Graph and Twitter descriptions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Since Version 0.5.0 you have the option to copy the selected meta description suggestion to the fields for Open Graph and Twitter descriptions (can be found within the tab "Social media"). Therefore you must enable the option `metaDescriptionForOgAndTwitter` in the extension settings. If you select a meta description the content will be copied to the fields `og_description`and `twitter_description` too.
+
 .. _getting_results_in_two_different_ways:
 
 Getting results in two different ways

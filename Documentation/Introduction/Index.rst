@@ -12,7 +12,7 @@ Introduction
 What does it do?
 ^^^^^^^^^^^^^^^^
 
-Generates SEO metadata based on page content using AI. Currently, meta description, keywords and page title can be generated using an additional button next to the corresponding text fields.
+Generates SEO metadata based on page content using AI. Currently, meta description, keywords and page title can be generated using an additional button next to the corresponding text fields. Based on page title and meta description you can fill Open Graph title, Twitter title, Open Graph description and Twitter description too.
 
 .. _requirements:
 

@@ -13,10 +13,13 @@
                 <source>Generate page title suggestions</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.start" resname="AiSeoHelper.notification.generation.start">
-                <source>Start</source>
+                <source>Started</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.finish" resname="AiSeoHelper.notification.generation.finish">
-                <source>Finish</source>
+                <source>Finished</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.copy" resname="AiSeoHelper.notification.generation.copy">
+                <source>Copied</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.error" resname="AiSeoHelper.notification.generation.error">
                 <source>Unexpected error</source>
@@ -48,6 +51,12 @@
             <trans-unit id="AiSeoHelper.notification.generation.suggestions.missingSelectionInfo" resname="AiSeoHelper.notification.generation.suggestions.missingSelectionInfo">
                 <source>Please select a suggestion.</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.suggestions.ogTwitterTitlesUpdated" resname="AiSeoHelper.notification.generation.suggestions.ogTwitterTitlesUpdated">
+                <source>Copied selected suggestion to fields for Open Graph and Twitter title.</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.notification.generation.suggestions.ogTwitterDescriptionsUpdated" resname="AiSeoHelper.notification.generation.suggestions.ogTwitterDescriptionsUpdated">
+                <source>Copied selected suggestion to fields for Open Graph and Twitter description.</source>
+            </trans-unit>
             <trans-unit id="AiSeoHelper.noSuitablePage" resname="AiSeoHelper.noSuitablePage">
                 <source>Did not find a suitable page uid.</source>
             </trans-unit>
@@ -55,7 +64,7 @@
                 <source>Generated suggestions</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.suggestionsSubheader" resname="AiSeoHelper.suggestionsSubheader">
-                <source>Please select your favorite suggestions:</source>
+                <source>Please select your favorite suggestion:</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.setSuggestion" resname="AiSeoHelper.setSuggestion">
                 <source>Set selected suggestion</source>
