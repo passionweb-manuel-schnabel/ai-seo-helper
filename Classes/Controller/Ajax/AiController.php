@@ -56,7 +56,7 @@ class AiController
             $response->getBody()->write(json_encode(['success' => true, 'output' => $generatedContent]));
             return $response;
         } catch(GuzzleException $e) {
-            $response = $this->logGenerationGuzzleError($e, $response);
+            $response = $this->logGuzzleError($e, $response);
         } catch(Exception $e) {
             $this->logger->error($e->getMessage());
             $response->withStatus(400);
