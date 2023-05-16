@@ -40,6 +40,26 @@ class AiController
         return $this->generateSuggestions($request, 'PageTitle');
     }
 
+    public function generateTwitterTitleAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'TwitterTitle');
+    }
+
+    public function generateOgTitleAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'OgTitle');
+    }
+
+    public function generateOgDescriptionAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'OgDescription');
+    }
+
+    public function generateTwitterDescriptionAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'TwitterDescription');
+    }
+
     private function generateResponse(ServerRequestInterface $request, string $extConfPrompt, string $extConfReplaceText): ResponseInterface
     {
         $response = new Response();

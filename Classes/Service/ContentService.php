@@ -132,6 +132,9 @@ class ContentService
 
     public function checkUseForAdditionalFields(string $type): bool
     {
+        if($type !== 'PageTitle' && $type !== 'MetaDescription') {
+            return false;
+        }
         return (bool)$this->extConf[lcfirst($type) . 'ForOgAndTwitter'];
     }
 

@@ -56,6 +56,22 @@ Added an additional button next to the seo title text field. When you click this
 
 ![Generate page title suggestions](./Documentation/Editor/generate-page-title-suggestions.png)
 
+## Generate Open Graph title (suggestions)
+
+Added an additional button next to the Open Graph title text field. When you click this button, the (text) content of the selected page is generated, and you get Open Graph title suggestions with the help of the AI. By default, the extension prepares the Open Graph title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawOgTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite Open Graph title via copy/paste.
+
+## Generate Open Graph description (suggestions)
+
+Added an additional button next to the Open Graph description text field. When you click this button, the (text) content of the selected page is generated, and you get Open Graph description suggestions with the help of the AI. By default, the extension prepares the Open Graph description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawOgDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite Open Graph description via copy/paste.
+
+## Generate Twitter title (suggestions)
+
+Added an additional button next to the Twitter title text field. When you click this button, the (text) content of the selected page is generated, and you get Twitter title suggestions with the help of the AI. By default, the extension prepares the Twitter title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawTwitterTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite Twitter title via copy/paste.
+
+## Generate Twitter description (suggestions)
+
+Added an additional button next to the Twitter description text field. When you click this button, the (text) content of the selected page is generated, and you get Twitter description suggestions with the help of the AI. By default, the extension prepares the Twitter description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawTwitterDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite Twitter description via copy/paste.
+
 ## Use page title suggestion for Open Graph and Twitter titles
 
 Since Version 0.5.0 you have the option to copy the selected page title suggestion to the fields for Open Graph and Twitter titles (can be found within the tab "Social media"). Therefore you must enable the option `pageTitleForOgAndTwitter` in the extension settings. If you select a page title the content will be copied to the fields `og_title`and `twitter_title` too.
@@ -127,10 +143,10 @@ Enter your generated OpenAI API key.
 
 ### `openAiPromptPrefixMetaDescription`
 
-    # cat=meta description; type=string; label=Prompt-Prefix for meta description generation
+    # cat=meta description; type=string; label=Prompt-Prefix for meta description suggestions generation
     openAiPromptPrefixMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
 
-Enter your instruction for generating meta description. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found [here](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords. "")) by default, we have to explicitly tell the AI the desired total length and the type of expected creation
+Enter your instruction for generating meta description suggestions. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found [here](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords. "")) by default, we have to explicitly tell the AI the desired total length and the type of expected creation
 
 ### `showRawMetaDescriptionSuggestions`
 
@@ -166,6 +182,62 @@ Enter your instruction for generating page title suggestions (IMPORTANT: respons
     showRawPageTitleSuggestions = 0
 
 By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite page title via copy/paste.
+
+### `openAiPromptPrefixOgTitle`
+
+    #cat=open graph; type=string; label=Prompt-Prefix for Open Graph title suggestions generation
+    openAiPromptPrefixOgTitle = Suggest Open Graph title ideas in bullet point list for this text
+
+Enter your instruction for generating Open Graph title suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way).
+
+### `showRawOgTitleSuggestions`
+
+    #cat=open graph; type=boolean; label=Show raw response content of Open Graph title suggestions
+    showRawOgTitleSuggestions = 0
+
+By default, the extension prepares the Open Graph title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Open Graph title via copy/paste.
+
+### `openAiPromptPrefixOgDescription`
+
+    # cat=open graph; type=string; label=Prompt-Prefix for Open Graph description suggestions generation
+    openAiPromptPrefixOgDescription = Extract five Open Graph descriptions in a bullet point list, each Open Graph description in one short sentence and with a maximum of 150 characters or less, for the content of
+
+Enter your instruction for generating Open Graph description suggestions. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found [here](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords. "")) by default, we have to explicitly tell the AI the desired total length and the type of expected creation
+
+### `showRawOgDescriptionSuggestions`
+
+    #cat=open graph; type=boolean; label=Show raw response content of Open Graph description suggestions
+    showRawOgDescriptionSuggestions = 0
+
+By default, the extension prepares the Open Graph description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Open Graph description via copy/paste.
+
+### `openAiPromptPrefixTwitterTitle`
+
+    #cat=twitter; type=string; label=Prompt-Prefix for Twitter title suggestions generation
+    openAiPromptPrefixTwitterTitle = Suggest Twitter title ideas in bullet point list for this text
+
+Enter your instruction for generating Twitter title suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way).
+
+### `showRawTwitterTitleSuggestions`
+
+    #cat=twitter; type=boolean; label=Show raw response content of Twitter title suggestions
+    showRawTwitterTitleSuggestions = 0
+
+By default, the extension prepares the Twitter title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Twitter title via copy/paste.
+
+### `openAiPromptPrefixTwitterDescription`
+
+    # cat=twitter; type=string; label=Prompt-Prefix for Twitter description suggestions generation
+    openAiPromptPrefixTwitterDescription = Extract five Twitter descriptions in a bullet point list, each Twitter description in one short sentence and with a maximum of 150 characters or less, for the content of
+
+Enter your instruction for generating Twitter description suggestions. Since OpenAI calculates the length of the content with tokens (an explanation of the conversion of tokens into characters and sentences can be found [here](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords. "")) by default, we have to explicitly tell the AI the desired total length and the type of expected creation
+
+### `showRawTwitterDescriptionSuggestions`
+
+    #cat=twitter; type=boolean; label=Show raw response content of Twitter description suggestions
+    showRawTwitterDescriptionSuggestions = 0
+
+By default, the extension prepares the Twitter description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Twitter description via copy/paste.
 
 ### `pageTitleForOgAndTwitter`
 

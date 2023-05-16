@@ -9,18 +9,18 @@ use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-class AiSeoMetaDescription extends AbstractNode
+class AiSeoOpenGraphDescription extends AbstractNode
 {
     public function render(): array
     {
         $resultArray = [
             'iconIdentifier' => 'actions-document-synchronize',
-            'title' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.generation.metaDescriptionSuggestions'),
+            'title' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.generation.ogDescriptionSuggestions'),
             'linkAttributes' => [
-                'id' => 'description_generation',
+                'id' => 'og_description_generation',
                 'class' => 'ai-seo-helper-suggestions-generation-btn',
                 'data-page-id' => $this->data['databaseRow']['uid'],
-                'data-field-name' => 'description'
+                'data-field-name' => 'og_description'
             ]
         ];
 

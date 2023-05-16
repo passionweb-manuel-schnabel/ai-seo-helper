@@ -43,6 +43,34 @@ Added an additional button next to the seo title text field. When you click this
 
 .. figure:: generate-page-title-suggestions.png
 
+.. _generate_open_graph_title_suggestions:
+
+Generate Open Graph title (suggestions)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Added an additional button next to the Open Graph title text field. When you click this button, the (text) content of the selected page is generated, and you get Open Graph title suggestions with the help of the AI. By default, the extension prepares the Open Graph title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawOgTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite Open Graph title via copy/paste.
+
+.. _generate_open_graph_descriptions_suggestions:
+
+Generate Open Graph description (suggestions)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Added an additional button next to the Open Graph description text field. When you click this button, the (text) content of the selected page is generated, and you get Open Graph description suggestions with the help of the AI. By default, the extension prepares the Open Graph description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawOgDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite Open Graph description via copy/paste.
+
+.. _generate_twitter_title_suggestions:
+
+Generate Twitter title (suggestions)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Added an additional button next to the Twitter title text field. When you click this button, the (text) content of the selected page is generated, and you get Twitter title suggestions with the help of the AI. By default, the extension prepares the Twitter title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawTwitterTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite Twitter title via copy/paste.
+
+.. _generate_twitter_description_suggestions:
+
+Generate Twitter description (suggestions)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Added an additional button next to the Twitter description text field. When you click this button, the (text) content of the selected page is generated, and you get Twitter description suggestions with the help of the AI. By default, the extension prepares the Twitter description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawTwitterDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite Twitter description via copy/paste.
+
 .. _use_page_title_suggestions_for_open_graph_and_twitter_titles:
 
 Use page title suggestion for Open Graph and Twitter titles

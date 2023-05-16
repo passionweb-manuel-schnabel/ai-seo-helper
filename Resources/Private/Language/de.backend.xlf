@@ -7,13 +7,29 @@
                 <source>Generate keywords</source>
                 <target>Keywords generieren</target>
             </trans-unit>
-            <trans-unit id="AiSeoHelper.generation.metaDescription" resname="AiSeoHelper.generation.metaDescription">
-                <source>Generate meta description</source>
-                <target>Meta-Beschreibung generieren</target>
+            <trans-unit id="AiSeoHelper.generation.metaDescriptionSuggestions" resname="AiSeoHelper.generation.metaDescriptionSuggestions">
+                <source>Generate meta description suggestions</source>
+                <target>Meta-Beschreibungs-Vorschläge generieren</target>
             </trans-unit>
             <trans-unit id="AiSeoHelper.generation.pageTitleSuggestions" resname="AiSeoHelper.generation.pageTitleSuggestions">
                 <source>Generate page title suggestions</source>
                 <target>Page-Titel Vorschläge generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.ogTitleSuggestions" resname="AiSeoHelper.generation.ogTitleSuggestions">
+                <source>Generate Open Graph title suggestions</source>
+                <target>Open Graph Titel Vorschläge generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.twitterTitleSuggestions" resname="AiSeoHelper.generation.twitterTitleSuggestions">
+                <source>Generate Twitter title suggestions</source>
+                <target>Twitter-Titel Vorschläge generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.ogDescriptionSuggestions" resname="AiSeoHelper.generation.ogDescriptionSuggestions">
+                <source>Generate Open Graph description suggestions</source>
+                <target>Open Graph BeschreibungsVorschläge generieren</target>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.twitterDescriptionSuggestions" resname="AiSeoHelper.generation.twitterDescriptionSuggestions">
+                <source>Generate Twitter description suggestions</source>
+                <target>Twitter-Beschreibungs Vorschläge generieren</target>
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.start" resname="AiSeoHelper.notification.generation.start">
                 <source>Started</source>

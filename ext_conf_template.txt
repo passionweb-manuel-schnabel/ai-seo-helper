@@ -1,17 +1,39 @@
 # cat=API Key; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiApiKey
 openAiApiKey =
+
 # cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixKeywords
 openAiPromptPrefixKeywords = Extract seo keywords from this text
 # cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextKeywords
 replaceTextKeywords = SEO Keywords:
+
 # cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
 openAiPromptPrefixMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
 #cat=meta description; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawMetaDescriptionSuggestions
 showRawMetaDescriptionSuggestions = 0
+
 #cat=page title; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
 openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for
 #cat=page title; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawPageTitleSuggestions
 showRawPageTitleSuggestions = 0
+
+#cat=open graph; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixOgTitle
+openAiPromptPrefixOgTitle = Suggest Open Graph title ideas in bullet point list for
+#cat=open graph; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawOgTitleSuggestions
+showRawOgTitleSuggestions = 0
+#cat=open graph; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixOgDescription
+openAiPromptPrefixOgDescription = Extract five Open Graph descriptions in a bullet point list, each Open Graph description in one short sentence and with a maximum of 150 characters or less, for the content of
+#cat=open graph; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawOgDescriptionSuggestions
+showRawOgDescriptionSuggestions = 0
+
+#cat=twitter; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixTwitterTitle
+openAiPromptPrefixTwitterTitle = Suggest Twitter title ideas in bullet point list for
+#cat=twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawTwitterTitleSuggestions
+showRawTwitterTitleSuggestions = 0
+#cat=twitter; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixTwitterDescription
+openAiPromptPrefixTwitterDescription = Extract five Twitter descriptions in a bullet point list, each Twitter description in one short sentence and with a maximum of 150 characters or less, for the content of
+#cat=twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawTwitterDescriptionSuggestions
+showRawTwitterDescriptionSuggestions = 0
+
 # cat=basic request settings; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
 openAiModel = gpt-3.5-turbo
 # cat=basic request settings; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
@@ -28,6 +50,7 @@ openAiPresencePenalty = 0
 useUrlForRequest = 1
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:maxAllowedCharacters
 maxAllowedCharacters = 16000
+
 # cat=open graph & twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:pageTitleForOgAndTwitter
 pageTitleForOgAndTwitter = 0
 # cat=open graph & twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:descriptionForOgAndTwitter

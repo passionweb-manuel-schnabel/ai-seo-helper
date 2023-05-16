@@ -7,7 +7,7 @@
                 <source>OpenAI Secret Key: Enter your generated API key or generate a new one under https://platform.openai.com/account/api-keys</source>
             </trans-unit>
             <trans-unit id="openAiPromptPrefixMetaDescription" resname="openAiPromptPrefixMetaDescription">
-                <source>Prompt-Prefix for meta description generation: Enter your instruction for generating meta description</source>
+                <source>Prompt-Prefix for meta description suggestions generation: Enter your instruction for generating meta description suggestions</source>
             </trans-unit>
             <trans-unit id="showRawMetaDescriptionSuggestions" resname="showRawMetaDescriptionSuggestions">
                 <source>Show raw response content of meta description suggestions: By default, the extension prepares the meta description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite meta description via copy/paste.</source>
@@ -23,6 +23,30 @@
             </trans-unit>
             <trans-unit id="showRawPageTitleSuggestions" resname="showRawPageTitleSuggestions">
                 <source>Show raw response content of page title suggestions: By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite page title via copy/paste.</source>
+            </trans-unit>
+            <trans-unit id="openAiPromptPrefixOgTitle" resname="openAiPromptPrefixOgTitle">
+                <source>Prompt-Prefix for Open Graph title suggestions generation: Enter your instruction for generating Open Graph title suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way)</source>
+            </trans-unit>
+            <trans-unit id="showRawOgTitleSuggestions" resname="showRawOgTitleSuggestions">
+                <source>Show raw response content of Open Graph title suggestions: By default, the extension prepares the Open Graph title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Open Graph title via copy/paste.</source>
+            </trans-unit>
+            <trans-unit id="openAiPromptPrefixTwitterTitle" resname="openAiPromptPrefixTwitterTitle">
+                <source>Prompt-Prefix for Twitter title suggestions generation: Enter your instruction for generating Twitter title suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way)</source>
+            </trans-unit>
+            <trans-unit id="showRawTwitterTitleSuggestions" resname="showRawTwitterTitleSuggestions">
+                <source>Show raw response content of Twitter title suggestions: By default, the extension prepares the Twitter title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Twitter title via copy/paste.</source>
+            </trans-unit>
+            <trans-unit id="openAiPromptPrefixOgDescription" resname="openAiPromptPrefixOgDescription">
+                <source>Prompt-Prefix for Open Graph description suggestions generation: Enter your instruction for generating Open Graph description suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way)</source>
+            </trans-unit>
+            <trans-unit id="showRawOgDescriptionSuggestions" resname="showRawOgDescriptionSuggestions">
+                <source>Show raw response content of Open Graph description suggestions: By default, the extension prepares the Open Graph description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Open Graph description via copy/paste.</source>
+            </trans-unit>
+            <trans-unit id="openAiPromptPrefixTwitterDescription" resname="openAiPromptPrefixTwitterDescription">
+                <source>Prompt-Prefix for Twitter description suggestions generation: Enter your instruction for generating Twitter descriptions suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way)</source>
+            </trans-unit>
+            <trans-unit id="showRawTwitterDescriptionSuggestions" resname="showRawTwitterDescriptionSuggestions">
+                <source>Show raw response content of Twitter description suggestions: By default, the extension prepares the Twitter description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Twitter description via copy/paste.</source>
             </trans-unit>
             <trans-unit id="openAiModel" resname="openAiModel">
                 <source>OpenAI Model: The id of the model which will generate the completion. See https://platform.openai.com/docs/models/gpt-3-5 for an overview of available models.</source>

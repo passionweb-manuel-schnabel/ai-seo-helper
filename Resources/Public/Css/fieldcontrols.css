@@ -1,5 +1,9 @@
 a#generateKeywords span,
 a#description_generation span,
-a#seo_title_generation span {
+a#seo_title_generation span,
+a#og_title_generation span,
+a#twitter_title_generation span,
+a#og_description_generation span,
+a#twitter_description_generation span {
     pointer-events: none;
 }
