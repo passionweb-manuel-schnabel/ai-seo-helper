@@ -51,7 +51,7 @@ openAiPromptPrefixTwitterDescription = Extract five Twitter descriptions in a bu
 #cat=twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawTwitterDescriptionSuggestions
 showRawTwitterDescriptionSuggestions = 0
 
-# cat=open graph & twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:pageTitleForOgAndTwitter
+# cat=open graph and twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:pageTitleForOgAndTwitter
 pageTitleForOgAndTwitter = 0
-# cat=open graph & twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:descriptionForOgAndTwitter
+# cat=open graph and twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:descriptionForOgAndTwitter
 metaDescriptionForOgAndTwitter = 0
