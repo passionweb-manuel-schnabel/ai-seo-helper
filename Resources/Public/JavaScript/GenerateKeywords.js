@@ -5,8 +5,8 @@ define(["TYPO3/CMS/Core/Ajax/AjaxRequest", "TYPO3/CMS/Backend/Notification"], fu
         document.getElementById('generateKeywords').addEventListener("click", function(ev) {
             ev.preventDefault();
 
-            let pageId = ev.target.getAttribute('data-page-id');
-            let fieldName = ev.target.getAttribute('data-field-name');
+            let pageId = parseInt(this.getAttribute('data-page-id'));
+            let fieldName = this.getAttribute('data-field-name');
 
             sendAjaxRequest(pageId, fieldName);
         });

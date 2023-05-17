@@ -15,8 +15,8 @@ class GenerateSuggestions {
             button.addEventListener("click", function(ev) {
                 ev.preventDefault();
 
-                let pageId = ev.target.getAttribute('data-page-id');
-                let fieldName = ev.target.getAttribute('data-field-name');
+                let pageId = parseInt(this.getAttribute('data-page-id'));
+                let fieldName = this.getAttribute('data-field-name');
 
                 executeRequest(pageId, fieldName, handleResponse, addSelectionToAdditionalFields);
             });
