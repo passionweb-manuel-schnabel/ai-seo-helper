@@ -1,6 +1,6 @@
 # TYPO3 Extension `AI SEO Helper`
 
-Generates SEO metadata based on page content using AI. Currently, meta description, keywords and page title can be generated using an additional button next to the corresponding text fields. Based on page title and meta description you can fill Open Graph title, Twitter title, Open Graph description and Twitter description too.
+Generates SEO metadata based on page content using AI. Currently, meta description, keywords, page title, Open Graph and Twitter data (titles and descriptions) can be generated using an additional button next to the corresponding text fields. Based on page title and meta description you can fill Open Graph title, Twitter title, Open Graph description and Twitter description too.
 
 ## Installation
 
