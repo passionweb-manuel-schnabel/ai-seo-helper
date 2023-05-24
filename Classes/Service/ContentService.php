@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception;
+use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Routing\SiteMatcher;
 use TYPO3\CMS\Core\Routing\UnableToLinkToPageException;
@@ -23,16 +24,19 @@ class ContentService
     protected array $extConf;
 
     protected PageRepository $pageRepository;
+    protected RequestFactory $requestFactory;
     protected SiteMatcher $siteMatcher;
 
     public function __construct(
         PageRepository $pageRepository,
         SiteMatcher $siteMatcher,
+        RequestFactory $requestFactory,
         array $languages,
         array $extConf
     ) {
         $this->pageRepository = $pageRepository;
         $this->siteMatcher = $siteMatcher;
+        $this->requestFactory = $requestFactory;
         $this->languages = $languages;
         $this->extConf = $extConf;
     }
@@ -82,20 +86,18 @@ class ContentService
 
         $this->addModelSpecificPrompt($jsonContent, $content, $extConfPromptPrefix, $languageIsoCode);
 
-        $client = new \GuzzleHttp\Client();
-
-        $response = $client->request(
-            'POST',
-            // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
+        $response = $this->requestFactory->request(
+        // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
             $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301' ?
                 'https://api.openai.com/v1/chat/completions' : 'https://api.openai.com/v1/completions',
+            'POST',
             [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer '.$this->extConf['openAiApiKey']
-            ],
-            'json' => $jsonContent
-        ]
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer ' . $this->extConf['openAiApiKey']
+                ],
+                'json' => $jsonContent
+            ]
         );
 
         $resJsonBody = $response->getBody()->getContents();
@@ -200,12 +202,10 @@ class ContentService
 
     /**
      * @throws Exception
-     * @throws GuzzleException
      */
     protected function fetchContentFromUrl(string $previewUrl): string
     {
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $previewUrl);
+        $response = $this->requestFactory->request($previewUrl);
         $fetchedContent = $response->getBody()->getContents();
 
         if (empty($fetchedContent)) {
