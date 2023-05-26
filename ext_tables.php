@@ -6,7 +6,6 @@ $pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\
 if(new \TYPO3\CMS\Core\Information\Typo3Version() < 12 && empty($pageRenderer->getCharSet())) {
     $pageRenderer->setCharSet('utf-8');
 }
-$pageRenderer->addInlineLanguageLabelFile('EXT:ai_seo_helper/Resources/Private/Language/backend.xlf');
 
 // Allow Custom Records on Standard Pages
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_aiseohelper_domain_model_customlanguage');

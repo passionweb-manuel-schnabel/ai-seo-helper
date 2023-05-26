@@ -9,6 +9,8 @@ use Psr\Log\LoggerInterface;
 use Passionweb\AiSeoHelper\Service\ContentService;
 use Passionweb\AiSeoHelper\Factory\CustomLanguageFactory;
 use Passionweb\AiSeoHelper\Controller\Ajax\AiController;
+use Passionweb\AiSeoHelper\EventListener\AfterFormEnginePageInitializedEventListener;
+use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $services = $containerConfigurator->services();
@@ -45,4 +47,10 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->arg('$contentService', new ReferenceConfigurator(ContentService::class))
         ->arg('$logger', new ReferenceConfigurator('PsrLogInterface'))
         ->public();
+
+    $services->set('AfterFormEnginePageInitializedEventListener', AfterFormEnginePageInitializedEventListener::class)
+        ->tag('event.listener', [
+            'method' => 'onPagePropertiesLoad',
+            'event' => AfterFormEnginePageInitializedEvent::class,
+        ]);
 };
