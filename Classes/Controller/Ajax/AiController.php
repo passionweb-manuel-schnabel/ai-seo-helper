@@ -114,12 +114,14 @@ class AiController
     private function logGuzzleError(GuzzleException $e, Response $response): Response
     {
         $this->logger->error($e->getMessage());
-        $response->withStatus($e->getCode());
         if ($e->getCode() === 500 && strpos($e->getMessage(), 'auth_subrequest_error') !== false) {
+            $response->withStatus($e->getCode());
             $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.apiNotReachable')]));
         } elseif ($e->getCode() === 401 && strpos($e->getMessage(), 'You need to provide your API key') !== false) {
+            $response->withStatus($e->getCode());
             $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.missingApiKey')]));
         } else {
+            $response->withStatus(400);
             $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
         }
         return $response;
