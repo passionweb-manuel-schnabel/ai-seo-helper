@@ -87,8 +87,7 @@ class ContentService
         $this->addModelSpecificPrompt($jsonContent, $content, $extConfPromptPrefix, $languageIsoCode);
 
         $response = $this->requestFactory->request(
-        // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
-            $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301' ?
+            $this->extConf['openAiModel'] === 'gpt-3.5-turbo' ?
                 'https://api.openai.com/v1/chat/completions' : 'https://api.openai.com/v1/completions',
             'POST',
             [
@@ -102,8 +101,7 @@ class ContentService
 
         $resJsonBody = $response->getBody()->getContents();
         $resBody = json_decode($resJsonBody, true);
-        // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
-        $generatedText = $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301' ?
+        $generatedText = $this->extConf['openAiModel'] === 'gpt-3.5-turbo' ?
             $resBody['choices'][0]['message']['content'] : $resBody['choices'][0]['text'];
         return ltrim(str_replace($extConfReplaceText, '', $generatedText));
     }
@@ -217,8 +215,7 @@ class ContentService
 
     protected function addModelSpecificPrompt(array &$jsonContent, string $content, string $extConfPromptPrefix, string $languageIsoCode)
     {
-        // TODO: remove gpt-3.5-turbo-0301 after end of life on June 1st 2023
-        if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-0301') {
+        if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo') {
             $jsonContent["messages"][] = [
                 'role' => 'user',
                 'content' => $this->extConf[$extConfPromptPrefix] . ' \"' . trim($content) . '\" in ' . $this->languages[$languageIsoCode]
