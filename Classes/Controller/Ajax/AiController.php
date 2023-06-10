@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Routing\UnableToLinkToPageException;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class AiController
@@ -77,14 +78,12 @@ class AiController
             return $response;
         } catch(GuzzleException $e) {
             $response = $this->logGuzzleError($e, $response);
-        } catch(Exception $e) {
+        } catch(UnableToLinkToPageException $e) {
             $this->logger->error($e->getMessage());
-            $response->withStatus(400);
-            if ($e->getCode() === 1476107295) {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.pageNotAccessible')]));
-            } else {
-                $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
-            }
+            $response->withStatus(404);
+            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
+        } catch(Exception $e) {
+            $response = $this->logError($e, $response);
         }
         return $response;
     }
@@ -105,6 +104,10 @@ class AiController
             return $response;
         } catch (GuzzleException $e) {
             $response = $this->logGuzzleError($e, $response);
+        } catch(UnableToLinkToPageException $e) {
+            $this->logger->error($e->getMessage());
+            $response->withStatus(404);
+            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
         } catch (Exception $e) {
             $response = $this->logError($e, $response);
         }

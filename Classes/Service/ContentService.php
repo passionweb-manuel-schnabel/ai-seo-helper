@@ -172,6 +172,9 @@ class ContentService
         return $strippedSuggestions;
     }
 
+    /**
+     * @throws UnableToLinkToPageException
+     */
     protected function getPreviewUrl(int $pageId, int $pageLanguage): string
     {
         $typo3Version = new Typo3Version();
@@ -181,6 +184,10 @@ class ContentService
             $previewUri = $previewUriBuilder
                 ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $pageLanguage)
                 ->buildUri();
+
+            if($previewUri === null) {
+                throw new UnableToLinkToPageException('Unable to link to page with ID '. $pageId . ' and language ID ' . $pageLanguage);
+            }
 
             return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
         } else {
