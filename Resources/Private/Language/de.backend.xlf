@@ -95,6 +95,10 @@
                 <source>Did not find a suitable page uid.</source>
                 <target>Keine passende Seiten-UID gefunden.</target>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.unableToLinkToPage" resname="AiSeoHelper.unableToLinkToPage">
+                <source>Unable to link to page with ID %s and language ID %s</source>
+                <target>Es konnte kein Vorschaulink für die Seite mit der ID %s und der Sprach-ID %s erstellt werden</target>
+            </trans-unit>
             <trans-unit id="AiSeoHelper.suggestionsHeader" resname="AiSeoHelper.suggestionsHeader">
                 <source>Generated suggestions</source>
                 <target>Generierte Vorschläge</target>

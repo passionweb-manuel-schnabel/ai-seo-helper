@@ -176,7 +176,7 @@ class ContentService
                 ->buildUri();
 
             if($previewUri === null) {
-                throw new UnableToLinkToPageException('Unable to link to page with ID '. $pageId . ' and language ID ' . $pageLanguage);
+                throw new UnableToLinkToPageException(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.unableToLinkToPage', null, [$pageId, $pageLanguage]));
             }
 
             return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
