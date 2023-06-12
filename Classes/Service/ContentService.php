@@ -173,26 +173,18 @@ class ContentService
     }
 
     /**
-     * @throws UnableToLinkToPageException
+     * @param int $pageId
+     * @param int $pageLanguage
+     * @return string
      */
     protected function getPreviewUrl(int $pageId, int $pageLanguage): string
     {
-        $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() > 10) {
-            $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
-
-            $previewUri = $previewUriBuilder
-                ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $pageLanguage)
-                ->buildUri();
-
-            if($previewUri === null) {
-                throw new UnableToLinkToPageException('Unable to link to page with ID '. $pageId . ' and language ID ' . $pageLanguage);
-            }
-
-            return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
-        } else {
-            return BackendUtility::getPreviewUrl($pageId);
-        }
+        $previewUri = $this->uriBuilder
+            ->reset()
+            ->setTargetPageUid($pageId)
+            ->setArguments(['_language'=>$pageLanguage])
+            ->buildFrontendUri();
+        return GeneralUtility::getIndpEnv('TYPO3_REQUEST_HOST'). $previewUri;
     }
 
     protected function getSiteLanguageFromPageId(int $pageId): SiteLanguage
