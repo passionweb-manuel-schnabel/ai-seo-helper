@@ -138,16 +138,6 @@ class ContentService
         return (bool)$this->extConf[lcfirst($type) . 'ForOgAndTwitter'];
     }
 
-    protected function getTypeParameterIfSet(int $pageId): string
-    {
-        $typeParameter = '';
-        $typeId = (int)(BackendUtility::getPagesTSconfig($pageId)['mod.']['web_view.']['type'] ?? 0);
-        if ($typeId > 0) {
-            $typeParameter = '&type=' . $typeId;
-        }
-        return $typeParameter;
-    }
-
     protected function stripPageContent(string $pageContent): string
     {
         if (preg_match('~<body[^>]*>(.*?)</body>~si', $pageContent, $body)) {
@@ -182,7 +172,7 @@ class ContentService
             $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
 
             $previewUri = $previewUriBuilder
-                ->withAdditionalQueryParameters($this->getTypeParameterIfSet($pageId) . '&_language=' . $pageLanguage)
+                ->withLanguage($pageLanguage)
                 ->buildUri();
 
             if($previewUri === null) {
