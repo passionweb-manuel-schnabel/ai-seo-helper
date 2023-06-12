@@ -172,7 +172,7 @@ class ContentService
             $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
 
             $previewUri = $previewUriBuilder
-                ->withLanguage($pageLanguage)
+                ->withAdditionalQueryParameters('_language=' . $pageLanguage)
                 ->buildUri();
 
             if($previewUri === null) {
