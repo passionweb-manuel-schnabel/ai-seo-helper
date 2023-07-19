@@ -30,7 +30,7 @@ class JavaScriptModuleService
                 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions'
             ];
             if(ExtensionManagementUtility::isLoaded('news')) {
-                $resultArray['requireJsModules'][] = 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions';
+                $resultArray['requireJsModules'][] = 'TYPO3/CMS/AiSeoHelper/Helper/NewsGenerateSuggestions';
             }
         }
         return $resultArray;
