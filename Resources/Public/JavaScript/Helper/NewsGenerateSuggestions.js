@@ -25,7 +25,7 @@ define(["TYPO3/CMS/Core/Ajax/AjaxRequest", "TYPO3/CMS/Backend/Notification"], fu
         Notification.info(TYPO3.lang['AiSeoHelper.notification.generation.start'], TYPO3.lang['AiSeoHelper.notification.generation.start.suggestions'], 8);
         new AjaxRequest(TYPO3.settings.ajaxUrls['news_'+fieldName+'_generation'])
             .post(
-                { newsId: newsId, folder: folderId }
+                { newsId: newsId, folderId: folderId }
             )
             .then(async function (response) {
                 const resolved = await response.resolve();

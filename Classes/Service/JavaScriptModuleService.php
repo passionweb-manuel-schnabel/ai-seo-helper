@@ -23,14 +23,14 @@ class JavaScriptModuleService
                 JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions')
             ];
             if(ExtensionManagementUtility::isLoaded('news')) {
-                $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/NewsGenerateSuggestions');
+                $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/NewsGenerateSuggestions');
             }
         } else {
             $resultArray['requireJsModules'] = [
                 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions'
             ];
             if(ExtensionManagementUtility::isLoaded('news')) {
-                $resultArray['javaScriptModules'][] = 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions';
+                $resultArray['requireJsModules'][] = 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions';
             }
         }
         return $resultArray;
