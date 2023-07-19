@@ -58,8 +58,8 @@ class ContentService
 
         if(array_key_exists('newsId', $parsedBody)) {
             $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId']);
-            $strippedPageContent = $this->stripPageContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
-            return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
+            $strippedNewsContent = $this->stripNewsContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
+            return $this->requestAi($strippedNewsContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         } else {
             $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['pageId']);
             $previewUrl = $this->getPreviewUrl((int)$parsedBody['pageId'], $siteLanguage->getLanguageId());
@@ -150,6 +150,20 @@ class ContentService
         $pageContent = preg_replace('#<footer(.*?)>(.*?)</footer>#is', '', $pageContent);
         $pageContent = preg_replace('#<nav(.*?)>(.*?)</nav>#is', '', $pageContent);
         return strip_tags($pageContent);
+    }
+
+    protected function stripNewsContent(string $newsContent): string
+    {
+        if (preg_match('~<body[^>]*>(.*?)</body>~si', $newsContent, $body)) {
+            $newsContent = $body[0];
+        }
+        $newsContent = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $newsContent);
+        $newsContent = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $newsContent);
+        $newsContent = preg_replace('#<header(.*?)>(.*?)</header>#is', '', $newsContent);
+        $newsContent = preg_replace('#<footer(.*?)>(.*?)</footer>#is', '', $newsContent);
+        $newsContent = preg_replace('#<nav(.*?)>(.*?)</nav>#is', '', $newsContent);
+
+        return strip_tags($newsContent);
     }
 
     protected function buildBulletPointList(string $content): array
