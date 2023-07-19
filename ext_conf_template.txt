@@ -29,9 +29,9 @@ openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for
 showRawPageTitleSuggestions = 0
 
 # cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixKeywords
-openAiPromptPrefixKeywords = Extract seo keywords from this text
+openAiPromptPrefixKeywords = Extract seo keywords from this text. Return the result in a comma separated list.
 # cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextKeywords
-replaceTextKeywords = SEO Keywords:
+replaceTextKeywords = SEO keywords:
 
 #cat=open graph; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixOgTitle
 openAiPromptPrefixOgTitle = Suggest Open Graph title ideas in bullet point list for
@@ -55,3 +55,19 @@ showRawTwitterDescriptionSuggestions = 0
 pageTitleForOgAndTwitter = 0
 # cat=open graph and twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:descriptionForOgAndTwitter
 metaDescriptionForOgAndTwitter = 0
+
+#cat=news; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:singleNewsDisplayPage
+singleNewsDisplayPage = 1
+
+# cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixNewsMetaDescription
+openAiPromptPrefixNewsMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
+#cat=news; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawNewsMetaDescriptionSuggestions
+showRawNewsMetaDescriptionSuggestions = 0
+# cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixNewsAlternativeTitle
+openAiPromptPrefixNewsAlternativeTitle = Suggest page title ideas in bullet point list for
+#cat=news; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawNewsAlternativeTitleSuggestions
+showRawNewsAlternativeTitleSuggestions = 0
+# cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixNewsKeywords
+openAiPromptPrefixNewsKeywords = Extract seo keywords from this news article. Return the result in a comma separated list.
+# cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextNewsKeywords
+replaceTextNewsKeywords = SEO keywords:

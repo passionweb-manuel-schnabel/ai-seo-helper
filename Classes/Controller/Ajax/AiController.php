@@ -31,9 +31,19 @@ class AiController
         return $this->generateSuggestions($request, 'MetaDescription');
     }
 
+    public function generateNewsMetaDescriptionAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'NewsMetaDescription');
+    }
+
     public function generateKeywordsAction(ServerRequestInterface $request): ResponseInterface
     {
         return $this->generateResponse($request, 'openAiPromptPrefixKeywords', 'replaceTextKeywords');
+    }
+
+    public function generateNewsKeywordsAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateResponse($request, 'openAiPromptPrefixNewsKeywords', 'replaceTextNewsKeywords');
     }
 
     public function generatePageTitleAction(ServerRequestInterface $request): ResponseInterface
@@ -51,6 +61,11 @@ class AiController
         return $this->generateSuggestions($request, 'OgTitle');
     }
 
+    public function generateNewsAlternativeTitleAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'NewsAlternativeTitle');
+    }
+
     public function generateOgDescriptionAction(ServerRequestInterface $request): ResponseInterface
     {
         return $this->generateSuggestions($request, 'OgDescription');
@@ -65,13 +80,6 @@ class AiController
     {
         $response = new Response();
         try {
-            $postParams = $request->getParsedBody();
-            $pageId = (int)$postParams['pageId'];
-
-            if (empty($pageId)) {
-                throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.noSuitablePage'));
-            }
-
             $generatedContent = $this->contentService->getContentFromAi($request, $extConfPrompt, $extConfReplaceText);
 
             $response->getBody()->write(json_encode(['success' => true, 'output' => $generatedContent]));

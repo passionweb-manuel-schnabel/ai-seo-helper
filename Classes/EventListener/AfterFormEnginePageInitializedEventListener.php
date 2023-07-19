@@ -2,7 +2,6 @@
 
 namespace Passionweb\AiSeoHelper\EventListener;
 
-
 use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

@@ -54,22 +54,28 @@ class ContentService
         string $extConfPrompt,
         string $extConfReplaceText = ""
     ): string {
-        $pageId = (int)($request->getParsedBody()['pageId'] ?? 0);
+        $parsedBody = $request->getParsedBody();
 
-        $siteLanguage = $this->getSiteLanguageFromPageId($pageId);
-        $previewUrl = $this->getPreviewUrl($pageId, $siteLanguage->getLanguageId());
-
-        $strippedPageContent = $this->stripPageContent($this->fetchContentFromUrl($previewUrl));
-
-        $contentLength = strlen($strippedPageContent);
-        if (extension_loaded('mbstring')) {
-            $contentLength = mb_strlen($strippedPageContent);
-        }
-
-        if ($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
-            return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
-        } else {
+        if(array_key_exists('newsId', $parsedBody)) {
+            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId']);
+            $strippedPageContent = $this->stripPageContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
             return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
+        } else {
+            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['pageId']);
+            $previewUrl = $this->getPreviewUrl((int)$parsedBody['pageId'], $siteLanguage->getLanguageId());
+
+            $strippedPageContent = $this->stripPageContent($this->fetchContentFromUrl($previewUrl));
+
+            $contentLength = strlen($strippedPageContent);
+            if (extension_loaded('mbstring')) {
+                $contentLength = mb_strlen($strippedPageContent);
+            }
+
+            if ($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
+                return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
+            } else {
+                return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
+            }
         }
     }
 
@@ -166,23 +172,45 @@ class ContentService
     /**
      * @throws UnableToLinkToPageException
      */
-    protected function getPreviewUrl(int $pageId, int $pageLanguage): string
+    protected function getPreviewUrl(int $pageId, int $pageLanguage, array $additionalQueryParameters = []): string
     {
         $typo3Version = new Typo3Version();
         if ($typo3Version->getMajorVersion() > 10) {
             $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
 
+            $queryParameters = [
+                '_language' => $pageLanguage
+            ];
+            if(count($additionalQueryParameters) > 0) {
+                $queryParameters = array_merge($queryParameters, $additionalQueryParameters);
+            }
+
             $previewUri = $previewUriBuilder
-                ->withAdditionalQueryParameters('_language=' . $pageLanguage)
+                ->withAdditionalQueryParameters($queryParameters)
                 ->buildUri();
 
             if($previewUri === null) {
                 throw new UnableToLinkToPageException(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.unableToLinkToPage', null, [$pageId, $pageLanguage]));
             }
-
-            return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
+            if(count($additionalQueryParameters) > 0) {
+                return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath() . '?' . $previewUri->getQuery();
+            } else {
+                return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
+            }
         } else {
-            return BackendUtility::getPreviewUrl($pageId);
+            //TODO: test on v10
+            if(count($additionalQueryParameters) > 0) {
+                $additionalGetVars = '';
+                foreach ($additionalQueryParameters as $key => $value) {
+                    if(!empty($additionalGetVars)) {
+                        $additionalGetVars .= '&';
+                    }
+                    $additionalGetVars .= $key . '=' . $value;
+                }
+                return BackendUtility::getPreviewUrl($pageId, '', null, '', '', $additionalGetVars);
+            } else {
+                return BackendUtility::getPreviewUrl($pageId);
+            }
         }
     }
 
@@ -210,13 +238,33 @@ class ContentService
         return $fetchedContent;
     }
 
+    /**
+     * @throws Exception
+     */
+    protected function fetchContentOfNewsArticle(int $newsId, int $pageLanaguage): string
+    {
+        $additionalQueryParameters = [
+            'tx_news_pi1[action]' => 'detail',
+            'tx_news_pi1[controller]'=> 'News',
+            'tx_news_pi1[news]' => $newsId
+        ];
+
+        $previewUrl = $this->getPreviewUrl((int)$this->extConf['singleNewsDisplayPage'], $pageLanaguage, $additionalQueryParameters);
+        $response = $this->requestFactory->request($previewUrl);
+        $fetchedContent = $response->getBody()->getContents();
+
+        if (empty($fetchedContent)) {
+            throw new Exception(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.fetchContentFailed'));
+        }
+        return $fetchedContent;
+    }
 
     protected function addModelSpecificPrompt(array &$jsonContent, string $content, string $extConfPromptPrefix, string $languageIsoCode)
     {
         if ($this->nonLegacyModel) {
             $jsonContent["messages"][] = [
                 'role' => 'user',
-                'content' => $this->extConf[$extConfPromptPrefix] . ' \"' . trim($content) . '\" in ' . $this->languages[$languageIsoCode]
+                'content' => $this->extConf[$extConfPromptPrefix] . ' \"' . trim($content) . '\" . Return the bullet point list in ' . $this->languages[$languageIsoCode] .'!'
                 ];
         } else {
             $jsonContent["prompt"] = $this->extConf[$extConfPromptPrefix]. ' in ' . $this->languages[$languageIsoCode] .":\n\n" . trim($content);

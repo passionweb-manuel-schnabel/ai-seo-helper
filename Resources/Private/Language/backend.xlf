@@ -6,6 +6,9 @@
 		    <trans-unit id="AiSeoHelper.generation.keywords" resname="AiSeoHelper.generation.keywords">
                 <source>Generate keywords</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.newsKeywords" resname="AiSeoHelper.generation.newsKeywords">
+                <source>Generate keywords for news article</source>
+            </trans-unit>
             <trans-unit id="AiSeoHelper.generation.metaDescriptionSuggestions" resname="AiSeoHelper.generation.metaDescriptionSuggestions">
                 <source>Generate meta description suggestions</source>
             </trans-unit>
@@ -18,11 +21,17 @@
             <trans-unit id="AiSeoHelper.generation.twitterTitleSuggestions" resname="AiSeoHelper.generation.twitterTitleSuggestions">
                 <source>Generate Twitter title suggestions</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.newsAlternativeTitleSuggestions" resname="AiSeoHelper.generation.newsAlternativeTitleSuggestions">
+                <source>Generate alternative title suggestions for news article</source>
+            </trans-unit>
             <trans-unit id="AiSeoHelper.generation.ogDescriptionSuggestions" resname="AiSeoHelper.generation.ogDescriptionSuggestions">
                 <source>Generate Open Graph description suggestions</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.generation.twitterDescriptionSuggestions" resname="AiSeoHelper.generation.twitterDescriptionSuggestions">
                 <source>Generate Twitter description suggestions</source>
+            </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.newsDescriptionSuggestions" resname="AiSeoHelper.generation.newsDescriptionSuggestions">
+                <source>Generate description suggestions for news article</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.start" resname="AiSeoHelper.notification.generation.start">
                 <source>Started</source>
@@ -68,9 +77,6 @@
             </trans-unit>
             <trans-unit id="AiSeoHelper.notification.generation.suggestions.ogTwitterDescriptionsUpdated" resname="AiSeoHelper.notification.generation.suggestions.ogTwitterDescriptionsUpdated">
                 <source>Copied selected suggestion to fields for Open Graph and Twitter description.</source>
-            </trans-unit>
-            <trans-unit id="AiSeoHelper.noSuitablePage" resname="AiSeoHelper.noSuitablePage">
-                <source>Did not find a suitable page uid.</source>
             </trans-unit>
             <trans-unit id="AiSeoHelper.unableToLinkToPage" resname="AiSeoHelper.unableToLinkToPage">
                 <source>Unable to link to page with ID %s and language ID %s</source>

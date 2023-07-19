@@ -4,6 +4,7 @@ namespace Passionweb\AiSeoHelper\Service;
 
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 class JavaScriptModuleService
 {
@@ -14,14 +15,23 @@ class JavaScriptModuleService
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/Helper/generate-suggestions.js'),
             ];
+            if(ExtensionManagementUtility::isLoaded('news')) {
+                $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/Helper/news-generate-suggestions.js');
+            }
         } elseif ($typo3Version->getMajorVersion() === 11) {
             $resultArray['requireJsModules'] = [
                 JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions')
             ];
+            if(ExtensionManagementUtility::isLoaded('news')) {
+                $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/NewsGenerateSuggestions');
+            }
         } else {
             $resultArray['requireJsModules'] = [
                 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions'
             ];
+            if(ExtensionManagementUtility::isLoaded('news')) {
+                $resultArray['javaScriptModules'][] = 'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions';
+            }
         }
         return $resultArray;
     }

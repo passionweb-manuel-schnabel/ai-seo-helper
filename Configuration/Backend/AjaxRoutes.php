@@ -29,4 +29,16 @@ return [
         'path' => '/generate/twitter-description',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateTwitterDescriptionAction'
     ],
+    'news_description_generation' => [
+        'path' => '/generate/news-meta-description',
+        'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateNewsMetaDescriptionAction'
+    ],
+    'news_alternative_title_generation' => [
+        'path' => '/generate/news-alternative-title',
+        'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateNewsAlternativeTitleAction'
+    ],
+    'news_keywords_generation' => [
+        'path' => '/generate/news-keywords',
+        'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateNewsKeywordsAction'
+    ],
 ];

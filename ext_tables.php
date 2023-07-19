@@ -7,5 +7,4 @@ if(new \TYPO3\CMS\Core\Information\Typo3Version() < 12 && empty($pageRenderer->g
     $pageRenderer->setCharSet('utf-8');
 }
 
-// Allow Custom Records on Standard Pages
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_aiseohelper_domain_model_customlanguage');
