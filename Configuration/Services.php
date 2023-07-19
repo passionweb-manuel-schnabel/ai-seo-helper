@@ -8,6 +8,7 @@ use TYPO3\CMS\Core\Log\LogManager;
 use Psr\Log\LoggerInterface;
 use Passionweb\AiSeoHelper\Service\ContentService;
 use Passionweb\AiSeoHelper\Factory\CustomLanguageFactory;
+use Passionweb\AiSeoHelper\Factory\SelectedModelFactory;
 use Passionweb\AiSeoHelper\Controller\Ajax\AiController;
 use Passionweb\AiSeoHelper\EventListener\AfterFormEnginePageInitializedEventListener;
 use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
@@ -33,6 +34,10 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services->set('CustomLanguageArray', 'array')
         ->factory([new ReferenceConfigurator(CustomLanguageFactory::class), 'getCustomLanguages']);
 
+    $services->set('SelectedModel', 'bool')
+        ->factory([new ReferenceConfigurator(SelectedModelFactory::class), 'checkSelectedModel'])
+        ->arg('$extConf', new ReferenceConfigurator('ExtConf.aiSeoHelper'));
+
     $containerBuilder->register('Logger', LoggerInterface::class);
     $services->set('PsrLogInterface', 'Logger')
         ->factory([
@@ -41,6 +46,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->set(ContentService::class)
         ->arg('$languages', new ReferenceConfigurator('CustomLanguageArray'))
+        ->arg('$nonLegacyModel', new ReferenceConfigurator('SelectedModel'))
         ->arg('$extConf', new ReferenceConfigurator('ExtConf.aiSeoHelper'));
 
     $services->set(AiController::class)
