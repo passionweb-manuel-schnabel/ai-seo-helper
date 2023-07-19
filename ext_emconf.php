@@ -2,7 +2,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'AI SEO-Helper',
-    'description' => 'Generates SEO metadata based on page content using AI.',
+    'description' => 'Generates SEO metadata based on content using AI. Currently several metadata for pages and articles of EXT:news can be generated using an additional button next to the corresponding input fields.',
     'category' => 'be',
     'author' => 'Manuel Schnabel',
     'author_email' => 'service@passionweb.de',

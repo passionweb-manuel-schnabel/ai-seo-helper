@@ -12,12 +12,19 @@ Target group: **Editors**
 General information on data generation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The extension currently supports the `GPT-3.5 models <https://platform.openai.com/docs/models/gpt-3-5>`_ and `GPT-4 models <https://platform.openai.com/docs/models/gpt-4>`_ (no snapshots are supported). Based on your individual requirements, different models can lead to different results (also in terms of quality). In addition, other parameters can be modified to further specify the OpenAI requests. You have the possibility to adjust the different models as well as the most of the supported request parameters (`detailed explanation can be found here <https://platform.openai.com/docs/api-reference/completions/create>`_) in the extension settings.
+The extension currently supports the `GPT-3.5 models <https://platform.openai.com/docs/models/gpt-3-5>`_ and `GPT-4 models <https://platform.openai.com/docs/models/gpt-4>`_ (no snapshots are supported). Please also note possible restrictions when using the "GPT-4" models (see :ref:`possible_limitations_when_using_the_gpt_4_model`).
+
+Based on your individual requirements, different models can lead to different results (also in terms of quality). In addition, other parameters can be modified to further specify the OpenAI requests. You have the possibility to adjust the different models as well as the most of the supported request parameters (`detailed explanation can be found here <https://platform.openai.com/docs/api-reference/completions/create>`_) in the extension settings.
+
+.. _generate_data_for_page_properties:
+
+Generate data for page properties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _generate_meta_description_suggestions:
 
 Generate meta description (suggestions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 Added an additional button next to the meta description text field. When you click this button, the (text) content of the selected page is generated, and you get meta description suggestions with the help of the AI. By default, the extension prepares the meta description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawMetaDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite meta description via copy/paste.
 
@@ -28,7 +35,7 @@ It can happen that the AI returns texts that exceed the maximum allowed length o
 .. _generate_keywords:
 
 Generate keywords
-^^^^^^^^^^^^^^^^^
+-----------------
 
 Added an additional button next to the keywords text field. When you click this button, the (text) content of the selected page is generated and keywords that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
 
@@ -37,7 +44,7 @@ Added an additional button next to the keywords text field. When you click this 
 .. _generate_page_title_suggestions:
 
 Generate page title (suggestions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------
 
 Added an additional button next to the seo title text field. When you click this button, the (text) content of the selected page is generated and you get page title suggestions with the help of the AI. By default, the extension prepares the page title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawPageTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite page title via copy/paste.
 
@@ -46,44 +53,74 @@ Added an additional button next to the seo title text field. When you click this
 .. _generate_open_graph_title_suggestions:
 
 Generate Open Graph title (suggestions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 Added an additional button next to the Open Graph title text field. When you click this button, the (text) content of the selected page is generated, and you get Open Graph title suggestions with the help of the AI. By default, the extension prepares the Open Graph title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawOgTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite Open Graph title via copy/paste.
 
 .. _generate_open_graph_descriptions_suggestions:
 
 Generate Open Graph description (suggestions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------
 
 Added an additional button next to the Open Graph description text field. When you click this button, the (text) content of the selected page is generated, and you get Open Graph description suggestions with the help of the AI. By default, the extension prepares the Open Graph description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawOgDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite Open Graph description via copy/paste.
 
 .. _generate_twitter_title_suggestions:
 
 Generate Twitter title (suggestions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 Added an additional button next to the Twitter title text field. When you click this button, the (text) content of the selected page is generated, and you get Twitter title suggestions with the help of the AI. By default, the extension prepares the Twitter title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawTwitterTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite Twitter title via copy/paste.
 
 .. _generate_twitter_description_suggestions:
 
 Generate Twitter description (suggestions)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
 
 Added an additional button next to the Twitter description text field. When you click this button, the (text) content of the selected page is generated, and you get Twitter description suggestions with the help of the AI. By default, the extension prepares the Twitter description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawTwitterDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite Twitter description via copy/paste.
 
 .. _use_page_title_suggestions_for_open_graph_and_twitter_titles:
 
 Use page title suggestion for Open Graph and Twitter titles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------------------
 
 Since Version 0.5.0 you have the option to copy the selected page title suggestion to the fields for Open Graph and Twitter titles (can be found within the tab "Social media"). Therefore you must enable the option `pageTitleForOgAndTwitter` in the extension settings. If you select a page title the content will be copied to the fields `og_title`and `twitter_title` too.
 
 .. _use_page_title_suggestions_for_open_graph_and_twitter_descriptions:
 
 Use meta description suggestion for Open Graph and Twitter descriptions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------------------------------
 
 Since Version 0.5.0 you have the option to copy the selected meta description suggestion to the fields for Open Graph and Twitter descriptions (can be found within the tab "Social media"). Therefore you must enable the option `metaDescriptionForOgAndTwitter` in the extension settings. If you select a meta description the content will be copied to the fields `og_description`and `twitter_description` too.
+
+.. _generate_data_for_articles_of_ext_news:
+
+Generate data for articles of EXT:news
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With version 0.6.0 the compatibility to EXT:news was added. Currently, the following metadata can be generated:
+
+.. _generate_news_meta_description_suggestions:
+
+Generate meta description (suggestions)
+---------------------------------------
+
+Added an additional button next to the meta description text field. When you click this button, the (text) content of the selected news article is generated, and you get meta description suggestions with the help of the AI. By default, the extension prepares the meta description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawNewsMetaDescriptionSuggestions` to true within the extension configuration you can output the raw content and select your favorite meta description via copy/paste.
+
+It can happen that the AI returns texts that exceed the maximum allowed length of the meta description. To additionally check the length of the meta description, the extension ["Yoast SEO for TYPO3"](https://extensions.typo3.org/extension/yoast_seo "Yoast SEO for TYPO3") can be used, for example, or various online tools.
+
+.. _generate_news_keywords:
+
+Generate keywords
+-----------------
+
+Added an additional button next to the keywords text field. When you click this button, the (text) content of the selected news article is generated and keywords that is as suitable as possible is created with the help of the AI. Currently, the page must not be deactivated in the backend. Depending on the page size, the process may take a few seconds. However, notifications are used to display appropriate information.
+
+.. _generate_news_alternative_title_suggestions:
+
+Generate alternative title (suggestions)
+----------------------------------------
+
+Added an additional button next to the alternative title text field. When you click this button, the (text) content of the selected news article is generated, and you get alternative title suggestions with the help of the AI. By default, the extension prepares the alternative title suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. If you set the option `showRawNewsAlternativeTitleSuggestions` to true within the extension configuration you can output the raw content and select your favorite page title via copy/paste.
 
 .. _getting_results_in_two_different_ways:
 

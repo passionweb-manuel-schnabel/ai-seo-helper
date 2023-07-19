@@ -12,7 +12,11 @@ Introduction
 What does it do?
 ^^^^^^^^^^^^^^^^
 
-Generates SEO metadata based on page content using AI. Currently, meta description, keywords, page title, Open Graph and Twitter data (titles and descriptions) can be generated using an additional button next to the corresponding text fields. Based on page title and meta description you can fill Open Graph title, Twitter title, Open Graph description and Twitter description too.
+Generates SEO metadata based on page content using AI. Currently, meta description, keywords, page title, Open Graph and Twitter data (titles and descriptions) of the page properties can be generated. Based on page title and meta description you can fill Open Graph title, Twitter title, Open Graph description and Twitter description too.
+
+Furthermore, alternative title suggestions, description suggestions and keywords can be generated for articles of EXT:news.
+
+By using an additional button next to the corresponding input fields you can generate the specific suggestions/data.
 
 .. _requirements:
 
@@ -32,11 +36,25 @@ Notices to keep in mind
 
 Just like this extension, OpenAI is still in development mode and not fully mature. For this reason, we urgently advise you to check all generated texts for correctness before saving them and to make any necessary adjustments!
 
-The OpenAI API (currently) limits the maximum number of tokens per request depending on the model used (e.g. "text-davinci-003" is limited to 4096 tokens). You can find a detailed overview of models and the maximum number of tokens here:
+.. _restriction_on_very_large_texts:
 
-`https://platform.openai.com/docs/models/gpt-3 <https://platform.openai.com/docs/models/gpt-3>`_
+Restrictions on very large texts
+--------------------------------
+
+The OpenAI API (currently) limits the maximum number of tokens per request depending on the model used (currently the maximum possible tokens are 32,768 by using the `gpt-4-32k` model). You can find a detailed overview of models and the maximum number of tokens here:
+
+`https://platform.openai.com/docs/models/ <https://platform.openai.com/docs/models/>`_
 
 Based on the current status of the extension, it is unfortunately not yet possible to analyze larger texts.
+
+.. _possible_limitations_when_using_the_gpt_4_model:
+
+Possible limitations when using the GPT-4 model
+-----------------------------------------------
+
+At the time of version 0.6.0 release, only people with a $1 or more successful payment on their account have access to the GPT-4 model. According to OpenAI, that should change soon.
+
+If you try to use the GPT-4 model without access you currently get a 404 error message which is a bit confusing.
 
 .. _troubleshooting_logging:
 

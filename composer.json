@@ -1,7 +1,7 @@
 {
   "name": "passionweb/ai-seo-helper",
   "license": "GPL-3.0",
-  "description": "Generates SEO metadata based on page content using AI",
+  "description": "Generates SEO metadata based on content using AI. Currently several metadata for pages and articles of EXT:news can be generated using an additional button next to the corresponding input fields.",
   "type": "typo3-cms-extension",
   "homepage": "https://www.passionweb.de",
   "version": "0.5.3",
