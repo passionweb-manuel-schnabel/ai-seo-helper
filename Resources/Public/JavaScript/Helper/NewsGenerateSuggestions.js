@@ -2,7 +2,7 @@ define(["TYPO3/CMS/Core/Ajax/AjaxRequest", "TYPO3/CMS/Backend/Notification"], fu
 
     addEventListener();
     function addEventListener() {
-        document.querySelectorAll('.ai-seo-helper-suggestions-generation-btn').forEach(function(button) {
+        document.querySelectorAll('.ai-seo-helper-news-suggestions-generation-btn').forEach(function(button) {
             button.addEventListener("click", function(ev) {
                 ev.preventDefault();
 
