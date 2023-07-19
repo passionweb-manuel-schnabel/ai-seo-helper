@@ -34,7 +34,7 @@ Source: [Create API key](https://platform.openai.com/account/api-keys "Create AP
 
 ## General information on data generation
 
-The extension currently supports the [GPT-3.5 models](https://platform.openai.com/docs/models/gpt-3-5). Based on your individual requirements, different models can lead to different results (also in terms of quality). In addition, other parameters can be modified to further specify the OpenAI requests. You have the possibility to adjust the different models as well as the most of the supported request parameters ([detailed explanation can be found here](https://platform.openai.com/docs/api-reference/completions/create)) in the extension settings.
+The extension currently supports the [GPT-3.5 models](https://platform.openai.com/docs/models/gpt-3-5) and [GPT-4 models](https://platform.openai.com/docs/models/gpt-4) (no snapshots are supported). Based on your individual requirements, different models can lead to different results (also in terms of quality). In addition, other parameters can be modified to further specify the OpenAI requests. You have the possibility to adjust the different models as well as the most of the supported request parameters ([detailed explanation can be found here](https://platform.openai.com/docs/api-reference/completions/create)) in the extension settings.
 
 ## Generate meta description (suggestions)
 

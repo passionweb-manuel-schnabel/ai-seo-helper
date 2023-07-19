@@ -87,7 +87,7 @@ class ContentService
         $this->addModelSpecificPrompt($jsonContent, $content, $extConfPromptPrefix, $languageIsoCode);
 
         $response = $this->requestFactory->request(
-            $this->extConf['openAiModel'] === 'gpt-3.5-turbo' ?
+            $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-16k' ||  $this->extConf['openAiModel'] === 'gpt-4' || $this->extConf['openAiModel'] === 'gpt-4-32k'  ?
                 'https://api.openai.com/v1/chat/completions' : 'https://api.openai.com/v1/completions',
             'POST',
             [
@@ -101,7 +101,7 @@ class ContentService
 
         $resJsonBody = $response->getBody()->getContents();
         $resBody = json_decode($resJsonBody, true);
-        $generatedText = $this->extConf['openAiModel'] === 'gpt-3.5-turbo' ?
+        $generatedText = $this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-16k' ||  $this->extConf['openAiModel'] === 'gpt-4' || $this->extConf['openAiModel'] === 'gpt-4-32k' ?
             $resBody['choices'][0]['message']['content'] : $resBody['choices'][0]['text'];
         return ltrim(str_replace($extConfReplaceText, '', $generatedText));
     }
@@ -212,7 +212,7 @@ class ContentService
 
     protected function addModelSpecificPrompt(array &$jsonContent, string $content, string $extConfPromptPrefix, string $languageIsoCode)
     {
-        if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo') {
+        if ($this->extConf['openAiModel'] === 'gpt-3.5-turbo' || $this->extConf['openAiModel'] === 'gpt-3.5-turbo-16k' ||  $this->extConf['openAiModel'] === 'gpt-4' || $this->extConf['openAiModel'] === 'gpt-4-32k') {
             $jsonContent["messages"][] = [
                 'role' => 'user',
                 'content' => $this->extConf[$extConfPromptPrefix] . ' \"' . trim($content) . '\" in ' . $this->languages[$languageIsoCode]
