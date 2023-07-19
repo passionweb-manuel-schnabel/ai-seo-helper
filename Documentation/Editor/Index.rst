@@ -97,13 +97,11 @@ Since version 0.3.0 you have two different options to generate the desired data.
 Analyzing the page content based on the text
 --------------------------------------------
 
-If the content length does not exceed the maximum number of allowed characters (can be set in the extension settings with the option `maxAllowedCharacters`) and the maximum number of allowed OpenAi tokens (currently 4096 tokens per request), you can generate the desired data based on the page content in text form. If the page content exceeds the maximum allowed character length, the variant via URL is automatically used.
-
 As already mentioned, this option is primarily limited by the length of the allowed characters per OpenAI request. Furthermore, using this method requires the use of a comparatively large number of tokens.
 
 The following settings are necessary:
 
-- disable the `useUrlForRequest` option in the extension settings (as already mentioned, will be ignored if content is too large)
+- disable the `useUrlForRequest` option in the extension settings
 - check if the ISO code(s) of the language configurations is/are present in the predefined fields (if not present, custom languages can be added, see :ref:`Add custom languages <add_custom_languages>`).
 - Definition of the corresponding prompt in English.
 

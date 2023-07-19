@@ -222,10 +222,3 @@ Number between -2.0 and 2.0. Positive values penalize new tokens based on whethe
     useUrlForRequest = 1
 
 With this option you can use the corresponding URL of the page for all analyses. As a result, you have to use fewer tokens to carry out your corresponding analyses. IMPORTANT: The page must be publicly accessible (hidden pages fail and pages in a local environment lead to poor results)
-
-.. code-block:: none
-
-    # cat=basic request settings; type=int+; label=Maximum characters per request
-    maxAllowedCharacters = 16000
-
-Here you can additionally limit the maximum number of allowed characters. By default, OpenAI allows a maximum of 4096 tokens per request, which corresponds to around 16000 to 16350 characters (in English). Special characters are "more expensive" than normal characters, which means that a token can sometimes be less than 4 characters. For more information see `What are tokens and how to count them <https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them#:~:text=Tokens%20can%20be%20thought%20of,spaces%20and%20even%20sub%2Dwords.>`_.

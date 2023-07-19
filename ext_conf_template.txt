@@ -15,8 +15,6 @@ openAiFrequencyPenalty = 0.8
 openAiPresencePenalty = 0
 # cat=basic request settings; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:useUrlForRequest
 useUrlForRequest = 1
-# cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:maxAllowedCharacters
-maxAllowedCharacters = 16000
 
 # cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
 openAiPromptPrefixMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of

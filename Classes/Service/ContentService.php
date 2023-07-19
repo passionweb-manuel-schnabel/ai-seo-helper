@@ -66,12 +66,7 @@ class ContentService
 
             $strippedPageContent = $this->stripPageContent($this->fetchContentFromUrl($previewUrl));
 
-            $contentLength = strlen($strippedPageContent);
-            if (extension_loaded('mbstring')) {
-                $contentLength = mb_strlen($strippedPageContent);
-            }
-
-            if ($this->extConf['useUrlForRequest'] === '1' || $contentLength > (int)$this->extConf['maxAllowedCharacters']) {
+            if ($this->extConf['useUrlForRequest'] === '1') {
                 return $this->requestAi($previewUrl, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
             } else {
                 return $this->requestAi($strippedPageContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());

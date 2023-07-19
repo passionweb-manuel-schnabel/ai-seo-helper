@@ -86,13 +86,11 @@ Since version 0.3.0 you have two different options to generate the desired data.
 
 ### Analyzing the page content based on the text
 
-If the content length does not exceed the maximum number of allowed characters (can be set in the extension settings with the option `maxAllowedCharacters`) and the maximum number of allowed OpenAi tokens (currently 4096 tokens per request), you can generate the desired data based on the page content in text form. If the page content exceeds the maximum allowed character length, the variant via URL is automatically used.
-
 As already mentioned, this option is primarily limited by the length of the allowed characters per OpenAI request. Furthermore, using this method requires the use of a comparatively large number of tokens.
 
 The following settings are necessary:
 
-- disable the `useUrlForRequest` option in the extension settings (as already mentioned, will be ignored if content is too large)
+- disable the `useUrlForRequest` option in the extension settings
 - check if the ISO code(s) of the language configurations is/are present in the predefined fields (if not present, custom languages can be added, see ["Add custom languages"](#add-custom-languages)).
 - Definition of the corresponding prompt in English.
 
@@ -301,13 +299,6 @@ Number between -2.0 and 2.0. Positive values penalize new tokens based on whethe
     useUrlForRequest = 1
 
 With this option you can use the corresponding URL of the page for all analyses. As a result, you have to use fewer tokens to carry out your corresponding analyses. IMPORTANT: The page must be publicly accessible (hidden pages fail and pages in a local environment lead to poor results)
-
-### `maxAllowedCharacters`
-
-    # cat=basic request settings; type=int+; label=Maximum characters per request
-    maxAllowedCharacters = 16000
-
-Here you can additionally limit the maximum number of allowed characters. By default, OpenAI allows a maximum of 4096 tokens per request, which corresponds to around 16000 to 16350 characters (in English). Special characters are "more expensive" than normal characters, which means that a token can sometimes be less than 4 characters. For more information see ["What are tokens and how to count them"](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them).
 
 ## How is the language suffix determined?
 
