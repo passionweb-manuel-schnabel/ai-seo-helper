@@ -232,7 +232,7 @@ Enter your instruction for generating meta description suggestions. Since OpenAI
 
 By default, the extension prepares the meta description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite meta description via copy/paste.
 
-#### Keywords
+### Keywords
 
 #### `openAiPromptPrefixKeywords`
 

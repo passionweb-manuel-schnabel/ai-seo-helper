@@ -169,19 +169,19 @@ class ContentService
      */
     protected function getPreviewUrl(int $pageId, int $pageLanguage, array $additionalQueryParameters = []): string
     {
+        $additionalGetVars = '_language='.$pageLanguage;
+        foreach ($additionalQueryParameters as $key => $value) {
+            if(!empty($additionalGetVars)) {
+                $additionalGetVars .= '&';
+            }
+            $additionalGetVars .= $key . '=' . $value;
+        }
+
         $typo3Version = new Typo3Version();
         if ($typo3Version->getMajorVersion() > 10) {
             $previewUriBuilder = \TYPO3\CMS\Backend\Routing\PreviewUriBuilder::create($pageId);
-
-            $queryParameters = [
-                '_language' => $pageLanguage
-            ];
-            if(count($additionalQueryParameters) > 0) {
-                $queryParameters = array_merge($queryParameters, $additionalQueryParameters);
-            }
-
             $previewUri = $previewUriBuilder
-                ->withAdditionalQueryParameters($queryParameters)
+                ->withAdditionalQueryParameters($additionalGetVars)
                 ->buildUri();
 
             if($previewUri === null) {
@@ -193,15 +193,7 @@ class ContentService
                 return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath();
             }
         } else {
-            //TODO: test on v10
             if(count($additionalQueryParameters) > 0) {
-                $additionalGetVars = '';
-                foreach ($additionalQueryParameters as $key => $value) {
-                    if(!empty($additionalGetVars)) {
-                        $additionalGetVars .= '&';
-                    }
-                    $additionalGetVars .= $key . '=' . $value;
-                }
                 return BackendUtility::getPreviewUrl($pageId, '', null, '', '', $additionalGetVars);
             } else {
                 return BackendUtility::getPreviewUrl($pageId);
