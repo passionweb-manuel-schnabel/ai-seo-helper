@@ -25,7 +25,7 @@ Extension AI SEO-Helper
 		ai,openai,gpt,chatgpt,seo,metadata,keyword,description,generation,pagetitle,title,news,article
 
 	:Copyright:
-		2023
+		2024
 
 	:Author:
 		Manuel Schnabel
