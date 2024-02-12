@@ -2,7 +2,7 @@
 openAiApiKey =
 
 # cat=basic request settings; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
-openAiModel = gpt-3.5-turbo
+openAiModel = gpt-4-0125-preview
 # cat=basic request settings; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
 openAiTemperature = 0.5
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens
@@ -14,7 +14,7 @@ openAiFrequencyPenalty = 0.8
 # cat=basic request settings; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPresencePenalty
 openAiPresencePenalty = 0
 # cat=basic request settings; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:useUrlForRequest
-useUrlForRequest = 1
+useUrlForRequest = 0
 
 # cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
 openAiPromptPrefixMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
