@@ -56,13 +56,13 @@ class ContentService
         string $extConfReplaceText = ""
     ): string {
         $parsedBody = $request->getParsedBody();
-
+        $page = $this->pageRepository->getPage((int)$parsedBody['pageId']);
+        
         if(array_key_exists('newsId', $parsedBody)) {
-            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId']);
+            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId'], $page['sys_language_uid']);
             $strippedNewsContent = $this->stripNewsContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
             return $this->requestAi($strippedNewsContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         } else {
-            $page = $this->pageRepository->getPage((int)$parsedBody['pageId']);
             $pageId = (int)$parsedBody['pageId'];
             if($page['is_siteroot'] === 1 && $page['l10n_parent'] > 0) {
                 $pageId = $page['l10n_parent'];
