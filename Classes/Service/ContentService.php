@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Routing\SiteMatcher;
@@ -61,8 +62,13 @@ class ContentService
             $strippedNewsContent = $this->stripNewsContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
             return $this->requestAi($strippedNewsContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
         } else {
-            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['pageId']);
-            $previewUrl = $this->getPreviewUrl((int)$parsedBody['pageId'], $siteLanguage->getLanguageId());
+            $page = $this->pageRepository->getPage((int)$parsedBody['pageId']);
+            $pageId = (int)$parsedBody['pageId'];
+            if($page['is_siteroot'] === 1 && $page['l10n_parent'] > 0) {
+                $pageId = $page['l10n_parent'];
+            }
+            $siteLanguage = $this->getSiteLanguageFromPageId($pageId, $page['sys_language_uid']);
+            $previewUrl = $this->getPreviewUrl($pageId, $siteLanguage->getLanguageId());
 
             $strippedPageContent = $this->stripPageContent($this->fetchContentFromUrl($previewUrl));
 
@@ -215,14 +221,15 @@ class ContentService
         }
     }
 
-    protected function getSiteLanguageFromPageId(int $pageId): SiteLanguage
+    /**
+     * @throws SiteNotFoundException
+     */
+    protected function getSiteLanguageFromPageId(int $pageId, int $pageSysLanguageUid): SiteLanguage
     {
-        $rootLine = BackendUtility::BEgetRootLine($pageId);
         $siteMatcher = GeneralUtility::makeInstance(SiteMatcher::class);
+        $rootLine = BackendUtility::BEgetRootLine($pageId);
         $site = $siteMatcher->matchByPageId($pageId, $rootLine);
-        $page = $this->pageRepository->getPage($pageId);
-
-        return  $site->getLanguageById($page['sys_language_uid']);
+        return  $site->getLanguageById($pageSysLanguageUid);
     }
 
     /**
