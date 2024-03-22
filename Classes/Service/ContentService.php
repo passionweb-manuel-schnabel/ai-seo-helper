@@ -57,7 +57,7 @@ class ContentService
     ): string {
         $parsedBody = $request->getParsedBody();
         $page = $this->pageRepository->getPage((int)$parsedBody['pageId']);
-        
+
         if(array_key_exists('newsId', $parsedBody)) {
             $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId'], $page['sys_language_uid']);
             $strippedNewsContent = $this->stripNewsContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
@@ -236,6 +236,19 @@ class ContentService
      * @throws Exception
      */
     protected function fetchContentFromUrl(string $previewUrl): string
+    {
+        try {
+            return $this->getContentFromPreviewUrl($previewUrl);
+        } catch (GuzzleException $e) {
+            $previewUrl = rtrim($previewUrl, '/');
+            return $this->getContentFromPreviewUrl($previewUrl);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getContentFromPreviewUrl(string $previewUrl): string
     {
         $response = $this->requestFactory->request($previewUrl);
         $fetchedContent = $response->getBody()->getContents();
