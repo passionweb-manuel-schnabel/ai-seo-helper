@@ -75,6 +75,10 @@ class AiController
     {
         return $this->generateSuggestions($request, 'TwitterDescription');
     }
+    public function generateAbstractAction(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->generateSuggestions($request, 'Abstract');
+    }
 
     private function generateResponse(ServerRequestInterface $request, string $extConfPrompt, string $extConfReplaceText): ResponseInterface
     {

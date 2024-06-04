@@ -48,6 +48,12 @@
             <trans-unit id="showRawTwitterDescriptionSuggestions" resname="showRawTwitterDescriptionSuggestions">
                 <source>Show raw response content of Twitter description suggestions: By default, the extension prepares the Twitter description suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite Twitter description via copy/paste.</source>
             </trans-unit>
+            <trans-unit id="openAiPromptPrefixAbstract" resname="openAiPromptPrefixAbstract">
+                <source>Prompt-Prefix for abstract summary suggestions generation: Enter your instruction for generating abstract summary suggestions (IMPORTANT: response must be a bullet point list as the return is processed that way)</source>
+            </trans-unit>
+            <trans-unit id="showRawAbstractSuggestions" resname="showRawAbstractSuggestions">
+                <source>Show raw response content of abstract suggestions: By default, the extension prepares the abstract suggestions in such a way that they can be selected via radio button. If you change the prompt prefix and no bullet point list is returned as a result, display problems can occur here. With this option you can output the raw content and select your favorite abstract via copy/paste.</source>
+            </trans-unit>
             <trans-unit id="openAiModel" resname="openAiModel">
                 <source>OpenAI Model: The id of the model which will generate the completion. See https://platform.openai.com/docs/models/gpt-3-5 for an overview of available models.</source>
             </trans-unit>

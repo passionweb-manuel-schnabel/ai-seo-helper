@@ -49,6 +49,11 @@ openAiPromptPrefixTwitterDescription = Extract five Twitter descriptions in a bu
 #cat=twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawTwitterDescriptionSuggestions
 showRawTwitterDescriptionSuggestions = 0
 
+#cat=abstract; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixAbstract
+openAiPromptPrefixAbstract = Extract five summaries in a bullet point list, each summary in one short sentence and with a maximum of 150 characters or less, for the content of
+#cat=abstract; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawAbstractSuggestions
+showRawAbstractSuggestions = 0
+
 # cat=open graph and twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:pageTitleForOgAndTwitter
 pageTitleForOgAndTwitter = 0
 # cat=open graph and twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:descriptionForOgAndTwitter

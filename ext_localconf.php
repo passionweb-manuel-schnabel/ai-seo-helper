@@ -44,6 +44,12 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1676410683] = [
     'class' => \Passionweb\AiSeoHelper\FormEngine\FieldControl\AiSeoTwitterDescription::class
 ];
 
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1676410689] = [
+    'nodeName' => 'aiSeoAbstract',
+    'priority' => 30,
+    'class' => \Passionweb\AiSeoHelper\FormEngine\FieldControl\AiSeoAbstract::class
+];
+
 if(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('news')) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1676410684] = [
         'nodeName' => 'aiNewsMetaDescription',

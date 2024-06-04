@@ -29,6 +29,10 @@ return [
         'path' => '/generate/twitter-description',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateTwitterDescriptionAction'
     ],
+    'abstract_generation' => [
+        'path' => '/generate/abstract',
+        'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateAbstractAction'
+    ],
     'news_description_generation' => [
         'path' => '/generate/news-meta-description',
         'target' => \Passionweb\AiSeoHelper\Controller\Ajax\AiController::class . '::generateNewsMetaDescriptionAction'

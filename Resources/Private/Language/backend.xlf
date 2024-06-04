@@ -30,6 +30,9 @@
             <trans-unit id="AiSeoHelper.generation.twitterDescriptionSuggestions" resname="AiSeoHelper.generation.twitterDescriptionSuggestions">
                 <source>Generate Twitter description suggestions</source>
             </trans-unit>
+            <trans-unit id="AiSeoHelper.generation.abstractSuggestions" resname="AiSeoHelper.generation.abstractSuggestions">
+                <source>Generate abstract suggestions</source>
+            </trans-unit>
             <trans-unit id="AiSeoHelper.generation.newsDescriptionSuggestions" resname="AiSeoHelper.generation.newsDescriptionSuggestions">
                 <source>Generate description suggestions for news article</source>
             </trans-unit>
