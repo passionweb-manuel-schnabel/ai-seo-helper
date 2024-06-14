@@ -9,7 +9,7 @@ defined('TYPO3') or die();
 
 $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
 $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
-if ($typo3Version->getVersion() < 12 && empty($pageRenderer->getCharSet())) {
+if ($typo3Version->getMajorVersion() < 12 && empty($pageRenderer->getCharSet())) {
     $pageRenderer->setCharSet('utf-8');
 }
 
