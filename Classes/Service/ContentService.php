@@ -207,6 +207,11 @@ class ContentService
             if($previewUri === null) {
                 throw new UnableToLinkToPageException(LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.unableToLinkToPage', null, [$pageId, $pageLanguage]));
             }
+            if($previewUri->getScheme() === "" || $previewUri->getHost() === "") {
+                $request = $GLOBALS['TYPO3_REQUEST'];
+                $previewUri = $previewUri->withScheme($request->getUri()->getScheme());
+                $previewUri = $previewUri->withHost($request->getUri()->getHost());
+            }
             if(count($additionalQueryParameters) > 0) {
                 return $previewUri->getScheme() . '://' . $previewUri->getHost() . $previewUri->getPath() . '?' . $previewUri->getQuery();
             } else {
