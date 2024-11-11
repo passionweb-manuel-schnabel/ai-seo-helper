@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Passionweb\AiSeoHelper\Service;
 
-use Doctrine\DBAL\Schema\View;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Backend\Routing\PreviewUriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception;
@@ -203,20 +201,6 @@ class ContentService
         return strip_tags($newsContent);
     }
 
-    protected function buildBulletPointList(string $content): array
-    {
-        $suggestions = preg_split('/[\r\n]+/', $content);
-        $strippedSuggestions = [];
-        foreach ($suggestions as $suggestion) {
-            if (!empty($suggestion) && str_starts_with($suggestion, '- ')) {
-                $strippedSuggestions[] = substr($suggestion, 2, strlen($suggestion));
-            } else {
-                $strippedSuggestions[] = $suggestion;
-            }
-        }
-        return $strippedSuggestions;
-    }
-
     /**
      * @throws UnableToLinkToPageException
      */
@@ -259,9 +243,6 @@ class ContentService
         }
     }
 
-    /**
-     * @throws SiteNotFoundException
-     */
     protected function getSiteLanguageFromPageId(int $pageId, int $pageSysLanguageUid): SiteLanguage
     {
         $siteMatcher = GeneralUtility::makeInstance(SiteMatcher::class);
