@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+        links-are-relative="true">
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+               project-home="https://extensions.typo3.org/extension/ai-seo-helper"
+               project-contact="service@passionweb.de"
+               project-repository="https://github.com/passionweb-manuel-schnabel/ai-seo-helper"
+               project-issues="https://github.com/passionweb-manuel-schnabel/ai-seo-helper/issues"
+               edit-on-github-branch="latest" edit-on-github="passionweb-manuel-schnabel/ai-seo-helper"
+               typo3-core-preferred="stable"
+               interlink-shortcode="passionweb/ai-seo-helper"/>
+    <project title="AI SEO-Helper" release="0.6.2" version="0.6" copyright="2024"/>
+</guides>
