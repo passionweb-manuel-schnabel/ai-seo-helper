@@ -6,6 +6,8 @@
 Introduction
 ============
 
+..  note::
+    This extension will only receive bug fix releases in the future. Please switch to the improved version and the more feature-rich extension `"ai_suite" <https://extensions.typo3.org/extension/ai_suite>`_.
 
 .. _what_it_does:
 
