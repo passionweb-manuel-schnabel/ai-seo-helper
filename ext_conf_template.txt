@@ -18,13 +18,9 @@ useUrlForRequest = 0
 
 # cat=meta description; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixMetaDescription
 openAiPromptPrefixMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
-#cat=meta description; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawMetaDescriptionSuggestions
-showRawMetaDescriptionSuggestions = 0
 
 #cat=page title; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixPageTitle
 openAiPromptPrefixPageTitle = Suggest page title ideas in bullet point list for
-#cat=page title; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawPageTitleSuggestions
-showRawPageTitleSuggestions = 0
 
 # cat=keywords; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixKeywords
 openAiPromptPrefixKeywords = Extract seo keywords from this text. Return the result in a comma separated list.
@@ -33,26 +29,16 @@ replaceTextKeywords = SEO keywords:
 
 #cat=open graph; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixOgTitle
 openAiPromptPrefixOgTitle = Suggest Open Graph title ideas in bullet point list for
-#cat=open graph; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawOgTitleSuggestions
-showRawOgTitleSuggestions = 0
 #cat=open graph; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixOgDescription
 openAiPromptPrefixOgDescription = Extract five Open Graph descriptions in a bullet point list, each Open Graph description in one short sentence and with a maximum of 150 characters or less, for the content of
-#cat=open graph; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawOgDescriptionSuggestions
-showRawOgDescriptionSuggestions = 0
 
 #cat=twitter; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixTwitterTitle
 openAiPromptPrefixTwitterTitle = Suggest Twitter title ideas in bullet point list for
-#cat=twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawTwitterTitleSuggestions
-showRawTwitterTitleSuggestions = 0
 #cat=twitter; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixTwitterDescription
 openAiPromptPrefixTwitterDescription = Extract five Twitter descriptions in a bullet point list, each Twitter description in one short sentence and with a maximum of 150 characters or less, for the content of
-#cat=twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawTwitterDescriptionSuggestions
-showRawTwitterDescriptionSuggestions = 0
 
 #cat=abstract; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixAbstract
 openAiPromptPrefixAbstract = Extract five summaries in a bullet point list, each summary in one short sentence and with a maximum of 150 characters or less, for the content of
-#cat=abstract; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawAbstractSuggestions
-showRawAbstractSuggestions = 0
 
 # cat=open graph and twitter; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:pageTitleForOgAndTwitter
 pageTitleForOgAndTwitter = 0
@@ -64,12 +50,8 @@ singleNewsDisplayPage = 1
 
 # cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixNewsMetaDescription
 openAiPromptPrefixNewsMetaDescription = Extract five seo meta descriptions in a bullet point list, each seo meta description in one short sentence and with a maximum of 150 characters or less, for the content of
-#cat=news; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawNewsMetaDescriptionSuggestions
-showRawNewsMetaDescriptionSuggestions = 0
 # cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixNewsAlternativeTitle
 openAiPromptPrefixNewsAlternativeTitle = Suggest page title ideas in bullet point list for
-#cat=news; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:showRawNewsAlternativeTitleSuggestions
-showRawNewsAlternativeTitleSuggestions = 0
 # cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPromptPrefixNewsKeywords
 openAiPromptPrefixNewsKeywords = Extract seo keywords from this news article. Return the result in a comma separated list.
 # cat=news; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:replaceTextNewsKeywords

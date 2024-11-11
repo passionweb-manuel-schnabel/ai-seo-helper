@@ -9,7 +9,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception;
-use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Routing\SiteMatcher;
@@ -150,20 +149,12 @@ class ContentService
     public function getContentForSuggestions(ServerRequestInterface $request, string $type): string
     {
         $viewFactoryData = new ViewFactoryData(
-            templateRootPaths: ['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']
+            templateRootPaths: ['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/'],
+            request: $request,
         );
         $view = $this->viewFactory->create($viewFactoryData);
-        $view->getRenderingContext()->setControllerName('Ai');
-
         $suggestions = $this->getContentFromAi($request, 'openAiPromptPrefix' . $type);
-
-        if ($this->extConf['showRaw' . $type . 'Suggestions'] === '1') {
-            $view->assign('suggestions', $suggestions);
-            $view->assign('showRawContent', true);
-        } else {
-            $view->assign('suggestions', $suggestions);
-        }
-
+        $view->assign('suggestions', $suggestions);
         return $view->render('GenerateSuggestions');
     }
 
