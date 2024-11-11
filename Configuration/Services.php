@@ -46,7 +46,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->set(ContentService::class)
         ->arg('$languages', new ReferenceConfigurator('CustomLanguageArray'))
-        ->arg('$nonLegacyModel', new ReferenceConfigurator('SelectedModel'))
         ->arg('$extConf', new ReferenceConfigurator('ExtConf.aiSeoHelper'));
 
     $services->set(AiController::class)

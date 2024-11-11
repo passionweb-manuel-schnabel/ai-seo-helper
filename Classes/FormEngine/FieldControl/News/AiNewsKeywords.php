@@ -25,7 +25,7 @@ class AiNewsKeywords extends AbstractNode
         ];
 
         $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() === 12) {
+        if ($typo3Version->getMajorVersion() > 11) {
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-news-keywords.js')
             ];

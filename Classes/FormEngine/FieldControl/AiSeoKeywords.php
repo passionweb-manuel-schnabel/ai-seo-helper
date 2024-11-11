@@ -24,7 +24,7 @@ class AiSeoKeywords extends AbstractNode
         ];
 
         $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() === 12) {
+        if ($typo3Version->getMajorVersion() > 11) {
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/generate-keywords.js')
             ];

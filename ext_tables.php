@@ -4,8 +4,12 @@ defined('TYPO3') or die();
 
 $pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
 $typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-if ($typo3Version->getMajorVersion() < 12 && empty($pageRenderer->getCharSet())) {
-    $pageRenderer->setCharSet('utf-8');
+if ($typo3Version->getMajorVersion() < 12) {
+    if (empty($pageRenderer->getCharSet())) {
+        $pageRenderer->setCharSet('utf-8');
+    }
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_aiseohelper_domain_model_customlanguage');
+if ($typo3Version->getMajorVersion() < 13) {
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_aiseohelper_domain_model_customlanguage');
+}

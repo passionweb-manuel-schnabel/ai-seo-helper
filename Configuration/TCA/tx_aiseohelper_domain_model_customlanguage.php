@@ -17,7 +17,10 @@ return [
             'endtime' => 'endtime',
         ],
         'searchFields' => 'iso_code,speech',
-        'iconfile' => 'EXT:ai_seo_helper/Resources/Public/Icons/tx_aiseohelper_domain_model_customlanguage.svg'
+        'iconfile' => 'EXT:ai_seo_helper/Resources/Public/Icons/tx_aiseohelper_domain_model_customlanguage.svg',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid,iso_code,speech, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden,'],
@@ -27,9 +30,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
+                'type' => 'language',
                 'items' => [
                     [
                         'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
@@ -48,7 +49,10 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => 0,
                 'items' => [
-                    ['', 0],
+                    [
+                        'label' => '',
+                        'value' => 0,
+                    ]
                 ],
                 'foreign_table' => 'tx_aiseohelper_domain_model_customlanguage',
                 'foreign_table_where' => 'AND {#tx_aiseohelper_domain_model_customlanguage}.{#pid}=###CURRENT_PID### AND {#tx_aiseohelper_domain_model_customlanguage}.{#sys_language_uid} IN (-1,0)',
@@ -67,9 +71,16 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
+                        'label' => 0,
+                        'value' => '',
+                    ],
+                    [
+                        'label' => 1,
+                        'value' => '',
+                    ],
+                    [
+                        'label' => 'invertStateDisplay',
+                        'value' => true
                     ]
                 ],
             ],
@@ -78,9 +89,8 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
+                'format' => 'date',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true
@@ -91,9 +101,8 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
+                'format' => 'date',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038)

@@ -11,7 +11,7 @@ class JavaScriptModuleService
     public function addModules(): array
     {
         $typo3Version = new Typo3Version();
-        if ($typo3Version->getMajorVersion() === 12) {
+        if ($typo3Version->getMajorVersion() > 11) {
             $resultArray['javaScriptModules'] = [
                 JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/Helper/generate-suggestions.js'),
             ];
