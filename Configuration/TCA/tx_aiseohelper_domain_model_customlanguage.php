@@ -30,7 +30,9 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'language',
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
                 'items' => [
                     [
                         'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
@@ -38,8 +40,8 @@ return [
                         'flags-multiple'
                     ]
                 ],
-                'default' => -1,
-            ],
+                'default' => 0,
+            ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -49,10 +51,7 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => 0,
                 'items' => [
-                    [
-                        'label' => '',
-                        'value' => 0,
-                    ]
+                    ['', 0],
                 ],
                 'foreign_table' => 'tx_aiseohelper_domain_model_customlanguage',
                 'foreign_table_where' => 'AND {#tx_aiseohelper_domain_model_customlanguage}.{#pid}=###CURRENT_PID### AND {#tx_aiseohelper_domain_model_customlanguage}.{#sys_language_uid} IN (-1,0)',
@@ -71,16 +70,8 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        'label' => 0,
-                        'value' => '',
-                    ],
-                    [
-                        'label' => 1,
-                        'value' => '',
-                    ],
-                    [
-                        'label' => 'invertStateDisplay',
-                        'value' => true
+                        0 => '',
+                        1 => '',
                     ]
                 ],
             ],
@@ -89,8 +80,9 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'datetime',
-                'format' => 'date',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime,int',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true
@@ -101,8 +93,9 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'datetime',
-                'format' => 'date',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime,int',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038)
