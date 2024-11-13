@@ -149,7 +149,7 @@ class AiController
         if ($e->getCode() === 1476107295) {
             $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.pageNotAccessible')]));
         } else {
-            $response->getBody()->write(json_encode(['success' => false, 'error' => $e->getMessage()]));
+            $response->getBody()->write(json_encode(['success' => false, 'error' => LocalizationUtility::translate('LLL:EXT:ai_seo_helper/Resources/Private/Language/backend.xlf:AiSeoHelper.noValidAiResponse')]));
         }
         return $response;
     }
