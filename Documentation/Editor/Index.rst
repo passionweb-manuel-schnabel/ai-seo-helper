@@ -12,7 +12,7 @@ Target group: **Editors**
 General information on data generation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The extension currently supports the `GPT-3.5 models <https://platform.openai.com/docs/models/gpt-3-5>`_ and `GPT-4 models <https://platform.openai.com/docs/models/gpt-4>`_ (no snapshots are supported). Please also note possible restrictions when using the "GPT-4" models (see :ref:`possible_limitations_when_using_the_gpt_4_model`).
+The extension currently supports the `GPT-3.5 models <https://platform.openai.com/docs/models#gpt-3-5-turbo>`_, `GPT-4 models <https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4>`_ and `GPT-4 o mini <https://platform.openai.com/docs/models#gpt-4o-mini>`_ (no snapshots are supported). Please also note possible restrictions when using the "GPT-4" models (see :ref:`possible_limitations_when_using_the_gpt_4_model`).
 
 Based on your individual requirements, different models can lead to different results (also in terms of quality). In addition, other parameters can be modified to further specify the OpenAI requests. You have the possibility to adjust the different models as well as the most of the supported request parameters (`detailed explanation can be found here <https://platform.openai.com/docs/api-reference/completions/create>`_) in the extension settings.
 
