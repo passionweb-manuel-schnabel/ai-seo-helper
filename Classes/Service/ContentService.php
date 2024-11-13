@@ -15,9 +15,8 @@ use TYPO3\CMS\Core\Routing\SiteMatcher;
 use TYPO3\CMS\Core\Routing\UnableToLinkToPageException;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\View\ViewFactoryData;
-use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class ContentService
 {
@@ -28,14 +27,11 @@ class ContentService
     protected RequestFactory $requestFactory;
     protected SiteMatcher $siteMatcher;
 
-    protected ViewFactoryInterface $viewFactory;
-
 
     public function __construct(
         PageRepository       $pageRepository,
         SiteMatcher          $siteMatcher,
         RequestFactory       $requestFactory,
-        ViewFactoryInterface $viewFactory,
         array                $languages,
         array                $extConf
     )
@@ -43,7 +39,6 @@ class ContentService
         $this->pageRepository = $pageRepository;
         $this->siteMatcher = $siteMatcher;
         $this->requestFactory = $requestFactory;
-        $this->viewFactory = $viewFactory;
         $this->languages = $languages;
         $this->extConf = $extConf;
     }
@@ -113,7 +108,7 @@ class ContentService
             "messages" => [
                 [
                     'role' => 'user',
-                    'content' => $this->extConf[$extConfPromptPrefix] . ' in ' . $this->languages[$languageIsoCode] . ":\n\n" . trim($content) . "\n\n Return the response in valid JSON format.",
+                    'content' => $this->extConf[$extConfPromptPrefix] . ' in ' . $this->languages[$languageIsoCode] . ":\n\n" . trim($content) . "\n\n Return at least five suggestions and return the response as array in valid JSON format.",
                 ]
             ]
         ];
@@ -148,14 +143,25 @@ class ContentService
      */
     public function getContentForSuggestions(ServerRequestInterface $request, string $type): string
     {
-        $viewFactoryData = new ViewFactoryData(
-            templateRootPaths: ['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/'],
-            request: $request,
-        );
-        $view = $this->viewFactory->create($viewFactoryData);
         $suggestions = $this->getContentFromAi($request, 'openAiPromptPrefix' . $type);
-        $view->assign('suggestions', $suggestions);
-        return $view->render('GenerateSuggestions');
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($typo3Version->getMajorVersion() > 12) {
+            $viewFactoryData = new \TYPO3\CMS\Core\View\ViewFactoryData(
+                templateRootPaths: ['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/'],
+                request: $request
+            );
+            $viewFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\View\ViewFactoryInterface::class);
+            $view = $viewFactory->create($viewFactoryData);
+            $view->assign('suggestions', $suggestions);
+            return $view->render('GenerateSuggestions');
+        } else {
+            $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
+            $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
+            $standaloneView->getRenderingContext()->setControllerName('Ai');
+            $standaloneView->setTemplate('GenerateSuggestions');
+            $standaloneView->assign('suggestions', $suggestions);
+            return $standaloneView->render();
+        }
     }
 
     public function checkUseForAdditionalFields(string $type): bool
