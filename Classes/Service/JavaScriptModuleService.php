@@ -18,19 +18,12 @@ class JavaScriptModuleService
             if(ExtensionManagementUtility::isLoaded('news')) {
                 $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@passionweb/ai-seo-helper/Helper/news-generate-suggestions.js');
             }
-        } elseif ($typo3Version->getMajorVersion() === 11) {
+        } else {
             $resultArray['requireJsModules'] = [
                 JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions')
             ];
             if(ExtensionManagementUtility::isLoaded('news')) {
                 $resultArray['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/AiSeoHelper/Helper/NewsGenerateSuggestions');
-            }
-        } else {
-            $resultArray['requireJsModules'] = [
-                'TYPO3/CMS/AiSeoHelper/Helper/GenerateSuggestions'
-            ];
-            if(ExtensionManagementUtility::isLoaded('news')) {
-                $resultArray['requireJsModules'][] = 'TYPO3/CMS/AiSeoHelper/Helper/NewsGenerateSuggestions';
             }
         }
         return $resultArray;
