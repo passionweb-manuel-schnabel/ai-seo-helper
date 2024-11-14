@@ -55,11 +55,11 @@ class ContentService
     ): array
     {
         $parsedBody = $request->getParsedBody();
-        $page = $this->pageRepository->getPage((int)$parsedBody['pageId']);
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
 
         if (array_key_exists('newsId', $parsedBody)) {
-            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId'], $page['sys_language_uid']);
+            $folder = $this->pageRepository->getPage((int)$parsedBody['folderId']);
+            $siteLanguage = $this->getSiteLanguageFromPageId((int)$parsedBody['folderId'], $folder['sys_language_uid']);
             $strippedNewsContent = $this->stripNewsContent($this->fetchContentOfNewsArticle((int)$parsedBody['newsId'], $siteLanguage->getLanguageId()));
             if ($typo3Version->getMajorVersion() > 11) {
                 return $this->requestAi($strippedNewsContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getLocale()->getLanguageCode());
@@ -67,6 +67,7 @@ class ContentService
                 return $this->requestAi($strippedNewsContent, $extConfPrompt, $extConfReplaceText, $siteLanguage->getTwoLetterIsoCode());
             }
         } else {
+            $page = $this->pageRepository->getPage((int)$parsedBody['pageId']);
             $pageId = (int)$parsedBody['pageId'];
             if ($page['is_siteroot'] === 1 && $page['l10n_parent'] > 0) {
                 $pageId = $page['l10n_parent'];
