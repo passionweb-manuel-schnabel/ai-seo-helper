@@ -145,6 +145,10 @@ class ContentService
     public function getContentForSuggestions(ServerRequestInterface $request, string $type): string
     {
         $suggestions = $this->getContentFromAi($request, 'openAiPromptPrefix' . $type);
+        $flatSuggestions = [];
+        array_walk_recursive($suggestions, function($value) use (&$flatSuggestions) {
+            $flatSuggestions[] = $value;
+        });
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
         if ($typo3Version->getMajorVersion() > 12) {
             $viewFactoryData = new \TYPO3\CMS\Core\View\ViewFactoryData(
@@ -153,14 +157,14 @@ class ContentService
             );
             $viewFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\View\ViewFactoryInterface::class);
             $view = $viewFactory->create($viewFactoryData);
-            $view->assign('suggestions', $suggestions);
+            $view->assign('suggestions', $flatSuggestions);
             return $view->render('GenerateSuggestions');
         } else {
             $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
             $standaloneView->setTemplateRootPaths(['EXT:ai_seo_helper/Resources/Private/Templates/Ajax/Ai/']);
             $standaloneView->getRenderingContext()->setControllerName('Ai');
             $standaloneView->setTemplate('GenerateSuggestions');
-            $standaloneView->assign('suggestions', $suggestions);
+            $standaloneView->assign('suggestions', $flatSuggestions);
             return $standaloneView->render();
         }
     }
