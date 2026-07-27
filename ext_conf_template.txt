@@ -2,7 +2,7 @@
 openAiApiKey =
 
 # cat=basic request settings; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
-openAiModel = gpt-4-0125-preview
+openAiModel = gpt-5.4-nano
 # cat=basic request settings; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
 openAiTemperature = 0.5
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens
