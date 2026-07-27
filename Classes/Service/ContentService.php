@@ -102,8 +102,6 @@ class ContentService
             "model" => $this->extConf['openAiModel'],
             "temperature" => (float)$this->extConf['openAiTemperature'],
             "top_p" => (float)$this->extConf['openAiTopP'],
-            "frequency_penalty" => (float)$this->extConf['openAiFrequencyPenalty'],
-            "presence_penalty" => (float)$this->extConf['openAiPresencePenalty'],
             "response_format" => ['type' => 'json_object'],
             "messages" => [
                 [
