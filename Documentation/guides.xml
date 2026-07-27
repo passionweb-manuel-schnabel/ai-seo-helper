@@ -10,5 +10,5 @@
                edit-on-github-branch="latest" edit-on-github="passionweb-manuel-schnabel/ai-seo-helper"
                typo3-core-preferred="stable"
                interlink-shortcode="passionweb/ai-seo-helper"/>
-    <project title="AI SEO-Helper" release="0.7.1" version="0.7" copyright="2025"/>
+    <project title="AI SEO-Helper" release="0.7.2" version="0.7" copyright="2026"/>
 </guides>
