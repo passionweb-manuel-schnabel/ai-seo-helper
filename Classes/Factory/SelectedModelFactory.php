@@ -14,8 +14,6 @@ class SelectedModelFactory
                 $extConf['openAiModel'] === 'gpt-5' ||
                 $extConf['openAiModel'] === 'gpt-5.1' ||
                 $extConf['openAiModel'] === 'gpt-5.2' ||
-                $extConf['openAiModel'] === 'gpt-oss-20b' ||
-                $extConf['openAiModel'] === 'gpt-oss-120b' ||
                 $extConf['openAiModel'] === 'gpt-5.4-nano' ||
                 $extConf['openAiModel'] === 'gpt-5.4-mini' ||
                 $extConf['openAiModel'] === 'gpt-5.4' ||
