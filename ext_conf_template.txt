@@ -4,15 +4,11 @@ openAiApiKey =
 # cat=basic request settings; type=string; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiModel
 openAiModel = gpt-5.4-nano
 # cat=basic request settings; type=double+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTemperature
-openAiTemperature = 0.5
+openAiTemperature = 1
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiMaxTokens
 openAiMaxTokens = 275
 # cat=basic request settings; type=int+; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiTopP
 openAiTopP = 1
-# cat=basic request settings; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiFrequencyPenalty
-openAiFrequencyPenalty = 0.8
-# cat=basic request settings; type=double; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:openAiPresencePenalty
-openAiPresencePenalty = 0
 # cat=basic request settings; type=boolean; label=LLL:EXT:ai_seo_helper/Resources/Private/Language/ext_conf.xlf:useUrlForRequest
 useUrlForRequest = 0
 
