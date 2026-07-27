@@ -101,7 +101,6 @@ class ContentService
         $jsonContent = [
             "model" => $this->extConf['openAiModel'],
             "temperature" => (float)$this->extConf['openAiTemperature'],
-            "max_tokens" => (int)$this->extConf['openAiMaxTokens'],
             "top_p" => (float)$this->extConf['openAiTopP'],
             "frequency_penalty" => (float)$this->extConf['openAiFrequencyPenalty'],
             "presence_penalty" => (float)$this->extConf['openAiPresencePenalty'],
